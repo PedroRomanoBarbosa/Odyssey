@@ -3,38 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-	public Transform center;
 	private Rigidbody rigidBody;
 	private Vector3 move;
-	private float jumpVel;
-	private bool stopMoving;
+
+	public float jumpSpeed;
+	public float rotationSpeed;
+	public float gravity;
 
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
-		jumpVel = 0f;
-		stopMoving = false;
 	}
 
 	void Update () {
-		if (Input.GetKeyDown("space")) {
-			jumpVel = 4;
-		}
-		move = new Vector3 (Input.GetAxisRaw("Horizontal"), jumpVel, Input.GetAxisRaw("Vertical")).normalized;
+		move = new Vector3 (Input.GetAxisRaw("Horizontal"), Input.GetAxis("Jump"), Input.GetAxisRaw("Vertical")).normalized;
+		transform.Rotate (0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
 	}
 
-	void FixedUpdate (){
-		if (!stopMoving) {
-			rigidBody.MovePosition (rigidBody.position + transform.TransformDirection(move) * 10 * Time.deltaTime);
-		}
-	}
-
-	void OnCollisionEnter () {
-		Debug.Log ("ENTER");
-		jumpVel = 0;
-	}
-
-	void OnCollisionExit (){
-		Debug.Log ("EXIT");
+	void FixedUpdate () {
+		rigidBody.MovePosition (rigidBody.position + transform.TransformDirection(move) * gravity * Time.fixedDeltaTime);
 	}
 
 }
