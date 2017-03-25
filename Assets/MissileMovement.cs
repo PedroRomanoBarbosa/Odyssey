@@ -7,11 +7,13 @@ public class MissileMovement : MonoBehaviour {
 	public Vector3 axis;
 	public float speed;
 
-	void Start () {
-		
-	}
-
 	void Update () {
 		transform.RotateAround (center.position, axis, speed * Time.deltaTime);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.CompareTag ("Obstacle")) {
+			Destroy (this.gameObject);
+		}
 	}
 }
