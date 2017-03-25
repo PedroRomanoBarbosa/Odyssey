@@ -9,7 +9,7 @@ public class FauxGravityBody : MonoBehaviour {
 		
 	}
 
-	void FixedUpdate () {
+	protected void FixedUpdate () {
 		attractor.Attract (transform);
 	}
 
