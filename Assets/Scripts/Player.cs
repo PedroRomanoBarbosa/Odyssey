@@ -23,7 +23,7 @@ public class Player : FauxGravityBody {
 			missile.transform.rotation = transform.rotation;
 			missile.transform.Rotate (90, 0, 0);
 			MissileMovement script = missile.GetComponent<MissileMovement> ();
-			script.center = attractor.transform;
+			script.planet = attractor.gameObject;
 			script.axis = transform.right;
 		}
 	}
