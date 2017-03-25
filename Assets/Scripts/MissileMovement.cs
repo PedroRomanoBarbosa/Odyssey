@@ -14,7 +14,6 @@ public class MissileMovement : MonoBehaviour {
 	void Start() {
 		counter = 0f;
 		angleSpeed = Mathf.Rad2Deg * (speed/planet.transform.localScale.x);
-		Debug.Log ("ANGEL SPEED: " + angleSpeed);
 	}
 
 	void Update () {
