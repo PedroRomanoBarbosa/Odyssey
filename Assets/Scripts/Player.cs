@@ -14,8 +14,11 @@ public class Player : FauxGravityBody {
 	public GameObject missilePrefab;
 	public float speed;
 	public float maxClimbAngle;
+	public float initialJumpSpeed;
+	public float initialJumpDuration;
 	public float jumpSpeed;
 	public float jumpDuration;
+	public float aerialSlowDown;
 	public float rotationSpeed;
 	public float gravity;
 	public float missileCooldown;
@@ -54,23 +57,38 @@ public class Player : FauxGravityBody {
 
 	void MovePlayer() {
 		float jumpValue = 0;
-		if (canJump) {
-			jumpValue = Input.GetAxis ("Jump") * jumpSpeed;
+
+		if (!jumping) {
+			if (Input.GetKey ("space")) {
+				jumping = true;
+			}
 		}
-		move += new Vector3 (Input.GetAxis ("Horizontal") * speed, jumpValue, Input.GetAxis ("Vertical") * speed);
+
+		if (jumping) {
+			jumpCounter += Time.deltaTime;
+			if (jumpCounter <= initialJumpDuration) {
+				move += new Vector3 (0, initialJumpSpeed, 0);
+				jumpValue = initialJumpSpeed;
+			} else if (Input.GetKey ("space") && jumpCounter <= jumpDuration + initialJumpDuration) {
+				move += new Vector3 (0, jumpSpeed, 0);
+			}
+			move += new Vector3 (Input.GetAxis ("Horizontal") * speed, jumpValue, Input.GetAxis ("Vertical") * speed) * aerialSlowDown;
+		} else {
+			move += new Vector3 (Input.GetAxis ("Horizontal") * speed, jumpValue, Input.GetAxis ("Vertical") * speed);
+		}
 		move *= Time.deltaTime;
 		transform.Rotate (0, Input.GetAxis ("Mouse X") * rotationSpeed, 0);
-	}
-
-	void OnTriggerEnter(Collider collider) {
-		
 	}
 
 	void OnCollisionStay(Collision collision) {
 		Vector3 normal = collision.contacts[0].normal;
 		Vector3 vel = rigidBody.transform.up;
-		if (Vector3.Angle(vel, -normal) > maxClimbAngle){
+		if (Vector3.Angle(vel, -normal) > maxClimbAngle) {
 			canJump = true;
+			if (jumping) {
+				jumping = false;
+				jumpCounter = 0;
+			} 
 		} else {
 			canJump = false;
 		}
