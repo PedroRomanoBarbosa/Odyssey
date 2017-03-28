@@ -5,6 +5,8 @@ using UnityEngine;
 public class Target : MonoBehaviour {
 	private Renderer missileRenderer;
 	private bool active;
+
+	public GameObject action;
 	public Material off;
 	public Material on;
 
@@ -18,13 +20,16 @@ public class Target : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider collider) {
+	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag ("Missile")) {
 			active = !active;
 			if (active) {
 				missileRenderer.material = on;
 			} else {
 				missileRenderer.material = off;
+			}
+			if (action != null) {
+				action.GetComponent<Action> ().OnAction ();
 			}
 		}
 	}

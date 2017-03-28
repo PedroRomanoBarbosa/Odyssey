@@ -6,7 +6,9 @@ public class FauxGravityBody : MonoBehaviour {
 	public FauxGravityAttractor attractor;
 
 	protected void FixedUpdate () {
-		attractor.Attract (transform);
+		if (!GameVariables.cinematicPaused) {
+			attractor.Attract (transform);
+		}
 	}
 
 }

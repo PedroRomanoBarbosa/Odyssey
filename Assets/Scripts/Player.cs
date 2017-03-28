@@ -30,13 +30,19 @@ public class Player : FauxGravityBody {
 	}
 
 	void Update () {
-		MovePlayer ();
-		FireMissile ();
+		if (!GameVariables.cinematicPaused) {
+			MovePlayer ();
+			FireMissile ();
+		}
 	}
 
 	new void FixedUpdate() {
-		base.FixedUpdate ();
-		rigidBody.AddForce (move * gravity);
+		if (!GameVariables.cinematicPaused) {
+			base.FixedUpdate ();
+			rigidBody.velocity = move * gravity;
+		} else {
+			rigidBody.velocity = Vector3.zero; 
+		}
 	}
 
 	void FireMissile() {
@@ -74,8 +80,8 @@ public class Player : FauxGravityBody {
 			} else if (Input.GetKey ("space") && jumpCounter <= jumpDuration + initialJumpDuration) {
 				move += transform.up * jumpSpeed;
 			}
-			move.x *= aerialSlowDown;
-			move.z *= aerialSlowDown;
+			move += transform.right * aerialSlowDown;
+			move += transform.forward * aerialSlowDown;
 		}
 
 		move *= Time.deltaTime;
@@ -86,6 +92,7 @@ public class Player : FauxGravityBody {
 		Vector3 vel = rigidBody.transform.up;
 		if (Vector3.Angle(vel, -normal) > maxClimbAngle) {
 			canJump = true;
+			jumpCounter = jumpDuration;
 			if (jumping) {
 				jumping = false;
 				jumpCounter = 0;

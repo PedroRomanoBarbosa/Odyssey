@@ -17,6 +17,12 @@ public class MissileMovement : MonoBehaviour {
 	}
 
 	void Update () {
+		if (!GameVariables.cinematicPaused) {
+			calculatePosition ();
+		}
+	}
+
+	void calculatePosition () {
 		counter += Time.deltaTime;
 		if (counter < duration) {
 			transform.RotateAround (planet.transform.position, axis, angleSpeed * Time.deltaTime);
