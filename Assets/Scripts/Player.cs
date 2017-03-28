@@ -36,7 +36,7 @@ public class Player : FauxGravityBody {
 
 	new void FixedUpdate() {
 		base.FixedUpdate ();
-		rigidBody.MovePosition (rigidBody.position + transform.TransformDirection(move) * gravity * Time.fixedDeltaTime);
+		rigidBody.AddForce (move * gravity);
 	}
 
 	void FireMissile() {
@@ -56,28 +56,29 @@ public class Player : FauxGravityBody {
 	}
 
 	void MovePlayer() {
-		float jumpValue = 0;
+		move = Vector3.zero;
+		move += transform.forward * Input.GetAxis ("Vertical") * speed;
+		move += transform.right * Input.GetAxis ("Horizontal") * speed;
+
+		transform.Rotate (0, Input.GetAxis ("Mouse X") * rotationSpeed, 0);
 
 		if (!jumping) {
 			if (Input.GetKey ("space")) {
 				jumping = true;
 			}
 		}
-
 		if (jumping) {
 			jumpCounter += Time.deltaTime;
 			if (jumpCounter <= initialJumpDuration) {
-				move += new Vector3 (0, initialJumpSpeed, 0);
-				jumpValue = initialJumpSpeed;
+				move += transform.up * initialJumpSpeed;
 			} else if (Input.GetKey ("space") && jumpCounter <= jumpDuration + initialJumpDuration) {
-				move += new Vector3 (0, jumpSpeed, 0);
+				move += transform.up * jumpSpeed;
 			}
-			move += new Vector3 (Input.GetAxis ("Horizontal") * speed, jumpValue, Input.GetAxis ("Vertical") * speed) * aerialSlowDown;
-		} else {
-			move += new Vector3 (Input.GetAxis ("Horizontal") * speed, jumpValue, Input.GetAxis ("Vertical") * speed);
+			move.x *= aerialSlowDown;
+			move.z *= aerialSlowDown;
 		}
+
 		move *= Time.deltaTime;
-		transform.Rotate (0, Input.GetAxis ("Mouse X") * rotationSpeed, 0);
 	}
 
 	void OnCollisionStay(Collision collision) {
