@@ -83,8 +83,6 @@ public class Player : FauxGravityBody {
 			move += transform.right * aerialSlowDown;
 			move += transform.forward * aerialSlowDown;
 		}
-
-		move *= Time.deltaTime;
 	}
 
 	void OnCollisionStay(Collision collision) {
