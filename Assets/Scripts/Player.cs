@@ -62,11 +62,14 @@ public class Player : FauxGravityBody {
 	}
 
 	void MovePlayer() {
-		move = Vector3.zero;
-		move += transform.forward * Input.GetAxis ("Vertical") * speed;
-		move += transform.right * Input.GetAxis ("Horizontal") * speed;
+		Vector3 velocity = Vector3.zero;
+		velocity += Input.GetAxis ("Vertical") * transform.forward;
+		velocity += Input.GetAxis ("Horizontal") * transform.right;
+		move = Vector3.ClampMagnitude (velocity, 1f) * speed;
 
-		transform.Rotate (0, Input.GetAxis ("Mouse X") * rotationSpeed, 0);
+		if (move != Vector3.zero) {
+			transform.GetChild (0).rotation = Quaternion.LookRotation (move);
+		}
 
 		if (!jumping) {
 			if (Input.GetKey ("space")) {
@@ -82,6 +85,11 @@ public class Player : FauxGravityBody {
 			}
 			move += transform.right * aerialSlowDown;
 			move += transform.forward * aerialSlowDown;
+		}
+
+		transform.GetChild (1).RotateAround (transform.position, transform.up, Input.GetAxis ("Mouse X") * rotationSpeed);
+		if (Input.GetMouseButton (1)) {
+			
 		}
 	}
 
