@@ -6,16 +6,16 @@ public class FauxGravityAttractor : MonoBehaviour {
 	public float gravity = -10f;
 	public float radius;
 
-	void OnStart() {
+	void Start() {
 		radius = GetComponent<SphereCollider> ().radius;
 	}
 
-	public void Attract (Transform body) {
-		Vector3 gravityUp = (body.position - transform.position).normalized;
+	public void Attract (Transform body, Vector3 force, float speed) {
+		Vector3 gravityUp = force.normalized;
 		Vector3 bodyUp = body.up;
-		body.GetComponent<Rigidbody> ().AddForce (gravityUp * gravity * getGravityVelocity(getGravityVelocity ((body.position - transform.position).magnitude - radius)));
+		body.GetComponent<Rigidbody> ().AddForce (gravityUp * gravity * radius * 100);
 		Quaternion targetRotation = Quaternion.FromToRotation (bodyUp, gravityUp) * body.rotation;
-		body.rotation = Quaternion.Slerp (body.rotation, targetRotation, 50 * Time.deltaTime);
+		body.rotation = Quaternion.Slerp (body.rotation, targetRotation, speed * Time.deltaTime);
 	}
 
 	public float getGravityVelocity(float distance) {

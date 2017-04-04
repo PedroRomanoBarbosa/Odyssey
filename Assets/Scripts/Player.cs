@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
+
+	// Movement Variables
 	private Vector3 move;
+	public float speed;
+	public float gravity;
+	public float rotationSpeed;
+	public float maxClimbAngle;
+
+	// Children Variables
 	private Transform movementAxis;
 	private Transform model;
 	private Transform playerCamera;
-	private bool canJump;
+
+	// Gravity Variables
+	private bool planetGravity;
+	private Vector3 gravityVector;
+
+	// Jump Variables
 	private bool jumping;
+	private Vector3 jumpingVelocity;
 	private bool jumpPressed;
 	private float jumpCounter;
-	private float missileCooldownCounter;
-
-	public GameObject missilePrefab;
-	public float speed;
-	public float maxClimbAngle;
 	public float initialJumpSpeed;
 	public float initialJumpDuration;
 	public float jumpSpeed;
 	public float jumpDuration;
 	public float aerialSlowDown;
-	public float rotationSpeed;
-	public float gravity;
+
+	// Missile Variables
+	private float missileCooldownCounter;
+	public GameObject missilePrefab;
 	public float missileCooldown;
 
 	void Start () {
@@ -32,6 +43,7 @@ public class Player : FauxGravityBody {
 		playerCamera = movementAxis.GetChild (0);
 		rigidBody = GetComponent<Rigidbody> ();
 		missileCooldownCounter = missileCooldown;
+		planetGravity = true;
 	}
 
 	void Update () {
@@ -43,7 +55,11 @@ public class Player : FauxGravityBody {
 
 	new void FixedUpdate() {
 		if (!GameVariables.cinematicPaused) {
-			base.FixedUpdate ();
+			if (planetGravity) {
+				base.FixedUpdate ();
+			} else {
+				attractor.Attract (transform, gravityVector, gravityRotationSpeed);
+			}
 			rigidBody.velocity = move * gravity;
 		} else {
 			rigidBody.velocity = Vector3.zero; 
@@ -105,6 +121,17 @@ public class Player : FauxGravityBody {
 				jumpCounter = 0;
 			} 
 		}
+	}
+
+	void OnTriggerEnter(Collider collider) {
+		planetGravity = false;
+		gravityVector = Vector3.up;
+		gravityRotationSpeed = 5;
+	}
+
+	void OnTriggerExit(Collider collider) {
+		planetGravity = true;
+		gravityRotationSpeed = 2;
 	}
 
 }
