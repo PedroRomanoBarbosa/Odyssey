@@ -8,6 +8,8 @@ public class Player : FauxGravityBody {
 	// Movement Variables
 	private Vector3 move;
 	public float speed;
+	private float planetSpeed;
+	private float planetGravityRotationSpeed;
 	public float gravity;
 	public float rotationSpeed;
 	public float maxClimbAngle;
@@ -15,7 +17,6 @@ public class Player : FauxGravityBody {
 	// Children Variables
 	private Transform movementAxis;
 	private Transform model;
-	private Transform playerCamera;
 
 	// Gravity Variables
 	private bool planetGravity;
@@ -40,9 +41,10 @@ public class Player : FauxGravityBody {
 	void Start () {
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
-		playerCamera = movementAxis.GetChild (0);
 		rigidBody = GetComponent<Rigidbody> ();
 		missileCooldownCounter = missileCooldown;
+		planetSpeed = speed;
+		planetGravityRotationSpeed = gravityRotationSpeed;
 		planetGravity = true;
 	}
 
@@ -69,10 +71,10 @@ public class Player : FauxGravityBody {
 	void FireMissile() {
 		if (missileCooldownCounter >= missileCooldown) {
 			if (Input.GetAxisRaw("Fire1") == 1) {
-				missileCooldownCounter = 0;
+				missileCooldownCounter = 0f;
 				GameObject missile = Instantiate (missilePrefab, transform.position, Quaternion.identity);
 				missile.transform.rotation = model.rotation;
-				missile.transform.Rotate (90, 0, 0);
+				missile.transform.Rotate (90f, 0f, 0f);
 				MissileMovement script = missile.GetComponent<MissileMovement> ();
 				script.planet = attractor.gameObject;
 				script.axis = model.right;
@@ -83,7 +85,7 @@ public class Player : FauxGravityBody {
 	}
 
 	void MovePlayer() {
-		movementAxis.Rotate (0, Input.GetAxis ("Mouse X") * rotationSpeed, 0);
+		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
 
 		Vector3 velocity = Vector3.zero;
 		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
@@ -95,19 +97,21 @@ public class Player : FauxGravityBody {
 		}
 
 		if (!jumping) {
-			if (Input.GetAxisRaw("Jump") == 1) {
+			if (Input.GetAxisRaw("Jump") == 1f) {
 				jumping = true;
+				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
 			}
 		}
 		if (jumping) {
+			move = jumpingVelocity;
 			jumpCounter += Time.deltaTime;
 			if (jumpCounter <= initialJumpDuration) {
 				move += movementAxis.up * initialJumpSpeed;
-			} else if (Input.GetAxisRaw("Jump") == 1 && jumpCounter <= jumpDuration + initialJumpDuration) {
+			} else if (Input.GetAxisRaw ("Jump") == 1 && jumpCounter <= jumpDuration + initialJumpDuration) {
 				move += movementAxis.up * jumpSpeed;
+			} else if (jumpCounter > 2f * (jumpDuration + initialJumpDuration)) {
+				jumping = false;
 			}
-			move += movementAxis.right * aerialSlowDown;
-			move += movementAxis.forward * aerialSlowDown;
 		}
 	}
 
@@ -118,20 +122,27 @@ public class Player : FauxGravityBody {
 			jumpCounter = jumpDuration;
 			if (jumping) {
 				jumping = false;
-				jumpCounter = 0;
+				jumpCounter = 0f;
 			} 
 		}
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		planetGravity = false;
-		gravityVector = Vector3.up;
-		gravityRotationSpeed = 5;
+		if (collider.gameObject.CompareTag ("GravityZone")) {
+			planetGravity = false;
+			GravityZone script = collider.gameObject.GetComponent<GravityZone> ();
+			gravityVector = script.transform.up;
+			gravityRotationSpeed = script.gravityRotationSpeed;
+			speed = script.speed;
+		}
 	}
 
 	void OnTriggerExit(Collider collider) {
-		planetGravity = true;
-		gravityRotationSpeed = 2;
+		if (collider.gameObject.CompareTag ("GravityZone")) {
+			gravityRotationSpeed = planetGravityRotationSpeed;
+			speed = planetSpeed;
+			planetGravity = true;
+		}
 	}
 
 }
