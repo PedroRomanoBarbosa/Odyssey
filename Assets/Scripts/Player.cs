@@ -9,7 +9,6 @@ public class Player : FauxGravityBody {
 	private Vector3 move;
 	public float speed;
 	private float planetSpeed;
-	private float planetGravityRotationSpeed;
 	public float gravity;
 	public float rotationSpeed;
 	public float maxClimbAngle;
@@ -23,12 +22,13 @@ public class Player : FauxGravityBody {
 	private Vector3 gravityVector;
 
 	// Jump Variables
+	public bool isGrounded;
 	private bool jumping;
+	private bool falling;
 	private Vector3 jumpingVelocity;
+	public float jumpMomentum = 1f;
 	private bool jumpPressed;
 	private float jumpCounter;
-	public float initialJumpSpeed;
-	public float initialJumpDuration;
 	public float jumpSpeed;
 	public float jumpDuration;
 	public float aerialSlowDown;
@@ -46,25 +46,34 @@ public class Player : FauxGravityBody {
 		planetSpeed = speed;
 		planetGravityRotationSpeed = gravityRotationSpeed;
 		planetGravity = true;
+		isGrounded = false;
 	}
 
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
+			checkGrounded ();
 			MovePlayer ();
 			FireMissile ();
 		}
 	}
 
-	new void FixedUpdate() {
+	public void FixedUpdate() {
+		rigidBody.velocity = Vector3.zero;
 		if (!GameVariables.cinematicPaused) {
 			if (planetGravity) {
 				base.FixedUpdate ();
 			} else {
-				attractor.Attract (transform, gravityVector, gravityRotationSpeed);
+				attractor.Attract (this, gravityVector, gravityRotationSpeed);
 			}
-			rigidBody.velocity = move * gravity;
+			rigidBody.velocity += move * gravity;
+		}
+	}
+
+	void checkGrounded() {
+		if (Physics.Raycast (transform.position, -transform.up, 2f)) {
+			isGrounded = true;
 		} else {
-			rigidBody.velocity = Vector3.zero; 
+			isGrounded = false;
 		}
 	}
 
@@ -100,31 +109,39 @@ public class Player : FauxGravityBody {
 			if (Input.GetAxisRaw("Jump") == 1f) {
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
+				jumpCounter = 0f;
 			}
 		}
 		if (jumping) {
-			move = jumpingVelocity;
+			move = Vector3.zero;
 			jumpCounter += Time.deltaTime;
-			if (jumpCounter <= initialJumpDuration) {
-				move += movementAxis.up * initialJumpSpeed;
-			} else if (Input.GetAxisRaw ("Jump") == 1 && jumpCounter <= jumpDuration + initialJumpDuration) {
+			if (jumpCounter <= jumpDuration) {
 				move += movementAxis.up * jumpSpeed;
-			} else if (jumpCounter > 2f * (jumpDuration + initialJumpDuration)) {
-				jumping = false;
+			}
+			move += movementAxis.right * jumpingVelocity.x * jumpMomentum;
+			move += movementAxis.forward * jumpingVelocity.z * jumpMomentum;
+		}
+	}
+
+	void OnCollisionEnter (Collision collision) {
+		if (collision.gameObject.name == "Planet") {
+			if (rotationEnded) {
+				gravityRotationSpeed = planetGravityRotationSpeed;
 			}
 		}
 	}
 
 	void OnCollisionStay(Collision collision) {
+		/*
 		Vector3 normal = collision.contacts[0].normal;
 		Vector3 vel = rigidBody.transform.up;
 		if (Vector3.Angle(vel, -normal) > maxClimbAngle) {
-			jumpCounter = jumpDuration;
 			if (jumping) {
 				jumping = false;
 				jumpCounter = 0f;
 			} 
 		}
+		*/
 	}
 
 	void OnTriggerEnter(Collider collider) {
@@ -133,14 +150,11 @@ public class Player : FauxGravityBody {
 			GravityZone script = collider.gameObject.GetComponent<GravityZone> ();
 			gravityVector = script.transform.up;
 			gravityRotationSpeed = script.gravityRotationSpeed;
-			speed = script.speed;
 		}
 	}
 
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.CompareTag ("GravityZone")) {
-			gravityRotationSpeed = planetGravityRotationSpeed;
-			speed = planetSpeed;
 			planetGravity = true;
 		}
 	}
