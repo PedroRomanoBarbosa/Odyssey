@@ -51,7 +51,7 @@ public class Player : FauxGravityBody {
 
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
-			checkGrounded ();
+			CheckGrounded ();
 			MovePlayer ();
 			FireMissile ();
 		}
@@ -69,9 +69,11 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	void checkGrounded() {
-		if (Physics.Raycast (transform.position, -transform.up, 2f)) {
+	void CheckGrounded() {
+		Debug.DrawRay (transform.position, -transform.up * 1.2f);
+		if (Physics.Raycast (transform.position, -transform.up, 1.2f)) {
 			isGrounded = true;
+			jumping = false;
 		} else {
 			isGrounded = false;
 		}
