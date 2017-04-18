@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FauxGravityBody : MonoBehaviour {
-	public float gravityRotationSpeed;
+	protected float gravityRotationSpeed;
 	public FauxGravityAttractor attractor;
 	protected bool rotationEnded;
-	protected float planetGravityRotationSpeed;
+	public float planetGravityRotationSpeed;
+
+	void Start() {
+		gravityRotationSpeed = planetGravityRotationSpeed;
+	}
 
 	protected void FixedUpdate () {
 		if (!GameVariables.cinematicPaused) {

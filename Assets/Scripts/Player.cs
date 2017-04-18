@@ -8,7 +8,6 @@ public class Player : FauxGravityBody {
 	// Movement Variables
 	private Vector3 move;
 	public float speed;
-	private float planetSpeed;
 	public float gravity;
 	public float rotationSpeed;
 	public float maxClimbAngle;
@@ -24,9 +23,8 @@ public class Player : FauxGravityBody {
 	// Jump Variables
 	public bool isGrounded;
 	private bool jumping;
-	private bool falling;
 	private Vector3 jumpingVelocity;
-	public float jumpMomentum = 1f;
+	public float jumpMomentum = 4f;
 	private bool jumpPressed;
 	private float jumpCounter;
 	public float jumpSpeed;
@@ -43,9 +41,8 @@ public class Player : FauxGravityBody {
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
 		missileCooldownCounter = missileCooldown;
-		planetSpeed = speed;
-		planetGravityRotationSpeed = gravityRotationSpeed;
 		planetGravity = true;
+		gravityRotationSpeed = planetGravityRotationSpeed;
 		isGrounded = false;
 	}
 
@@ -118,16 +115,16 @@ public class Player : FauxGravityBody {
 			move = Vector3.zero;
 			jumpCounter += Time.deltaTime;
 			if (jumpCounter <= jumpDuration) {
-				move += movementAxis.up * jumpSpeed;
+				move += transform.up * jumpSpeed;
 			}
-			move += movementAxis.right * jumpingVelocity.x * jumpMomentum;
-			move += movementAxis.forward * jumpingVelocity.z * jumpMomentum;
+			move += jumpingVelocity * jumpMomentum;
 		}
 	}
 
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject.name == "Planet") {
 			if (rotationEnded) {
+				planetGravity = true;
 				gravityRotationSpeed = planetGravityRotationSpeed;
 			}
 		}
