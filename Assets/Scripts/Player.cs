@@ -7,8 +7,8 @@ public class Player : FauxGravityBody {
 
 	// Movement Variables
 	private Vector3 move;
+	private Vector3 velocity;
 	public float speed;
-	public float gravity;
 	public float rotationSpeed;
 	public float maxClimbAngle;
 
@@ -37,6 +37,8 @@ public class Player : FauxGravityBody {
 	public float missileCooldown;
 
 	// Weapon variables
+	public GameObject missileLauncher;
+	public GameObject miningPick;
 	private enum Weapon {
 		MissileLauncher,
 		MiningPick
@@ -78,7 +80,7 @@ public class Player : FauxGravityBody {
 			} else {
 				attractor.Attract (this, gravityVector, gravityRotationSpeed);
 			}
-			rigidBody.velocity += move * gravity;
+			rigidBody.velocity += move;
 		}
 	}
 
@@ -86,6 +88,7 @@ public class Player : FauxGravityBody {
 		Debug.DrawRay (transform.position, -transform.up * 1.2f);
 		if (Physics.Raycast (transform.position, -transform.up, 1.2f)) {
 			isGrounded = true;
+			jumpCounter = 0f;
 			jumping = false;
 		} else {
 			isGrounded = false;
@@ -147,9 +150,12 @@ public class Player : FauxGravityBody {
 	void MovePlayer () {
 		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
 
-		Vector3 velocity = Vector3.zero;
+		velocity = Vector3.zero;
 		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
 		velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
+		if (!isGrounded) {
+			velocity *= aerialSlowDown;
+		}
 		move = Vector3.ClampMagnitude (velocity, 1f) * speed;
 
 		if (move != Vector3.zero) {
@@ -166,11 +172,23 @@ public class Player : FauxGravityBody {
 		if (jumping) {
 			move = Vector3.zero;
 			jumpCounter += Time.deltaTime;
-			if (jumpCounter <= jumpDuration) {
+			if (jumpCounter <= jumpDuration / 3f) {
 				move += transform.up * jumpSpeed;
+			} else if (jumpCounter <= jumpDuration) {
+				if (Input.GetAxisRaw ("Jump") == 1f) {
+					move += transform.up * jumpFunction(jumpCounter, jumpDuration);
+				}
 			}
-			move += jumpingVelocity * jumpMomentum;
+			move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
+			move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
+			move += Vector3.ClampMagnitude((jumpingVelocity * jumpMomentum), (jumpingVelocity * jumpMomentum).magnitude - jumpCounter);
 		}
+	}
+
+	float jumpFunction(float time, float dur) {
+		float t = time / dur;
+		float gravity = -4 * (t - 0.5f) * (t - 0.5f) + 1;
+		return gravity * -attractor.gravity + -attractor.gravity;
 	}
 
 	void OnCollisionEnter (Collision collision) {
