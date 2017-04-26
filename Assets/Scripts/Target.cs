@@ -6,7 +6,7 @@ public class Target : MonoBehaviour {
 	private Renderer missileRenderer;
 	private bool active;
 
-	public GameObject action;
+	public Action action;
 	public Material off;
 	public Material on;
 
@@ -14,10 +14,6 @@ public class Target : MonoBehaviour {
 		missileRenderer = GetComponent<Renderer> ();
 		missileRenderer.material = off;
 		active = false;
-	}
-
-	void Update () {
-		
 	}
 
 	void OnTriggerEnter (Collider collider) {
@@ -29,7 +25,7 @@ public class Target : MonoBehaviour {
 				missileRenderer.material = off;
 			}
 			if (action != null) {
-				action.GetComponent<Action> ().OnAction ();
+				action.OnAction ();
 			}
 		}
 	}
