@@ -17,7 +17,7 @@ public class Player : FauxGravityBody {
 	private Transform model;
 
 	// Gravity Variables
-	private bool planetGravity;
+	public bool planetGravity;
 	private Vector3 gravityVector;
 
 	// Jump Variables
@@ -53,7 +53,6 @@ public class Player : FauxGravityBody {
 		rigidBody = GetComponent<Rigidbody> ();
 		missileCooldownCounter = missileCooldown;
 		planetGravity = true;
-		gravityRotationSpeed = planetGravityRotationSpeed;
 		isGrounded = false;
 		activeWeapon = Weapon.MissileLauncher;
 		equippedWeapons = new List<Weapon> { Weapon.MissileLauncher };
@@ -78,7 +77,7 @@ public class Player : FauxGravityBody {
 			if (planetGravity) {
 				base.FixedUpdate ();
 			} else {
-				attractor.Attract (this, gravityVector, gravityRotationSpeed);
+				attractor.Attract (this, gravityVector);
 			}
 			rigidBody.velocity += move;
 		}
@@ -191,30 +190,9 @@ public class Player : FauxGravityBody {
 		return gravity * -attractor.gravity + -attractor.gravity;
 	}
 
-	void OnCollisionEnter (Collision collision) {
-		if (collision.gameObject.name == "Planet") {
-			if (rotationEnded) {
-				planetGravity = true;
-				gravityRotationSpeed = planetGravityRotationSpeed;
-			}
-		}
-	}
-
-	void OnCollisionStay(Collision collision) {
-		/*
-		Vector3 normal = collision.contacts[0].normal;
-		Vector3 vel = rigidBody.transform.up;
-		if (Vector3.Angle(vel, -normal) > maxClimbAngle) {
-			if (jumping) {
-				jumping = false;
-				jumpCounter = 0f;
-			} 
-		}
-		*/
-	}
-
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.CompareTag ("GravityZone")) {
+			Debug.Log("GRAVITY FALSE");
 			planetGravity = false;
 			GravityZone script = collider.gameObject.GetComponent<GravityZone> ();
 			gravityVector = script.transform.up;

@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class FauxGravityAttractor : MonoBehaviour {
 	public float gravity = -10f;
+	public float gravityRotationSpeed = 5f;
 
-	public void Attract (FauxGravityBody body, Vector3 force, float rotationSpeed) {
+	public void Attract (FauxGravityBody body, Vector3 force) {
 		Vector3 gravityUp = force.normalized;
 		Vector3 bodyUp = body.transform.up;
 		body.GetComponent<Rigidbody> ().velocity += gravityUp * gravity;
 		Quaternion targetRotation = Quaternion.FromToRotation (bodyUp, gravityUp) * body.transform.rotation;
-		if (rotationSpeed != 0) {
-			body.transform.rotation = Quaternion.Slerp (body.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-			if (body.transform.rotation == targetRotation) {
-				body.rotationEnded = true;
-			}
-		} else {
-			body.transform.rotation = targetRotation;
-		}
+		body.transform.rotation = Quaternion.Slerp (body.transform.rotation, targetRotation, gravityRotationSpeed * Time.deltaTime);
 	}
 
 }
