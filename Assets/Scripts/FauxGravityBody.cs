@@ -5,7 +5,7 @@ using UnityEngine;
 public class FauxGravityBody : MonoBehaviour {
 	protected float gravityRotationSpeed;
 	public FauxGravityAttractor attractor;
-	protected bool rotationEnded;
+	public bool rotationEnded;
 	public float planetGravityRotationSpeed;
 
 	void Start() {

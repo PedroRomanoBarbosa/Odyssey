@@ -10,11 +10,11 @@ public class NodeDestruction : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (state == 0) {
+		transform.GetChild (state).GetComponent<Renderer> ().enabled = false;
+		state -= 1;
+		if (state == -1) {
 			Destroy (this.gameObject);
 		} else {
-			transform.GetChild (state).GetComponent<Renderer> ().enabled = false;
-			state -= 1;
 			transform.GetChild (state).GetComponent<Renderer> ().enabled = true;
 		}
 	}
