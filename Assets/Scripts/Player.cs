@@ -31,43 +31,31 @@ public class Player : FauxGravityBody {
 	public float jumpDuration;
 	public float aerialSlowDown;
 
-	// Missile Variables
-	private float missileCooldownCounter;
-	public GameObject missilePrefab;
-	public float missileCooldown;
-
 	// Weapon variables
-	public GameObject missileLauncher;
-	public GameObject miningPick;
-	private enum Weapon {
-		MissileLauncher,
-		MiningPick
-	}
-	private Weapon activeWeapon;
-	private List<Weapon> equippedWeapons;
-	private int weaponIndex;
+	private Tool miningPick, missileLauncher;
+	public List<Tool> equippedTools;
+	private int toolIndex;
 
 	void Start () {
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
-		missileCooldownCounter = missileCooldown;
 		planetGravity = true;
 		isGrounded = false;
-		activeWeapon = Weapon.MissileLauncher;
-		equippedWeapons = new List<Weapon> { Weapon.MissileLauncher };
-		weaponIndex = 0;
+		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
+		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
+		equippedTools = new List<Tool> () {missileLauncher};
+		toolIndex = 0;
+		if (equippedTools.Count > 0) {
+			equippedTools [toolIndex].gameObject.SetActive (true);
+		}
 	}
 
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
 			CheckGrounded ();
-
 			MovePlayer ();
-
 			ChangeWeapon ();
-
-			UseWeapon ();
 		}
 	}
 
@@ -95,55 +83,19 @@ public class Player : FauxGravityBody {
 	}
 
 	void ChangeWeapon () {
-		if (Input.GetKey("q")) {
-			weaponIndex++;
-			if (weaponIndex >= equippedWeapons.Count) {
-				weaponIndex = 0;
+		if (Input.GetKeyUp("q")) {
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex++;
+			if (toolIndex >= equippedTools.Count) {
+				toolIndex = 0;
 			}
-			activeWeapon = equippedWeapons[weaponIndex];
+			equippedTools [toolIndex].gameObject.SetActive (true);
+
 		}
 	}
 
-	void PositionWeapon (GameObject weapon) {
-		switch (activeWeapon) {
-		case Weapon.MissileLauncher:
-			break;
-		case Weapon.MiningPick:
-			weapon.GetComponent<Rotation> ().enabled = false;
-			weapon.transform.localScale = new Vector3 (1.5f, 1.5f, 1.5f);
-			weapon.transform.parent = transform.GetChild (1);
-			weapon.transform.up = transform.GetChild (1).up;
-			weapon.transform.right = transform.GetChild (1).right;
-			weapon.transform.Rotate (0f, 90f, 0f);
-			weapon.transform.position = transform.GetChild (1).GetChild (2).position;
-			break;
-		}
-	}
-
-	void UseWeapon () {
-		switch (activeWeapon) {
-		case Weapon.MissileLauncher:
-			FireMissile ();
-			break;
-		case Weapon.MiningPick:
-			break;
-		}
-	}
-
-	void FireMissile () {
-		if (missileCooldownCounter >= missileCooldown) {
-			if (Input.GetAxisRaw("Fire1") == 1) {
-				missileCooldownCounter = 0f;
-				GameObject missile = Instantiate (missilePrefab, transform.position, Quaternion.identity);
-				missile.transform.rotation = model.rotation;
-				missile.transform.Rotate (90f, 0f, 0f);
-				MissileMovement script = missile.GetComponent<MissileMovement> ();
-				script.planet = attractor.gameObject;
-				script.axis = model.right;
-			}
-		} else {
-			missileCooldownCounter += Time.deltaTime;
-		}
+	void selectWeapon () {
+		
 	}
 
 	void MovePlayer () {
@@ -161,6 +113,10 @@ public class Player : FauxGravityBody {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
 
+		Jump ();
+	}
+
+	void Jump() {
 		if (!jumping) {
 			if (Input.GetAxisRaw("Jump") == 1f) {
 				jumping = true;
@@ -191,16 +147,18 @@ public class Player : FauxGravityBody {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.CompareTag ("GravityZone")) {
-			Debug.Log("GRAVITY FALSE");
+		GameObject colliderObject = collider.gameObject;
+		if (colliderObject.CompareTag ("GravityZone")) {
 			planetGravity = false;
-			GravityZone script = collider.gameObject.GetComponent<GravityZone> ();
+			GravityZone script = colliderObject.GetComponent<GravityZone> ();
 			gravityVector = script.transform.up;
 			gravityRotationSpeed = script.gravityRotationSpeed;
-		} else if (collider.gameObject.name == "MiningPick") {
-			equippedWeapons.Add (Weapon.MiningPick);
-			activeWeapon = Weapon.MiningPick;
-			PositionWeapon (collider.gameObject);
+		} else if (colliderObject.name == "MiningPickItem") {
+			equippedTools.Add (miningPick);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
+			equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
 		}
 	}
 
