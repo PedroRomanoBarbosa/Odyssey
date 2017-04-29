@@ -44,7 +44,7 @@ public class Player : FauxGravityBody {
 		isGrounded = false;
 		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
 		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
-		equippedTools = new List<Tool> () {missileLauncher};
+		equippedTools = new List<Tool> () {};
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
 			equippedTools [toolIndex].gameObject.SetActive (true);
