@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class Mineral : FauxGravityBody {
 	public int value;
+	private float animCounter;
+	public float animationDuration;
+	public float animationSpeed;
+	public BoxCollider playerCollider;
 
-	void OnCollisionEnter (Collision collision) {
-		if (collision.gameObject.CompareTag("Player")) {
-			collision.gameObject.GetComponent<Player> ().energy += value;
-			Destroy (gameObject);
+	void Start () {
+		animCounter = 0f;
+	}
+
+	void Update () {
+		animCounter += Time.deltaTime;
+		if (animCounter <= animationDuration) {
+			Vector3 velocity = (transform.forward + transform.up) * animationSpeed * Time.deltaTime;
+			transform.Translate (velocity);
+		}
+	}
+
+	void FixedUpdate () {
+		if (animCounter >= animationDuration) {
+			base.FixedUpdate ();
 		}
 	}
 
