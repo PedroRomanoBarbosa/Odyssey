@@ -44,7 +44,7 @@ public class Player : FauxGravityBody {
 		isGrounded = false;
 		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
 		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
-		equippedTools = new List<Tool> () {};
+		equippedTools = new List<Tool> ();
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
 			equippedTools [toolIndex].gameObject.SetActive (true);
@@ -83,19 +83,17 @@ public class Player : FauxGravityBody {
 	}
 
 	void ChangeWeapon () {
-		if (Input.GetKeyUp("q")) {
-			equippedTools [toolIndex].gameObject.SetActive (false);
-			toolIndex++;
-			if (toolIndex >= equippedTools.Count) {
-				toolIndex = 0;
+		if (equippedTools.Count > 0) {
+			if (Input.GetKeyUp("q")) {
+				equippedTools [toolIndex].gameObject.SetActive (false);
+				toolIndex++;
+				if (toolIndex >= equippedTools.Count) {
+					toolIndex = 0;
+				}
+				equippedTools [toolIndex].gameObject.SetActive (true);
+
 			}
-			equippedTools [toolIndex].gameObject.SetActive (true);
-
 		}
-	}
-
-	void selectWeapon () {
-		
 	}
 
 	void MovePlayer () {
