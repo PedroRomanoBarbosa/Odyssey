@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
+	// Status
+	public int lives;
+	public int energy;
+
 	// Movement Variables
 	private Vector3 move;
 	private Vector3 velocity;
@@ -150,7 +154,6 @@ public class Player : FauxGravityBody {
 			planetGravity = false;
 			GravityZone script = colliderObject.GetComponent<GravityZone> ();
 			gravityVector = script.transform.up;
-			gravityRotationSpeed = script.gravityRotationSpeed;
 		} else if (colliderObject.name == "MiningPickItem") {
 			equippedTools.Add (miningPick);
 			equippedTools [toolIndex].gameObject.SetActive (false);
