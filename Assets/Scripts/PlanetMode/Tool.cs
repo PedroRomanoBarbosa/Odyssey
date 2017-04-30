@@ -6,7 +6,7 @@ public abstract class Tool : MonoBehaviour {
 	
 	public abstract void Use ();
 
-	void Update() {
+	void Update () {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
 			Use ();
 		}
