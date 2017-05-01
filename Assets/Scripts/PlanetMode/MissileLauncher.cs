@@ -16,6 +16,7 @@ public class MissileLauncher : Tool {
 			missile.transform.rotation = transform.rotation;
 			missile.transform.Rotate (90f, 0f, 0f);
 			MissileMovement script = missile.GetComponent<MissileMovement> ();
+			script.planet = GameObject.Find ("Planet");
 			script.axis = transform.right;
 			script.speed = missileSpeed;
 			script.duration = missileLifeDuration;

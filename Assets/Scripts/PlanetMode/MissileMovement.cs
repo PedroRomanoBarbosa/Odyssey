@@ -32,8 +32,9 @@ public class MissileMovement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag ("Obstacle")) {
-			Destroy (this.gameObject);
+		if (other.gameObject.CompareTag ("Obstacle")) {
+			Destroy (gameObject);
 		}
 	}
+
 }
