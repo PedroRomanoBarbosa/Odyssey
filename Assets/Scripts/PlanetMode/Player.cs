@@ -27,7 +27,7 @@ public class Player : FauxGravityBody {
 
 	// Jump Variables
 	public bool isGrounded;
-	private bool jumping;
+	public bool jumping;
 	private Vector3 jumpingVelocity;
 	public float jumpMomentum = 4f;
 	private bool jumpPressed;
@@ -149,12 +149,7 @@ public class Player : FauxGravityBody {
 
 	void OnTriggerEnter(Collider collider) {
 		GameObject colliderObject = collider.gameObject;
-		if (colliderObject.CompareTag ("GravityZone")) {
-			planetGravity = false;
-			gravityZoneCounter++;
-			GravityZone script = colliderObject.GetComponent<GravityZone> ();
-			gravityVector = script.transform.up;
-		} else if (colliderObject.name == "MiningPickItem") {
+		if (colliderObject.name == "MiningPickItem") {
 			equippedTools.Add (miningPick);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
@@ -166,12 +161,16 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	void OnTriggerExit(Collider collider) {
-		if (collider.gameObject.CompareTag ("GravityZone")) {
-			gravityZoneCounter--;
-			if (gravityZoneCounter <= 0) {
-				planetGravity = true;
-			}
+	public void EnterGravityZone (Vector3 vector) {
+		planetGravity = false;
+		gravityZoneCounter++;
+		gravityVector = vector;
+	}
+
+	public void ExitGravityZone () {
+		gravityZoneCounter--;
+		if (gravityZoneCounter <= 0) {
+			planetGravity = true;
 		}
 	}
 

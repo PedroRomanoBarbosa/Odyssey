@@ -22,6 +22,10 @@ public class MissileMovement : MonoBehaviour {
 		}
 	}
 
+	void FixedUpdate () {
+		
+	}
+
 	void CalculatePosition () {
 		counter += Time.deltaTime;
 		if (counter < duration) {

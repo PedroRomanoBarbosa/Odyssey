@@ -6,11 +6,11 @@ public class MiningPick : Tool {
 	private Animator animator;
 	private bool animating;
 
-	void Start() {
+	void Start () {
 		animator = GetComponent<Animator> ();
 	}
 
-	public override void Use() {
+	public override void Use () {
 		if (animating == false) {
 			animating = true;
 			transform.GetChild (1).GetComponent<BoxCollider> ().enabled = true;
@@ -18,7 +18,7 @@ public class MiningPick : Tool {
 		}
 	}
 
-	public void animatioEnd() {
+	public void animatioEnd () {
 		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
 		animating = false;
 	}
