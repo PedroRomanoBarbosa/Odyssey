@@ -16,13 +16,14 @@ public class NodeDestruction : MonoBehaviour {
 			state -= 1;
 			if (state == -1) {
 				Destroy (this.gameObject);
-				int rand = Random.Range (1,4);
+				int rand = Random.Range (2,5);
+				float rotAngle = 360f / rand;
 				GameObject mineral;
-				for (int i = 1; i < rand; i++) {
+				for (int i = 0; i < rand; i++) {
 					mineral = Instantiate (mineralPrefab, transform.Find("MineralAnchor").position, Quaternion.identity);
 					mineral.GetComponent<Mineral> ().attractor = GameObject.Find ("Planet").GetComponent<FauxGravityAttractor> ();
-					float randRotation = Random.value;
-					mineral.transform.Rotate (0, randRotation, 0);
+					mineral.transform.Rotate (0, rotAngle * i, 0);
+					mineral.transform.Translate (transform.forward);
 				}
 			} else {
 				transform.GetChild (state).GetComponent<Renderer> ().enabled = true;

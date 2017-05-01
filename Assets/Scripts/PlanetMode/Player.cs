@@ -102,7 +102,6 @@ public class Player : FauxGravityBody {
 
 	void MovePlayer () {
 		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
-
 		velocity = Vector3.zero;
 		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
 		velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
@@ -110,11 +109,9 @@ public class Player : FauxGravityBody {
 			velocity *= aerialSlowDown;
 		}
 		move = Vector3.ClampMagnitude (velocity, 1f) * speed;
-
 		if (move != Vector3.zero) {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
-
 		Jump ();
 	}
 
@@ -160,6 +157,9 @@ public class Player : FauxGravityBody {
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+		} else if (colliderObject.name == "MineralCollider") {
+			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
+			Destroy (colliderObject.transform.parent.gameObject);
 		}
 	}
 
