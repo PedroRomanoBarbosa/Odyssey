@@ -22,6 +22,7 @@ public class Player : FauxGravityBody {
 
 	// Gravity Variables
 	public bool planetGravity;
+	public int gravityZoneCounter;
 	private Vector3 gravityVector;
 
 	// Jump Variables
@@ -45,6 +46,7 @@ public class Player : FauxGravityBody {
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
 		planetGravity = true;
+		gravityZoneCounter = 0;
 		isGrounded = false;
 		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
 		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
@@ -149,6 +151,7 @@ public class Player : FauxGravityBody {
 		GameObject colliderObject = collider.gameObject;
 		if (colliderObject.CompareTag ("GravityZone")) {
 			planetGravity = false;
+			gravityZoneCounter++;
 			GravityZone script = colliderObject.GetComponent<GravityZone> ();
 			gravityVector = script.transform.up;
 		} else if (colliderObject.name == "MiningPickItem") {
@@ -165,7 +168,10 @@ public class Player : FauxGravityBody {
 
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.CompareTag ("GravityZone")) {
-			planetGravity = true;
+			gravityZoneCounter--;
+			if (gravityZoneCounter <= 0) {
+				planetGravity = true;
+			}
 		}
 	}
 
