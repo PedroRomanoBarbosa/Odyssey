@@ -11,18 +11,22 @@ public class MissileMovement : MonoBehaviour {
 	public float speed;
 	public float duration;
 
-	void Start() {
+	void Start () {
 		counter = 0f;
 		angleSpeed = Mathf.Rad2Deg * (speed/planet.transform.localScale.x);
 	}
 
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
-			calculatePosition ();
+			CalculatePosition ();
 		}
 	}
 
-	void calculatePosition () {
+	void FixedUpdate () {
+		
+	}
+
+	void CalculatePosition () {
 		counter += Time.deltaTime;
 		if (counter < duration) {
 			transform.RotateAround (planet.transform.position, axis, angleSpeed * Time.deltaTime);
@@ -32,8 +36,9 @@ public class MissileMovement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag ("Obstacle")) {
-			Destroy (this.gameObject);
+		if (other.gameObject.CompareTag ("Obstacle")) {
+			Destroy (gameObject);
 		}
 	}
+
 }

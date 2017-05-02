@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FauxGravityBody : MonoBehaviour {
-	protected float gravityRotationSpeed;
 	public FauxGravityAttractor attractor;
 
 	protected void FixedUpdate () {

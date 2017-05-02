@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
+	// Status
+	public int lives;
+	public int energy;
+
 	// Movement Variables
 	private Vector3 move;
 	private Vector3 velocity;
@@ -18,11 +22,12 @@ public class Player : FauxGravityBody {
 
 	// Gravity Variables
 	public bool planetGravity;
+	public int gravityZoneCounter;
 	private Vector3 gravityVector;
 
 	// Jump Variables
 	public bool isGrounded;
-	private bool jumping;
+	public bool jumping;
 	private Vector3 jumpingVelocity;
 	public float jumpMomentum = 4f;
 	private bool jumpPressed;
@@ -41,6 +46,7 @@ public class Player : FauxGravityBody {
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
 		planetGravity = true;
+		gravityZoneCounter = 0;
 		isGrounded = false;
 		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
 		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
@@ -98,7 +104,6 @@ public class Player : FauxGravityBody {
 
 	void MovePlayer () {
 		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
-
 		velocity = Vector3.zero;
 		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
 		velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
@@ -106,11 +111,9 @@ public class Player : FauxGravityBody {
 			velocity *= aerialSlowDown;
 		}
 		move = Vector3.ClampMagnitude (velocity, 1f) * speed;
-
 		if (move != Vector3.zero) {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
-
 		Jump ();
 	}
 
@@ -146,22 +149,27 @@ public class Player : FauxGravityBody {
 
 	void OnTriggerEnter(Collider collider) {
 		GameObject colliderObject = collider.gameObject;
-		if (colliderObject.CompareTag ("GravityZone")) {
-			planetGravity = false;
-			GravityZone script = colliderObject.GetComponent<GravityZone> ();
-			gravityVector = script.transform.up;
-			gravityRotationSpeed = script.gravityRotationSpeed;
-		} else if (colliderObject.name == "MiningPickItem") {
+		if (colliderObject.name == "MiningPickItem") {
 			equippedTools.Add (miningPick);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+		} else if (colliderObject.name == "MineralCollider") {
+			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
+			Destroy (colliderObject.transform.parent.gameObject);
 		}
 	}
 
-	void OnTriggerExit(Collider collider) {
-		if (collider.gameObject.CompareTag ("GravityZone")) {
+	public void EnterGravityZone (Vector3 vector) {
+		planetGravity = false;
+		gravityZoneCounter++;
+		gravityVector = vector;
+	}
+
+	public void ExitGravityZone () {
+		gravityZoneCounter--;
+		if (gravityZoneCounter <= 0) {
 			planetGravity = true;
 		}
 	}
