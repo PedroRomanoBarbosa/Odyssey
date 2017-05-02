@@ -155,6 +155,12 @@ public class Player : FauxGravityBody {
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+		} else if(colliderObject.name == "MissileLauncherItem"){
+			equippedTools.Add (missileLauncher);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
+			equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
 		} else if (colliderObject.name == "MineralCollider") {
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);

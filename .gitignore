@@ -31,3 +31,6 @@ sysinfo.txt
 
 # MacOS
 .DS_Store
+
+#VS Code settings files
+.vscode
