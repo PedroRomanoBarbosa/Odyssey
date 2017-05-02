@@ -65,7 +65,7 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	public void FixedUpdate () {
+	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
 		if (!GameVariables.cinematicPaused) {
 			if (planetGravity) {
@@ -89,15 +89,16 @@ public class Player : FauxGravityBody {
 	}
 
 	void ChangeWeapon () {
-		if (equippedTools.Count > 0) {
+		if (equippedTools.Count > 1) {
 			if (Input.GetKeyUp("q")) {
-				equippedTools [toolIndex].gameObject.SetActive (false);
+				Tool currentTool = equippedTools [toolIndex];
+				currentTool.Stop ();
+				currentTool.gameObject.SetActive (false);
 				toolIndex++;
 				if (toolIndex >= equippedTools.Count) {
 					toolIndex = 0;
 				}
 				equippedTools [toolIndex].gameObject.SetActive (true);
-
 			}
 		}
 	}

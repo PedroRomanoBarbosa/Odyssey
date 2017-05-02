@@ -25,4 +25,8 @@ public class MissileLauncher : Tool {
 		}
 	}
 
+	public override void Stop () {
+		
+	}
+
 }
