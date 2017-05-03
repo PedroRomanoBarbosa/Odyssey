@@ -7,7 +7,9 @@ public class ChangeScene : MonoBehaviour {
 	public string sceneName;
 
 	void OnTriggerEnter (Collider collider) {
-		SceneManager.LoadSceneAsync (sceneName);
+		if (collider.gameObject.CompareTag("Player")) {
+			SceneManager.LoadSceneAsync (sceneName);
+		}
 	}
 
 }
