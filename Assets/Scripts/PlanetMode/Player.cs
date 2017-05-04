@@ -37,7 +37,7 @@ public class Player : FauxGravityBody {
 	public float aerialSlowDown;
 
 	// Weapon variables
-	private Tool miningPick, missileLauncher;
+	private Tool miningPick, missileLauncher, flamethrower;
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
@@ -50,6 +50,7 @@ public class Player : FauxGravityBody {
 		isGrounded = false;
 		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
 		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
+		flamethrower = model.Find ("Flamethrower").GetComponent<Tool> ();
 		equippedTools = new List<Tool> ();
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
@@ -65,7 +66,7 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	public void FixedUpdate () {
+	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
 		if (!GameVariables.cinematicPaused) {
 			if (planetGravity) {
@@ -89,15 +90,16 @@ public class Player : FauxGravityBody {
 	}
 
 	void ChangeWeapon () {
-		if (equippedTools.Count > 0) {
+		if (equippedTools.Count > 1) {
 			if (Input.GetKeyUp("q")) {
-				equippedTools [toolIndex].gameObject.SetActive (false);
+				Tool currentTool = equippedTools [toolIndex];
+				currentTool.Stop ();
+				currentTool.gameObject.SetActive (false);
 				toolIndex++;
 				if (toolIndex >= equippedTools.Count) {
 					toolIndex = 0;
 				}
 				equippedTools [toolIndex].gameObject.SetActive (true);
-
 			}
 		}
 	}
@@ -157,6 +159,12 @@ public class Player : FauxGravityBody {
 			Destroy (colliderObject);
 		} else if(colliderObject.name == "MissileLauncherItem"){
 			equippedTools.Add (missileLauncher);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
+			equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
+		} else if(colliderObject.name == "FlamethrowerItem"){
+			equippedTools.Add (flamethrower);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);

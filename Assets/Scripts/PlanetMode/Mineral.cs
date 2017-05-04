@@ -21,7 +21,7 @@ public class Mineral : FauxGravityBody {
 		}
 	}
 
-	void FixedUpdate () {
+	new void FixedUpdate () {
 		if (animCounter >= animationDuration) {
 			base.FixedUpdate ();
 		}

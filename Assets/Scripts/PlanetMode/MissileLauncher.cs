@@ -14,7 +14,6 @@ public class MissileLauncher : Tool {
 			missileCooldownCounter = 0f;
 			GameObject missile = Instantiate (missilePrefab, transform.Find("MissileAnchor").position, Quaternion.identity);
 			missile.transform.rotation = transform.rotation;
-			missile.transform.Rotate (90f, 0f, 0f);
 			MissileMovement script = missile.GetComponent<MissileMovement> ();
 			script.planet = GameObject.Find ("Planet");
 			script.axis = transform.right;
@@ -23,6 +22,10 @@ public class MissileLauncher : Tool {
 		} else {
 			missileCooldownCounter += Time.deltaTime;
 		}
+	}
+
+	public override void Stop () {
+		
 	}
 
 }
