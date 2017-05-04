@@ -15,10 +15,12 @@ public class MiningPick : Tool {
 	}
 
 	public override void Use () {
-		if (animating == false) {
-			animating = true;
-			transform.GetChild (1).GetComponent<BoxCollider> ().enabled = true;
-			animator.SetTrigger ("Swing");
+		if (Input.GetAxisRaw ("Fire1") == 1) {
+			if (animating == false) {
+				animating = true;
+				transform.GetChild (1).GetComponent<BoxCollider> ().enabled = true;
+				animator.SetTrigger ("Swing");
+			}
 		}
 	}
 
