@@ -10,17 +10,19 @@ public class MissileLauncher : Tool {
 	public float missileLifeDuration;
 
 	public override void Use() {
-		if (missileCooldownCounter >= missileCooldown) {
-			missileCooldownCounter = 0f;
-			GameObject missile = Instantiate (missilePrefab, transform.Find("MissileAnchor").position, Quaternion.identity);
-			missile.transform.rotation = transform.rotation;
-			MissileMovement script = missile.GetComponent<MissileMovement> ();
-			script.planet = GameObject.Find ("Planet");
-			script.axis = transform.right;
-			script.speed = missileSpeed;
-			script.duration = missileLifeDuration;
-		} else {
-			missileCooldownCounter += Time.deltaTime;
+		if (Input.GetAxisRaw ("Fire1") == 1) {
+			if (missileCooldownCounter >= missileCooldown) {
+				missileCooldownCounter = 0f;
+				GameObject missile = Instantiate (missilePrefab, transform.Find ("MissileAnchor").position, Quaternion.identity);
+				missile.transform.rotation = transform.rotation;
+				MissileMovement script = missile.GetComponent<MissileMovement> ();
+				script.planet = GameObject.Find ("Planet");
+				script.axis = transform.right;
+				script.speed = missileSpeed;
+				script.duration = missileLifeDuration;
+			} else {
+				missileCooldownCounter += Time.deltaTime;
+			}
 		}
 	}
 
