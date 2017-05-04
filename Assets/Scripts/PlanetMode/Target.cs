@@ -14,6 +14,7 @@ public class Target : MonoBehaviour {
 		missileRenderer = GetComponent<Renderer> ();
 		missileRenderer.material = off;
 		active = false;
+		transform.GetChild (0).gameObject.SetActive (false);
 		transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ().Stop ();
 	}
 
@@ -21,8 +22,8 @@ public class Target : MonoBehaviour {
 		if (collider.gameObject.CompareTag ("Missile")) {
 			active = !active;
 			ParticleSystem ps = transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ();
-			ps.Play ();
-			ps.transform.GetChild (0).GetComponent<ParticleSystem> ().Play ();
+			ps.gameObject.SetActive (true);
+			ps.Play (true);
 			if (active) {
 				missileRenderer.material = on;
 			} else {
