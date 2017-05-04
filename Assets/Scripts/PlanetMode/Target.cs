@@ -14,11 +14,15 @@ public class Target : MonoBehaviour {
 		missileRenderer = GetComponent<Renderer> ();
 		missileRenderer.material = off;
 		active = false;
+		transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ().Stop ();
 	}
 
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag ("Missile")) {
 			active = !active;
+			ParticleSystem ps = transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ();
+			ps.Play ();
+			ps.transform.GetChild (0).GetComponent<ParticleSystem> ().Play ();
 			if (active) {
 				missileRenderer.material = on;
 			} else {

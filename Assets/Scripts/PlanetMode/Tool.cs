@@ -9,7 +9,7 @@ public abstract class Tool : MonoBehaviour {
 	public abstract void Stop ();
 
 	void Update () {
-			Use ();
+		Use ();
 	}
 
 }
