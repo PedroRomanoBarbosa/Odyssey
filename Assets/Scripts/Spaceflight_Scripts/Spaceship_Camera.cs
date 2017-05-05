@@ -16,11 +16,13 @@ public class Spaceship_Camera : MonoBehaviour {
 
 	//The smaller this value, the further behind the camera will be while chasing the player.
 	//Should be between 0 and 1
-	public float cameraDelay = 0.5f; 
+	public float cameraDelay = 0.3f; 
+	private float initialCameraDelay;
 
 	void Start(){
 		playerTransform = playerShip.transform; 
 		playerScript = playerShip.GetComponent<Spaceship_Movement>();
+		initialCameraDelay = cameraDelay;
 
 		//Find the point in the center of the screen
 		mouseCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -30,6 +32,10 @@ public class Spaceship_Camera : MonoBehaviour {
 		//How fast the ship can roll should depend on the ship's speed. But with a minimum value of rotation
 		planarFactor = playerScript.shipForwardSpeed<10 ? 30 : (int)playerScript.shipForwardSpeed*3;
 		rotationFactor = playerScript.shipForwardSpeed<10 ? 10 : (int)playerScript.shipForwardSpeed; 
+
+		//If the ship is boosting, the camera should have a take longer to trail the ship
+		//Makes it look FAAAAAST!!!
+		cameraDelay = playerScript.isBoosting() ? initialCameraDelay/3 : initialCameraDelay;
 
 		//Figure out how far from the center of the screen the mouse is
 		//and rotate camera smoothly to that spot 

@@ -17,7 +17,7 @@ public class Spaceship_Movement : MonoBehaviour
     public Text displaySpeed;
 
     //SpeedBoost
-    private bool isBoosting = false;
+    private bool boosting = false;
     private float boostTime = 0f;
 
     void Start()
@@ -31,23 +31,29 @@ public class Spaceship_Movement : MonoBehaviour
     void Update()
     {
         //Check if boosting is active and deactivate once over
-        if(isBoosting){
+        if(boosting){
             boostTime -= Time.deltaTime;
 
             if(boostTime < 0)
-                isBoosting = false;
+                boosting = false;
         }
     }
 
-    /// <summary>
-    /// LateUpdate is called every frame, if the Behaviour is enabled.
-    /// It is called after all Update functions have been called.
-    /// </summary>
     void LateUpdate()
     {
-        //Forward Movement
+
+
+        //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
         deceleration = shipForwardSpeed - minSpeed;
+
+        //Boost's effect
+        if(boosting)
+            acceleration = maxSpeed*1.5f - shipForwardSpeed;
+        if(!boosting && shipForwardSpeed > maxSpeed)
+            shipForwardSpeed += acceleration * Time.deltaTime;
+
+        //Forward Movement
         if (Input.GetKey(KeyCode.Mouse0))
         {
             shipForwardSpeed += acceleration * Time.deltaTime;
@@ -65,14 +71,17 @@ public class Spaceship_Movement : MonoBehaviour
         if(displaySpeed != null){
             displaySpeed.text = 
                 "Speed: " + shipForwardSpeed.ToString() + "\n" + 
-                "Boosting: " + isBoosting.ToString();
+                "Boosting: " + boosting.ToString();
         }
         
     }
 
     public void initiateBoost(){
-        isBoosting = true;
-        boostTime = 15f;
+        boosting = true;
+        boostTime = 10f;
+    }
+    public bool isBoosting(){
+        return boosting;
     }
 
 }
