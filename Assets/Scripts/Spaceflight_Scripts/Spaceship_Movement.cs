@@ -7,42 +7,81 @@ public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
 
-    public float shipSpeed;
+    //Variables related to forward momentum
+    public float shipForwardSpeed;
     public float minSpeed = 0f;
     public float maxSpeed = 50f;
-
     private float acceleration, deceleration;
 
-    public Text display_speed;
+    //Text Display Object
+    public Text displaySpeed;
+
+    //SpeedBoost
+    private bool boosting = false;
+    private float boostTime = 0f;
 
     void Start()
     {
-        shipSpeed = minSpeed;
+        shipForwardSpeed = minSpeed;
     }
-    
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        //Check if boosting is active and deactivate once over
+        if(boosting){
+            boostTime -= Time.deltaTime;
+
+            if(boostTime < 0)
+                boosting = false;
+        }
+    }
+
     void LateUpdate()
     {
-        
+
+
+        //Forward Movement - acceleration setting
+        acceleration = maxSpeed - shipForwardSpeed;
+        deceleration = shipForwardSpeed - minSpeed;
+
+        //Boost's effect
+        if(boosting)
+            acceleration = maxSpeed*1.5f - shipForwardSpeed;
+        if(!boosting && shipForwardSpeed > maxSpeed)
+            shipForwardSpeed += acceleration * Time.deltaTime;
 
         //Forward Movement
-        acceleration = maxSpeed - shipSpeed;
-        deceleration = shipSpeed - minSpeed;
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            shipSpeed += acceleration * Time.deltaTime;
+            shipForwardSpeed += acceleration * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.Mouse1))
         {
-            shipSpeed -= deceleration * Time.deltaTime;
+            shipForwardSpeed -= deceleration * Time.deltaTime;
         }
-        transform.Translate(0, 0, Time.deltaTime * shipSpeed);
-        
+        transform.Translate(0, 0, Time.deltaTime * shipForwardSpeed);
+
         //Update directional facing based on camera
-        transform.rotation = Quaternion.Lerp(transform.rotation, shipCamera.transform.rotation, Time.deltaTime * 1000);
+        transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
         //Update Speed Display
-        if(display_speed != null)
-            display_speed.text = "Speed: " + shipSpeed.ToString();
+        if(displaySpeed != null){
+            displaySpeed.text = 
+                "Speed: " + shipForwardSpeed.ToString() + "\n" + 
+                "Boosting: " + boosting.ToString();
+        }
         
     }
+
+    public void initiateBoost(){
+        boosting = true;
+        boostTime = 10f;
+    }
+    public bool isBoosting(){
+        return boosting;
+    }
+
 }
