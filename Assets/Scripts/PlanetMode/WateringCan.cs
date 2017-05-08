@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiningPick : Tool {
+public class WateringCan : Tool {
 	private Animator animator;
 	private bool animating;
 	private Vector3 originalPosition;
@@ -18,8 +18,11 @@ public class MiningPick : Tool {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
 			if (animating == false) {
 				animating = true;
-				transform.GetChild (1).GetComponent<BoxCollider> ().enabled = true;
-				animator.SetTrigger ("Swing");
+				animator.SetTrigger ("Use");
+			}
+		} else if (Input.GetAxisRaw ("Fire1") == 0) {
+			if (animating) {
+				animator.SetTrigger ("Stop");
 			}
 		}
 	}
@@ -30,15 +33,9 @@ public class MiningPick : Tool {
 
 	// Used as an animation event
 	public void AnimationEnd () {
-		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
 		animating = false;
 		transform.localPosition = originalPosition;
 		transform.localRotation = originalRotation;
-	}
-
-	// Used as an animation event
-	public void EndDownSwing () {
-		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
 	}
 
 }
