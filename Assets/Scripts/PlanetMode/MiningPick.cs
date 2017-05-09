@@ -25,15 +25,20 @@ public class MiningPick : Tool {
 	}
 
 	public override void Stop () {
-		animatioEnd ();
+		AnimationEnd ();
 	}
 
 	// Used as an animation event
-	public void animatioEnd () {
+	public void AnimationEnd () {
 		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
 		animating = false;
 		transform.localPosition = originalPosition;
 		transform.localRotation = originalRotation;
+	}
+
+	// Used as an animation event
+	public void EndDownSwing () {
+		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
 	}
 
 }
