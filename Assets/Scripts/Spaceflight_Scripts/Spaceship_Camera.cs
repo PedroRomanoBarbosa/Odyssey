@@ -14,10 +14,13 @@ public class Spaceship_Camera : MonoBehaviour {
 	int planarFactor = 150; //Controls how fast the camera shifts its angle horizontally and vertically
 	int rotationFactor = 10; //Controls how fast you can rotate the view with Q/E
 
-	//The smaller this value, the further behind the camera will be while chasing the player.
-	//Should be between 0 and 1
-	public float cameraDelay = 0.3f; 
+	
+	//Camera Delay variables
+	public float cameraDelay = 0.3f; //The smaller this value, the further behind the camera will be while chasing the player. Should be between 0 and 1
 	private float initialCameraDelay;
+	bool boostCheck = false;
+	float boostDelay = 1.0f;
+
 
 	void Start(){
 		playerTransform = playerShip.transform; 
@@ -35,7 +38,8 @@ public class Spaceship_Camera : MonoBehaviour {
 
 		//If the ship is boosting, the camera should have a take longer to trail the ship
 		//Makes it look FAAAAAST!!!
-		cameraDelay = playerScript.isBoosting() ? initialCameraDelay/3 : initialCameraDelay;
+		cameraDelay = determineCameraDelay();
+
 
 		//Figure out how far from the center of the screen the mouse is
 		//and rotate camera smoothly to that spot 
@@ -63,6 +67,25 @@ public class Spaceship_Camera : MonoBehaviour {
 		Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, cameraDelay);
  	}
+
+
+	float determineCameraDelay(){
+		//Reset Behaviour if player is boosting.
+		if(playerScript.isBoosting()) {
+			boostCheck = true;
+			boostDelay = 3.0f;
+		} //Smoothly decrease how far the camera trails behind the player once the boost is over
+		else if (boostCheck){
+			boostDelay -= Time.deltaTime;
+			if(boostDelay < 1.0f)
+			{
+				boostDelay = 1.0f;
+				boostCheck = false;
+			}			
+		}
+		//Once the player stops boosting, the camer should drag back to the player slowly.
+		return initialCameraDelay/boostDelay;
+	}
   	
 
 }
