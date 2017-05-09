@@ -16,5 +16,4 @@ public class Spaceship_RingBoosting : MonoBehaviour {
 			playerScript.initiateBoost();
 		}
 	}
-	
 }

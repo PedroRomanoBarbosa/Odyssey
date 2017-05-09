@@ -31,7 +31,18 @@ public class Spaceship_Camera : MonoBehaviour {
 		mouseCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 	}
 	void Update () {
+		
+		
+		if(playerScript.isOutsideBounds()) 
+			cameraBehaviour_OutOfBounds();
+		else if(playerScript.isSelectingPlanet())
+			cameraBehaviour_PlanetSelection();
+		else 
+			cameraBehaviour_ChaseSpaceship();
+ 	}
 
+
+	void cameraBehaviour_ChaseSpaceship(){
 		//How fast the ship can roll should depend on the ship's speed. But with a minimum value of rotation
 		planarFactor = playerScript.shipForwardSpeed<10 ? 30 : (int)playerScript.shipForwardSpeed*3;
 		rotationFactor = playerScript.shipForwardSpeed<10 ? 10 : (int)playerScript.shipForwardSpeed; 
@@ -54,38 +65,43 @@ public class Spaceship_Camera : MonoBehaviour {
 			transform.Rotate(0, (delta.x + noTurn) * Time.deltaTime * planarFactor, 0); 
 
 		//Rolling the Camera
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.Rotate(0,0,Time.deltaTime * -rotationFactor);
-        }
-        else if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Rotate(0,0,Time.deltaTime * rotationFactor);
-        }
+		if (Input.GetKey(KeyCode.E))
+		{
+			transform.Rotate(0,0,Time.deltaTime * -rotationFactor);
+		}
+		else if (Input.GetKey(KeyCode.Q))
+		{
+			transform.Rotate(0,0,Time.deltaTime * rotationFactor);
+		}
 
 		//Find a point behind and above the player ship and go there smoothly
 		Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, cameraDelay);
- 	}
-
-
-	float determineCameraDelay(){
-		//Reset Behaviour if player is boosting.
-		if(playerScript.isBoosting()) {
-			boostCheck = true;
-			boostDelay = 3.0f;
-		} //Smoothly decrease how far the camera trails behind the player once the boost is over
-		else if (boostCheck){
-			boostDelay -= Time.deltaTime;
-			if(boostDelay < 1.0f)
-			{
-				boostDelay = 1.0f;
-				boostCheck = false;
-			}			
-		}
-		//Once the player stops boosting, the camer should drag back to the player slowly.
-		return initialCameraDelay/boostDelay;
 	}
+	void cameraBehaviour_OutOfBounds(){
+	}
+	void cameraBehaviour_PlanetSelection(){
+	}
+
+
+
+float determineCameraDelay(){
+	//Reset Behaviour if player is boosting.
+	if(playerScript.isBoosting()) {
+		boostCheck = true;
+		boostDelay = 3.0f;
+	} //Smoothly decrease how far the camera trails behind the player once the boost is over
+	else if (boostCheck){
+		boostDelay -= Time.deltaTime;
+		if(boostDelay < 1.0f)
+		{
+			boostDelay = 1.0f;
+			boostCheck = false;
+		}			
+	}
+	//Once the player stops boosting, the camer should drag back to the player slowly.
+	return initialCameraDelay/boostDelay;
+}
   	
 
 }

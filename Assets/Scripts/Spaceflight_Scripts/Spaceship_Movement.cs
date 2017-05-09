@@ -7,6 +7,11 @@ public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
 
+    //Space Bounds
+    bool OutsideBounds = false;
+    //Planet Bounds
+    bool SelectingPlanet = false;
+
     //Variables related to forward momentum
     public float shipForwardSpeed;
     public float minSpeed = 0f;
@@ -26,7 +31,7 @@ public class Spaceship_Movement : MonoBehaviour
     }
 
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Update is called every frame
     /// </summary>
     void Update()
     {
@@ -39,10 +44,11 @@ public class Spaceship_Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// LateUpdate is called every frame, after all other scripts' Update functions are done
+    /// </summary>
     void LateUpdate()
     {
-
-
         //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
         deceleration = shipForwardSpeed - minSpeed;
@@ -83,5 +89,16 @@ public class Spaceship_Movement : MonoBehaviour
     public bool isBoosting(){
         return boosting;
     }
-
+    public void setOutsideBounds(){
+        OutsideBounds = true;
+    }
+    public bool isOutsideBounds(){
+        return OutsideBounds;
+    }
+    public void setPlanetSelection(){
+        OutsideBounds = true;
+    }
+    public bool isSelectingPlanet(){
+        return OutsideBounds;
+    }
 }
