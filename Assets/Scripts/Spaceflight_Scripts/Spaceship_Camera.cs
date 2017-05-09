@@ -9,17 +9,20 @@ public class Spaceship_Camera : MonoBehaviour {
 	Transform playerTransform;
 	Spaceship_Movement playerScript;
 
+	//Direct Mouse control variables
 	private Vector3 mouseCenter;
 	float noTurn = 0.1f; //If the mouse is within the middle 10% of the screen, it shouldn't turn.
 	int planarFactor = 150; //Controls how fast the camera shifts its angle horizontally and vertically
 	int rotationFactor = 10; //Controls how fast you can rotate the view with Q/E
 
-	
-	//Camera Delay variables
+	//Camera Delay and Boost variables
 	public float cameraDelay = 0.3f; //The smaller this value, the further behind the camera will be while chasing the player. Should be between 0 and 1
 	private float initialCameraDelay;
 	bool boostCheck = false;
 	float boostDelay = 1.0f;
+
+	//Boundary variables
+	public int SpaceSize = 500;
 
 
 	void Start(){

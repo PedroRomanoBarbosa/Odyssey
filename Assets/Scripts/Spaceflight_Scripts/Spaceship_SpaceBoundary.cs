@@ -13,7 +13,8 @@ public class Spaceship_SpaceBoundary : MonoBehaviour {
 	{
 		if(other.gameObject.CompareTag("GameBoundary")){
 			Debug.Log("Left Space");
-			playerScript.setOutsideBounds();
+			if(playerScript != null)
+				playerScript.setOutsideBounds();
 		}
 	}
 }

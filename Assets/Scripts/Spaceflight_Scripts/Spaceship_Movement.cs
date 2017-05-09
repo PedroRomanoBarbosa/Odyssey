@@ -7,9 +7,8 @@ public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
 
-    //Space Bounds
+    //Space and Planet Bounds controller bools - changes behaviour.
     bool OutsideBounds = false;
-    //Planet Bounds
     bool SelectingPlanet = false;
 
     //Variables related to forward momentum
@@ -24,6 +23,14 @@ public class Spaceship_Movement : MonoBehaviour
     //SpeedBoost
     private bool boosting = false;
     private float boostTime = 0f;
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     void Start()
     {
@@ -69,6 +76,7 @@ public class Spaceship_Movement : MonoBehaviour
             shipForwardSpeed -= deceleration * Time.deltaTime;
         }
         transform.Translate(0, 0, Time.deltaTime * shipForwardSpeed);
+        //Vector3.Lerp(?????);
 
         //Update directional facing based on camera
         transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
