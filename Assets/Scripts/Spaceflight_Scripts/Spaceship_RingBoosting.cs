@@ -13,6 +13,7 @@ public class Spaceship_RingBoosting : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.CompareTag("BoostRing")){
+			Debug.Log("BOOSTIO!");
 			if(playerScript != null)
 				playerScript.initiateBoost();
 		}
