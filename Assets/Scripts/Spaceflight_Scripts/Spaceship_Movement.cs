@@ -7,6 +7,10 @@ public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
 
+    //Space and Planet Bounds controller bools - changes behaviour.
+    bool OutsideBounds = false;
+    bool SelectingPlanet = false;
+
     //Variables related to forward momentum
     public float shipForwardSpeed;
     public float minSpeed = 0f;
@@ -20,28 +24,28 @@ public class Spaceship_Movement : MonoBehaviour
     private bool boosting = false;
     private float boostTime = 0f;
 
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     void Start()
     {
         shipForwardSpeed = minSpeed;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void Update()
     {
         //Check if boosting is active and deactivate once over
         if(boosting){
-            boostTime -= Time.deltaTime;
+            boostTime -= Time.smoothDeltaTime;
 
             if(boostTime < 0)
                 boosting = false;
         }
-    }
-
-    void LateUpdate()
-    {
-
 
         //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
@@ -51,18 +55,20 @@ public class Spaceship_Movement : MonoBehaviour
         if(boosting)
             acceleration = maxSpeed*1.5f - shipForwardSpeed;
         if(!boosting && shipForwardSpeed > maxSpeed)
-            shipForwardSpeed += acceleration * Time.deltaTime;
+            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            shipForwardSpeed += acceleration * Time.deltaTime;
+            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
         }
         else if (Input.GetKey(KeyCode.Mouse1))
         {
-            shipForwardSpeed -= deceleration * Time.deltaTime;
+            shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
         }
-        transform.Translate(0, 0, Time.deltaTime * shipForwardSpeed);
+        shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100; //WHYYYYYY
+        Vector3 targetPosition = transform.position + transform.forward * shipForwardSpeed;
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
 
         //Update directional facing based on camera
         transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
@@ -83,5 +89,16 @@ public class Spaceship_Movement : MonoBehaviour
     public bool isBoosting(){
         return boosting;
     }
-
+    public void setOutsideBounds(){
+        OutsideBounds = true;
+    }
+    public bool isOutsideBounds(){
+        return OutsideBounds;
+    }
+    public void setPlanetSelection(){
+        OutsideBounds = true;
+    }
+    public bool isSelectingPlanet(){
+        return OutsideBounds;
+    }
 }

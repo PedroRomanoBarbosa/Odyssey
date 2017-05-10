@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spaceship_RingBoosting : MonoBehaviour {
+public class Spaceship_SpaceBoundary : MonoBehaviour {
 	Spaceship_Movement playerScript;
-
 	void Start()
 	{
 		playerScript = GetComponent<Spaceship_Movement>();
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	void OnTriggerExit(Collider other)
 	{
-		if(other.gameObject.CompareTag("BoostRing")){
-			Debug.Log("BOOSTIO!");
+		if(other.gameObject.CompareTag("GameBoundary")){
+			Debug.Log("Left Space");
 			if(playerScript != null)
-				playerScript.initiateBoost();
+				playerScript.setOutsideBounds();
 		}
 	}
 }
