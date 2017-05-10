@@ -7,11 +7,13 @@ public class WateringCan : Tool {
 	private bool animating;
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
+	private GameObject particle;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
 		originalPosition = transform.localPosition;
 		originalRotation = transform.localRotation;
+		particle = transform.GetChild (0).GetChild (1).GetChild (0).gameObject;
 	}
 
 	public override void Use () {
@@ -29,6 +31,11 @@ public class WateringCan : Tool {
 
 	public override void Stop () {
 		AnimationEnd ();
+		particle.SetActive (false);
+	}
+
+	public void StopPour () {
+		particle.SetActive (false);
 	}
 
 	// Used as an animation event
@@ -36,6 +43,11 @@ public class WateringCan : Tool {
 		animating = false;
 		transform.localPosition = originalPosition;
 		transform.localRotation = originalRotation;
+	}
+
+	// Used as an animation event
+	public void Pour () {
+		particle.SetActive (true);
 	}
 
 }
