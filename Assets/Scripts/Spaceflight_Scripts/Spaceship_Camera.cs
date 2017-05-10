@@ -19,7 +19,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	public float cameraDelay = 0.3f; //The smaller this value, the further behind the camera will be while chasing the player. Should be between 0 and 1
 	private float initialCameraDelay;
 	bool boostCheck = false;
-	float boostDelay = 1.0f;
+	float boostDelayFactor = 1.0f;
 
 	//Boundary variables
 	public int SpaceSize = 500;
@@ -92,18 +92,18 @@ float determineCameraDelay(){
 	//Reset Behaviour if player is boosting.
 	if(playerScript.isBoosting()) {
 		boostCheck = true;
-		boostDelay = 3.0f;
+		boostDelayFactor = 3.0f;
 	} //Smoothly decrease how far the camera trails behind the player once the boost is over
 	else if (boostCheck){
-		boostDelay -= Time.deltaTime;
-		if(boostDelay < 1.0f)
+		boostDelayFactor -= Time.deltaTime;
+		if(boostDelayFactor < 1.0f)
 		{
-			boostDelay = 1.0f;
+			boostDelayFactor = 1.0f;
 			boostCheck = false;
 		}			
 	}
 	//Once the player stops boosting, the camer should drag back to the player slowly.
-	return initialCameraDelay/boostDelay;
+	return initialCameraDelay/boostDelayFactor;
 }
   	
 
