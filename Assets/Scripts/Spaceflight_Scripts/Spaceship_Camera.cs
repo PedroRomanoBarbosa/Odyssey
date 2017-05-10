@@ -33,7 +33,7 @@ public class Spaceship_Camera : MonoBehaviour {
 		//Find the point in the center of the screen
 		mouseCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 	}
-	void Update () {
+	void LateUpdate () {
 		
 		
 		if(playerScript.isOutsideBounds()) 
@@ -59,22 +59,22 @@ public class Spaceship_Camera : MonoBehaviour {
 		//and rotate camera smoothly to that spot 
 		var delta = (Input.mousePosition - mouseCenter) / Screen.height;
 		if (delta.y > noTurn) 
-			transform.Rotate(-(delta.y - noTurn) * Time.deltaTime * planarFactor, 0, 0);
+			transform.Rotate(-(delta.y - noTurn) * Time.smoothDeltaTime * planarFactor, 0, 0);
 		if (delta.y < -noTurn)
-			transform.Rotate(-(delta.y + noTurn) * Time.deltaTime * planarFactor, 0, 0);
+			transform.Rotate(-(delta.y + noTurn) * Time.smoothDeltaTime * planarFactor, 0, 0);
 		if (delta.x > noTurn)
-			transform.Rotate(0, (delta.x - noTurn) * Time.deltaTime * planarFactor, 0);
+			transform.Rotate(0, (delta.x - noTurn) * Time.smoothDeltaTime * planarFactor, 0);
 		if (delta.x < -noTurn)
-			transform.Rotate(0, (delta.x + noTurn) * Time.deltaTime * planarFactor, 0); 
+			transform.Rotate(0, (delta.x + noTurn) * Time.smoothDeltaTime * planarFactor, 0); 
 
 		//Rolling the Camera
 		if (Input.GetKey(KeyCode.E))
 		{
-			transform.Rotate(0,0,Time.deltaTime * -rotationFactor);
+			transform.Rotate(0,0,Time.smoothDeltaTime * -rotationFactor);
 		}
 		else if (Input.GetKey(KeyCode.Q))
 		{
-			transform.Rotate(0,0,Time.deltaTime * rotationFactor);
+			transform.Rotate(0,0,Time.smoothDeltaTime * rotationFactor);
 		}
 
 		//Find a point behind and above the player ship and go there smoothly
@@ -95,7 +95,7 @@ float determineCameraDelay(){
 		boostDelayFactor = 3.0f;
 	} //Smoothly decrease how far the camera trails behind the player once the boost is over
 	else if (boostCheck){
-		boostDelayFactor -= Time.deltaTime;
+		boostDelayFactor -= Time.smoothDeltaTime;
 		if(boostDelayFactor < 1.0f)
 		{
 			boostDelayFactor = 1.0f;

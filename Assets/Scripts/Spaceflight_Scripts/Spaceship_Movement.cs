@@ -37,25 +37,16 @@ public class Spaceship_Movement : MonoBehaviour
         shipForwardSpeed = minSpeed;
     }
 
-    /// <summary>
-    /// Update is called every frame
-    /// </summary>
     void Update()
     {
         //Check if boosting is active and deactivate once over
         if(boosting){
-            boostTime -= Time.deltaTime;
+            boostTime -= Time.smoothDeltaTime;
 
             if(boostTime < 0)
                 boosting = false;
         }
-    }
 
-    /// <summary>
-    /// LateUpdate is called every frame, after all other scripts' Update functions are done
-    /// </summary>
-    void LateUpdate()
-    {
         //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
         deceleration = shipForwardSpeed - minSpeed;
@@ -64,19 +55,20 @@ public class Spaceship_Movement : MonoBehaviour
         if(boosting)
             acceleration = maxSpeed*1.5f - shipForwardSpeed;
         if(!boosting && shipForwardSpeed > maxSpeed)
-            shipForwardSpeed += acceleration * Time.deltaTime;
+            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            shipForwardSpeed += acceleration * Time.deltaTime;
+            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
         }
         else if (Input.GetKey(KeyCode.Mouse1))
         {
-            shipForwardSpeed -= deceleration * Time.deltaTime;
+            shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
         }
-        transform.Translate(0, 0, Time.deltaTime * shipForwardSpeed);
-        //Vector3.Lerp(?????);
+        shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100; //WHYYYYYY
+        Vector3 targetPosition = transform.position + transform.forward * shipForwardSpeed;
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
 
         //Update directional facing based on camera
         transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
