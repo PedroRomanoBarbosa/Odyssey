@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 public class Spaceship_Camera : MonoBehaviour {
-
 	//Some access to the ship script will be required.
 	public GameObject playerShip;
 	Transform playerTransform;
@@ -22,19 +22,24 @@ public class Spaceship_Camera : MonoBehaviour {
 	float boostDelayFactor = 1.0f;
 
 	//Boundary variables
-	public int SpaceSize = 500;
+	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
+	public int SpaceSize = 1000;
+	ScreenOverlay overlayScript;
 
 
 	void Start(){
 		playerTransform = playerShip.transform; 
 		playerScript = playerShip.GetComponent<Spaceship_Movement>();
+		overlayScript = GetComponent<ScreenOverlay>();
 		initialCameraDelay = cameraDelay;
 
 		//Find the point in the center of the screen
 		mouseCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 	}
 	void LateUpdate () {
-		
+		//If the player is getting closer to the space boundaries, the camera should have a warning effect
+		if(overlayScript != null)
+			warningOverlayIntensity();
 		
 		if(playerScript.isOutsideBounds()) 
 			cameraBehaviour_OutOfBounds();
@@ -82,6 +87,8 @@ public class Spaceship_Camera : MonoBehaviour {
 		transform.position = Vector3.Lerp(transform.position, targetPosition, cameraDelay);
 	}
 	void cameraBehaviour_OutOfBounds(){
+		//While the ship is performing out of bounds actions, the camera should follow its location without moving
+		transform.LookAt(playerTransform);
 	}
 	void cameraBehaviour_PlanetSelection(){
 	}
@@ -105,6 +112,29 @@ float determineCameraDelay(){
 	//Once the player stops boosting, the camer should drag back to the player slowly.
 	return initialCameraDelay/boostDelayFactor;
 }
-  	
+
+void warningOverlayIntensity(){
+	//Check how far the player is from the origin
+	float dist = Vector3.Distance(playerShip.transform.position, Vector3.zero);
+	//If he's gone, do max intensity
+	if(dist > SpaceSize){
+		overlayScript.intensity = 3;
+		return;
+	}
+
+	//Check how far away ahead of the outtermost 10% he got
+	float outterLength = SpaceSize/10;
+	float diff = (SpaceSize - outterLength) - dist;
+
+	//if he isn't outside the outtermost 10%, no need to warn him
+	if(diff > 0){
+		overlayScript.intensity = 0;
+	} 
+	//Otherwise, intensity is a percentage of how far he's gone
+	else {
+		overlayScript.intensity =  -diff*3/outterLength;
+	}
+
+}
 
 }
