@@ -34,6 +34,7 @@ public class WateringCan : Tool {
 		particle.SetActive (false);
 	}
 
+	// Used as an animation event
 	public void StopPour () {
 		particle.SetActive (false);
 	}
