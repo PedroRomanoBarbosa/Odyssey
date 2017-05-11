@@ -32,7 +32,7 @@ public class NodeDestruction : MonoBehaviour {
 				float rotAngle = 360f / rand;
 				GameObject mineral;
 				for (int i = 0; i < rand; i++) {
-					mineral = Instantiate (mineralPrefab, transform.Find("MineralAnchor").position, Quaternion.identity);
+					mineral = Instantiate (mineralPrefab, transform.Find("MineralAnchor").position, Quaternion.identity, transform);
 					mineral.GetComponent<Mineral> ().attractor = GameObject.Find ("Planet").GetComponent<FauxGravityAttractor> ();
 					mineral.transform.Rotate (0, rotAngle * i, 0);
 					mineral.transform.Translate (transform.forward);
