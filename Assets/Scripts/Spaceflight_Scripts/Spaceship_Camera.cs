@@ -24,6 +24,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Boundary variables
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
+	bool wasOutside = false;
 	ScreenOverlay overlayScript;
 
 
@@ -43,6 +44,8 @@ public class Spaceship_Camera : MonoBehaviour {
 		
 		if(playerScript.isOutsideBounds()) 
 			cameraBehaviour_OutOfBounds();
+		else if(wasOutside)
+			cameraBehaviour_ReturningfromOutofBounds();
 		else if(playerScript.isSelectingPlanet())
 			cameraBehaviour_PlanetSelection();
 		else 
@@ -88,53 +91,69 @@ public class Spaceship_Camera : MonoBehaviour {
 	}
 	void cameraBehaviour_OutOfBounds(){
 		//While the ship is performing out of bounds actions, the camera should follow its location without moving
-		transform.LookAt(playerTransform);
+		Quaternion targetRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
+   		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
+
+		//Flag that the ship has been outside
+		if (!wasOutside) wasOutside = true;
+ 
+	}
+	void cameraBehaviour_ReturningfromOutofBounds(){
+		if(playerScript.actionTimer > 0){
+			//Find a point behind and above the player ship and go there quickly!
+			Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
+			transform.position = Vector3.Lerp(transform.position, targetPosition, playerScript.actionTimer);
+
+			//Rotate the camera to the ship's facing
+			transform.rotation = Quaternion.Slerp(transform.rotation, playerTransform.transform.rotation, playerScript.actionTimer);
+		} else {
+			wasOutside = false;
+		}
 	}
 	void cameraBehaviour_PlanetSelection(){
 	}
 
-
-
-float determineCameraDelay(){
-	//Reset Behaviour if player is boosting.
-	if(playerScript.isBoosting()) {
-		boostCheck = true;
-		boostDelayFactor = 3.0f;
-	} //Smoothly decrease how far the camera trails behind the player once the boost is over
-	else if (boostCheck){
-		boostDelayFactor -= Time.smoothDeltaTime;
-		if(boostDelayFactor < 1.0f)
-		{
-			boostDelayFactor = 1.0f;
-			boostCheck = false;
-		}			
-	}
-	//Once the player stops boosting, the camer should drag back to the player slowly.
-	return initialCameraDelay/boostDelayFactor;
-}
-
-void warningOverlayIntensity(){
-	//Check how far the player is from the origin
-	float dist = Vector3.Distance(playerShip.transform.position, Vector3.zero);
-	//If he's gone, do max intensity
-	if(dist > SpaceSize){
-		overlayScript.intensity = 3;
-		return;
+	float determineCameraDelay(){
+		//Reset Behaviour if player is boosting.
+		if(playerScript.isBoosting()) {
+			boostCheck = true;
+			boostDelayFactor = 3.0f;
+		} //Smoothly decrease how far the camera trails behind the player once the boost is over
+		else if (boostCheck){
+			boostDelayFactor -= Time.smoothDeltaTime;
+			if(boostDelayFactor < 1.0f)
+			{
+				boostDelayFactor = 1.0f;
+				boostCheck = false;
+			}			
+		
+		}
+		//Once the player stops boosting, the camera should drag back to the player slowly.
+		return initialCameraDelay/boostDelayFactor;
 	}
 
-	//Check how far away ahead of the outtermost 10% he got
-	float outterLength = SpaceSize/10;
-	float diff = (SpaceSize - outterLength) - dist;
+	void warningOverlayIntensity(){
+		//Check how far the player is from the origin
+		float dist = Vector3.Distance(playerShip.transform.position, Vector3.zero);
+		//If he's gone, do max intensity
+		if(dist > SpaceSize){
+			overlayScript.intensity = 3;
+			return;
+		}
 
-	//if he isn't outside the outtermost 10%, no need to warn him
-	if(diff > 0){
-		overlayScript.intensity = 0;
-	} 
-	//Otherwise, intensity is a percentage of how far he's gone
-	else {
-		overlayScript.intensity =  -diff*3/outterLength;
+		//Check how far away ahead of the outtermost 10% he got
+		float outterLength = SpaceSize/10;
+		float diff = (SpaceSize - outterLength) - dist;
+
+		//if he isn't outside the outtermost 10%, no need to warn him
+		if(diff > 0){
+			overlayScript.intensity = 0;
+		} 
+		//Otherwise, intensity is a percentage of how far he's gone
+		else {
+			overlayScript.intensity =  -diff*3/outterLength;
+		}
+
 	}
-
-}
 
 }

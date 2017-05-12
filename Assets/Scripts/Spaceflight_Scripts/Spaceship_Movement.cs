@@ -24,6 +24,10 @@ public class Spaceship_Movement : MonoBehaviour
     private bool boosting = false;
     private float boostTime = 0f;
 
+    //Action Timer for Cinematic effects
+    public float actionTimer = 0f;
+
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -42,11 +46,33 @@ public class Spaceship_Movement : MonoBehaviour
         //Check if boosting is active and deactivate once over
         if(boosting){
             boostTime -= Time.smoothDeltaTime;
-
             if(boostTime < 0)
                 boosting = false;
         }
 
+        //Count Down Action Timer
+        if(actionTimer >= 0)
+            actionTimer -= Time.smoothDeltaTime;
+
+        //Behaviour based on player state
+        if(OutsideBounds) 
+			spaceshipBehaviour_OutOfBounds();
+		else if(SelectingPlanet)
+			spaceshipBehaviour_PlanetSelection();
+		else 
+			spaceshipBehaviour_CameraChase();
+
+        //Update Speed Display
+        if(displaySpeed != null){
+            displaySpeed.text = 
+                "Speed: " + shipForwardSpeed.ToString() + "\n" + 
+                "Boosting: " + boosting.ToString();
+        }
+
+    }
+
+
+    void spaceshipBehaviour_CameraChase(){
         //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
         deceleration = shipForwardSpeed - minSpeed;
@@ -66,19 +92,38 @@ public class Spaceship_Movement : MonoBehaviour
         {
             shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
         }
-        shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100; //WHYYYYYY
+
+        //THIS HURTS EVERY TIME I SEE IT
+        shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100;
+
+        //Apply Momentum
         Vector3 targetPosition = transform.position + transform.forward * shipForwardSpeed;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
 
         //Update directional facing based on camera
-        transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
+        if(actionTimer < 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
-        //Update Speed Display
-        if(displaySpeed != null){
-            displaySpeed.text = 
-                "Speed: " + shipForwardSpeed.ToString() + "\n" + 
-                "Boosting: " + boosting.ToString();
+    }
+    void spaceshipBehaviour_OutOfBounds(){
+        //When the ship leaves, it should initially go forward, spin a bit, and then 
+        //turn around towards the center of the space area.  
+
+        //Forward Momentum
+        Vector3 targetPosition = transform.position + transform.forward * shipForwardSpeed;
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
+
+        if(actionTimer > 0){
+            //Barrelrolling the ship
+            transform.Rotate(new Vector3(0,0,Time.smoothDeltaTime * 360));
+        } else {
+            //Spin the ship back towards the origin
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.zero - transform.position);
+   		    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 60f);
         }
+
+    }
+    void spaceshipBehaviour_PlanetSelection(){
         
     }
 
@@ -91,6 +136,13 @@ public class Spaceship_Movement : MonoBehaviour
     }
     public void setOutsideBounds(){
         OutsideBounds = true;
+        shipForwardSpeed = 25f;
+        actionTimer = 3f;
+    }
+    public void unsetOutsideBounds(){
+        OutsideBounds = false;
+        shipForwardSpeed = 10f;
+        actionTimer = 3f;
     }
     public bool isOutsideBounds(){
         return OutsideBounds;
