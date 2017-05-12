@@ -24,6 +24,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Boundary variables
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
+	bool wasOutside = false;
 	ScreenOverlay overlayScript;
 
 
@@ -43,6 +44,8 @@ public class Spaceship_Camera : MonoBehaviour {
 		
 		if(playerScript.isOutsideBounds()) 
 			cameraBehaviour_OutOfBounds();
+		else if(wasOutside)
+			cameraBehaviour_ReturningfromOutofBounds();
 		else if(playerScript.isSelectingPlanet())
 			cameraBehaviour_PlanetSelection();
 		else 
@@ -90,7 +93,22 @@ public class Spaceship_Camera : MonoBehaviour {
 		//While the ship is performing out of bounds actions, the camera should follow its location without moving
 		Quaternion targetRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
    		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
+
+		//Flag that the ship has been outside
+		if (!wasOutside) wasOutside = true;
  
+	}
+	void cameraBehaviour_ReturningfromOutofBounds(){
+		if(playerScript.actionTimer > 0){
+			//Find a point behind and above the player ship and go there quickly!
+			Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
+			transform.position = Vector3.Lerp(transform.position, targetPosition, playerScript.actionTimer);
+
+			//Rotate the camera to the ship's facing
+			transform.rotation = Quaternion.Slerp(transform.rotation, playerTransform.transform.rotation, playerScript.actionTimer);
+		} else {
+			wasOutside = false;
+		}
 	}
 	void cameraBehaviour_PlanetSelection(){
 	}
@@ -108,8 +126,9 @@ public class Spaceship_Camera : MonoBehaviour {
 				boostDelayFactor = 1.0f;
 				boostCheck = false;
 			}			
+		
 		}
-		//Once the player stops boosting, the camer should drag back to the player slowly.
+		//Once the player stops boosting, the camera should drag back to the player slowly.
 		return initialCameraDelay/boostDelayFactor;
 	}
 

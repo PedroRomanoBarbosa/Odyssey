@@ -24,8 +24,8 @@ public class Spaceship_Movement : MonoBehaviour
     private bool boosting = false;
     private float boostTime = 0f;
 
-    //Out of Bounds
-    float outOfBoundsTimer = 0f;
+    //Action Timer for Cinematic effects
+    public float actionTimer = 0f;
 
 
     /// <summary>
@@ -49,6 +49,10 @@ public class Spaceship_Movement : MonoBehaviour
             if(boostTime < 0)
                 boosting = false;
         }
+
+        //Count Down Action Timer
+        if(actionTimer >= 0)
+            actionTimer -= Time.smoothDeltaTime;
 
         //Behaviour based on player state
         if(OutsideBounds) 
@@ -97,21 +101,19 @@ public class Spaceship_Movement : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
 
         //Update directional facing based on camera
-        transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
+        if(actionTimer < 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
     }
     void spaceshipBehaviour_OutOfBounds(){
         //When the ship leaves, it should initially go forward, spin a bit, and then 
-        //turn around towards the center of the space area.
-
-        //Countdown actin timer
-        outOfBoundsTimer -= Time.deltaTime;
+        //turn around towards the center of the space area.  
 
         //Forward Momentum
         Vector3 targetPosition = transform.position + transform.forward * shipForwardSpeed;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.smoothDeltaTime);
 
-        if(outOfBoundsTimer > 0){
+        if(actionTimer > 0){
             //Barrelrolling the ship
             transform.Rotate(new Vector3(0,0,Time.smoothDeltaTime * 360));
         } else {
@@ -135,11 +137,12 @@ public class Spaceship_Movement : MonoBehaviour
     public void setOutsideBounds(){
         OutsideBounds = true;
         shipForwardSpeed = 25f;
-        outOfBoundsTimer = 3f;
+        actionTimer = 3f;
     }
     public void unsetOutsideBounds(){
-        //OutsideBounds = false;
+        OutsideBounds = false;
         shipForwardSpeed = 10f;
+        actionTimer = 3f;
     }
     public bool isOutsideBounds(){
         return OutsideBounds;
