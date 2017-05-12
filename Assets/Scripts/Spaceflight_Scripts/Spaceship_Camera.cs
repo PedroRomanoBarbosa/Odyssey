@@ -88,7 +88,6 @@ public class Spaceship_Camera : MonoBehaviour {
 	}
 	void cameraBehaviour_OutOfBounds(){
 		//While the ship is performing out of bounds actions, the camera should follow its location without moving
-		//transform.LookAt(playerTransform);
 		Quaternion targetRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
    		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
  
