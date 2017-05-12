@@ -42,11 +42,20 @@ public class Spaceship_Movement : MonoBehaviour
         //Check if boosting is active and deactivate once over
         if(boosting){
             boostTime -= Time.smoothDeltaTime;
-
             if(boostTime < 0)
                 boosting = false;
         }
 
+        if(OutsideBounds) 
+			spaceshipBehaviour_OutOfBounds();
+		else if(SelectingPlanet)
+			spaceshipBehaviour_PlanetSelection();
+		else 
+			spaceshipBehaviour_CameraChase();
+    }
+
+
+    void spaceshipBehaviour_CameraChase(){
         //Forward Movement - acceleration setting
         acceleration = maxSpeed - shipForwardSpeed;
         deceleration = shipForwardSpeed - minSpeed;
@@ -79,6 +88,11 @@ public class Spaceship_Movement : MonoBehaviour
                 "Speed: " + shipForwardSpeed.ToString() + "\n" + 
                 "Boosting: " + boosting.ToString();
         }
+    }
+    void spaceshipBehaviour_OutOfBounds(){
+        
+    }
+    void spaceshipBehaviour_PlanetSelection(){
         
     }
 
