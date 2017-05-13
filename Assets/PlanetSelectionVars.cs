@@ -7,4 +7,12 @@ public class PlanetSelectionVars : MonoBehaviour {
 	public int orbitRadius;
 	public string planetName;
 	public Object planetScene;
+	[HideInInspector]
+	public Vector3 planetPosition;
+
+	void Start()
+	{
+		planetPosition = transform.position;
+	}
+
 }

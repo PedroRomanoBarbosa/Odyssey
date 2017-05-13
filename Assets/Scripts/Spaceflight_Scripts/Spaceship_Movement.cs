@@ -27,10 +27,10 @@ public class Spaceship_Movement : MonoBehaviour
     //Action Timer for Cinematic effects
     public float actionTimer = 0f;
 
+    //Planet Selection variables
+    PlanetSelectionVars planetVars;
+    Vector3 previousPosition; 
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -124,7 +124,20 @@ public class Spaceship_Movement : MonoBehaviour
 
     }
     void spaceshipBehaviour_PlanetSelection(){
+        //The ship should rotate around the planet being selected.
+        if(planetVars != null){
+            //Movement
+            transform.RotateAround(planetVars.planetPosition, Vector3.down, 15f * Time.deltaTime);
+            Vector3 orbitDesiredPosition = (transform.position - planetVars.planetPosition).normalized * planetVars.orbitRadius + planetVars.planetPosition;
+            transform.position = Vector3.Slerp(transform.position, orbitDesiredPosition, Time.deltaTime * 0.5f);
         
+            //Rotation
+            Vector3 relativePos = transform.position - previousPosition;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.5f * Time.deltaTime);
+            previousPosition = transform.position;
+
+        }
     }
 
     public void initiateBoost(){
@@ -147,10 +160,14 @@ public class Spaceship_Movement : MonoBehaviour
     public bool isOutsideBounds(){
         return OutsideBounds;
     }
-    public void setPlanetSelection(){
+    public void setPlanetSelection(PlanetSelectionVars vars){
         SelectingPlanet = true;
+        planetVars = vars;
     }
     public bool isSelectingPlanet(){
         return SelectingPlanet;
+    }
+    public PlanetSelectionVars getPlanetVars(){
+        return planetVars;
     }
 }
