@@ -148,9 +148,9 @@ public class Spaceship_Movement : MonoBehaviour
         return OutsideBounds;
     }
     public void setPlanetSelection(){
-        OutsideBounds = true;
+        SelectingPlanet = true;
     }
     public bool isSelectingPlanet(){
-        return OutsideBounds;
+        return SelectingPlanet;
     }
 }
