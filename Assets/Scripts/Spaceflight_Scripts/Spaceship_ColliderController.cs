@@ -23,6 +23,10 @@ public class Spaceship_ColliderController : MonoBehaviour {
 
 			if(other.gameObject.CompareTag("PlanetSelection")){
 				Debug.Log("Approached a Planet!");
+				PlanetSelectionVars vars = other.GetComponent<PlanetSelectionVars>();
+				if(playerScript != null){
+					playerScript.setPlanetSelection(vars);
+				}
 			}
 		}
 		else if(playerScript.isOutsideBounds()){
