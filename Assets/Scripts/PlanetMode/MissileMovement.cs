@@ -11,6 +11,7 @@ public class MissileMovement : MonoBehaviour {
 	public Vector3 axis;
 	public float speed;
 	public float duration;
+	public int damage;
 
 	void Start () {
 		counter = 0f;
