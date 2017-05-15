@@ -18,6 +18,7 @@ public class AI : MonoBehaviour {
 	private int collisionCounter;
 	private bool dying;
 	private int pointIterator;
+	private bool stop;
 
 	public GameObject modelObject;
 	public Material damageMaterial;
@@ -63,21 +64,28 @@ public class AI : MonoBehaviour {
 	void FixedUpdate () {
 		if ( (detectionArea && following) || !following) {
 			if (!dying) {
-				rigidBody.velocity = transform.forward * speed;
+				if (!stop) {
+					rigidBody.velocity = transform.forward * speed;
+				}
 			}
 		}
 	}
 
 	void Wander () {
-		float distance = (points [pointIterator].position - transform.position).magnitude;
-		if (distance > 1f) {
-			moveVector = Vector3.zero;
-			transform.rotation = Quaternion.LookRotation (points[pointIterator].position - transform.position, transform.up);
-		} else {
-			pointIterator++;
-			if (pointIterator >= points.Length) {
-				pointIterator = 0;
+		if (points.Length > 0) {
+			stop = false;
+			float distance = (points [pointIterator].position - transform.position).magnitude;
+			if (distance > 1f) {
+				moveVector = Vector3.zero;
+				transform.rotation = Quaternion.LookRotation (points [pointIterator].position - transform.position, transform.up);
+			} else {
+				pointIterator++;
+				if (pointIterator >= points.Length) {
+					pointIterator = 0;
+				}
 			}
+		} else {
+			stop = true;
 		}
 	}
 
@@ -90,6 +98,7 @@ public class AI : MonoBehaviour {
 				float angle = Vector3.Angle (transform.forward, direction);
 				if (angle <= sensorMaxAngle) {
 					following = true;
+					stop = false;
 					animator.SetTrigger ("Move");
 				} else {
 					following = false;
@@ -148,10 +157,12 @@ public class AI : MonoBehaviour {
 	public void LeaveDetetectionArea () {
 		detectionArea = false;
 		following = false;
+		stop = true;
 		animator.SetTrigger ("Iddle");
 	}
 
 	public void Die () {
+		stop = true;
 		Destroy (this.gameObject);
 		Instantiate (deathExplosion, transform.position, transform.rotation);
 	}
