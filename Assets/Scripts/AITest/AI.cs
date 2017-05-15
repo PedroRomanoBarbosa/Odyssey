@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI : MonoBehaviour {
 	private Rigidbody rigidBody;
+	private SphereCollider bodyCollider;
 	private bool patrolling;
 	private GameObject player;
 	private bool detectionArea;
@@ -19,6 +20,7 @@ public class AI : MonoBehaviour {
 	public GameObject modelObject;
 	public Material damageMaterial;
 	public Collider damageCollider;
+	public GameObject deathExplosion;
 	public int life;
 	public float speed;
 	public float sensorMaxAngle;
@@ -28,6 +30,7 @@ public class AI : MonoBehaviour {
 		thisRenderer = modelObject.GetComponent<SkinnedMeshRenderer> ();
 		defaultMaterial = thisRenderer.material;
 		rigidBody = GetComponent<Rigidbody> ();
+		bodyCollider = GetComponent<SphereCollider> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		animator = GetComponent<Animator> ();
 		dyingBehaviour = animator.GetBehaviour<Dying> ();
@@ -36,7 +39,8 @@ public class AI : MonoBehaviour {
 
 	void Update () {
 		if (dying) {
-			transform.localScale -= new Vector3(0, (transform.localScale.y / 2) * Time.deltaTime, 0);
+			transform.localScale -= new Vector3(0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
+			bodyCollider.radius -= bodyCollider.radius / 2f * Time.deltaTime;
 		}
 		if (detectionArea) {
 			if (!following) {
@@ -90,12 +94,17 @@ public class AI : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag("Missile")) {
 			if (collisionCounter == 0) {
-				thisRenderer.material = damageMaterial;
 				MissileMovement missile = collider.gameObject.transform.parent.GetComponent<MissileMovement> ();
 				life -= missile.damage;
-				if (life <= 0 && !dying) {
-					animator.SetTrigger ("Die");
-					dying = true;
+				if (!dying) {
+					thisRenderer.material = damageMaterial;
+					if (life <= 0) {
+						animator.SetTrigger ("Die");
+						dying = true;
+						following = false;
+						detectionArea = false;
+						transform.FindChild ("SensorArea").gameObject.SetActive (false);
+					}
 				}
 				collisionCounter++;
 			}
@@ -104,7 +113,7 @@ public class AI : MonoBehaviour {
 
 	void OnTriggerExit (Collider collider) {
 		if (collider.gameObject.CompareTag("Missile")) {
-			if (collisionCounter == 1 && !dying) {
+			if (collisionCounter == 1) {
 				thisRenderer.material = defaultMaterial;
 				collisionCounter = 0;
 			}
@@ -123,6 +132,7 @@ public class AI : MonoBehaviour {
 
 	public void Die () {
 		Destroy (this.gameObject);
+		Instantiate (deathExplosion, transform.position, transform.rotation);
 	}
 
 }
