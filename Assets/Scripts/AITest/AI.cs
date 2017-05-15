@@ -35,6 +35,9 @@ public class AI : MonoBehaviour {
 	}
 
 	void Update () {
+		if (dying) {
+			transform.localScale -= new Vector3(0, (transform.localScale.y / 2) * Time.deltaTime, 0);
+		}
 		if (detectionArea) {
 			if (!following) {
 				SearchPlayer ();
