@@ -9,6 +9,7 @@ public class AI : MonoBehaviour {
 	private GameObject player;
 	private bool detectionArea;
 	private bool following;
+	private bool wandering;
 	private Dying dyingBehaviour;
 	private Vector3 moveVector;
 	private Animator animator;
@@ -16,15 +17,16 @@ public class AI : MonoBehaviour {
 	private Material defaultMaterial;
 	private int collisionCounter;
 	private bool dying;
+	private int pointIterator;
 
 	public GameObject modelObject;
 	public Material damageMaterial;
-	public Collider damageCollider;
 	public GameObject deathExplosion;
 	public int life;
 	public float speed;
 	public float sensorMaxAngle;
 	public float maxAttackRange;
+	public Transform[] points;
 
 	void Start () {
 		thisRenderer = modelObject.GetComponent<SkinnedMeshRenderer> ();
@@ -39,24 +41,43 @@ public class AI : MonoBehaviour {
 
 	void Update () {
 		if (dying) {
-			transform.localScale -= new Vector3(0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
+			transform.localScale -= new Vector3 (0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
 			bodyCollider.radius -= bodyCollider.radius / 2f * Time.deltaTime;
-		}
-		if (detectionArea) {
-			if (!following) {
-				SearchPlayer ();
-			} else {
-				Move ();
-				if ((transform.position - player.transform.position).magnitude <= maxAttackRange) {
-					Attack ();
+		} else {
+			if (detectionArea) {
+				if (!following) {
+					SearchPlayer ();
+				} else {
+					Move ();
+					if ((transform.position - player.transform.position).magnitude <= maxAttackRange) {
+						Attack ();
+					}
 				}
+			}
+			if (!following) {
+				Wander ();
 			}
 		}
 	}
 
 	void FixedUpdate () {
-		if (detectionArea && following) {
-			rigidBody.velocity = transform.forward * speed;
+		if ( (detectionArea && following) || !following) {
+			if (!dying) {
+				rigidBody.velocity = transform.forward * speed;
+			}
+		}
+	}
+
+	void Wander () {
+		float distance = (points [pointIterator].position - transform.position).magnitude;
+		if (distance > 1f) {
+			moveVector = Vector3.zero;
+			transform.rotation = Quaternion.LookRotation (points[pointIterator].position - transform.position, transform.up);
+		} else {
+			pointIterator++;
+			if (pointIterator >= points.Length) {
+				pointIterator = 0;
+			}
 		}
 	}
 
@@ -91,7 +112,7 @@ public class AI : MonoBehaviour {
 		animator.SetTrigger ("Attack");
 	}
 
-	void OnTriggerEnter (Collider collider) {
+	public void EnterBodyCollider (Collider collider) {
 		if (collider.gameObject.CompareTag("Missile")) {
 			if (collisionCounter == 0) {
 				MissileMovement missile = collider.gameObject.transform.parent.GetComponent<MissileMovement> ();
@@ -111,7 +132,7 @@ public class AI : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerExit (Collider collider) {
+	public void ExitBodyCollider (Collider collider) {
 		if (collider.gameObject.CompareTag("Missile")) {
 			if (collisionCounter == 1) {
 				thisRenderer.material = defaultMaterial;
