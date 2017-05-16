@@ -19,6 +19,7 @@ public class AI : MonoBehaviour {
 	private bool dying;
 	private int pointIterator;
 	private bool stop;
+	private float damageCounter;
 
 	public GameObject modelObject;
 	public Material damageMaterial;
@@ -28,6 +29,7 @@ public class AI : MonoBehaviour {
 	public float sensorMaxAngle;
 	public float maxAttackRange;
 	public Transform[] points;
+	public float damageTime;
 
 	void Start () {
 		thisRenderer = modelObject.GetComponent<SkinnedMeshRenderer> ();
@@ -41,6 +43,10 @@ public class AI : MonoBehaviour {
 	}
 
 	void Update () {
+		damageCounter += Time.deltaTime;
+		if (damageCounter >= damageTime) {
+			thisRenderer.material = defaultMaterial;
+		} 
 		if (dying) {
 			transform.localScale -= new Vector3 (0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
 			bodyCollider.radius -= bodyCollider.radius / 2f * Time.deltaTime;
@@ -125,26 +131,35 @@ public class AI : MonoBehaviour {
 		if (collider.gameObject.CompareTag("Missile")) {
 			if (collisionCounter == 0) {
 				MissileMovement missile = collider.gameObject.transform.parent.GetComponent<MissileMovement> ();
-				life -= missile.damage;
-				if (!dying) {
-					thisRenderer.material = damageMaterial;
-					if (life <= 0) {
-						animator.SetTrigger ("Die");
-						dying = true;
-						following = false;
-						detectionArea = false;
-						transform.FindChild ("SensorArea").gameObject.SetActive (false);
-					}
-				}
+				DealDamage (missile.damage);
 				collisionCounter++;
+				damageCounter = 0;
+			}
+		} else if (collider.gameObject.CompareTag("Pick")) {
+			Debug.Log ("DAMAGE");
+			MiningPick pick = collider.transform.parent.GetComponent<MiningPick> ();
+			DealDamage (pick.damage);
+			damageCounter = 0;
+		}
+	}
+
+	private void DealDamage (int damage) {
+		life -= damage;
+		if (!dying) {
+			thisRenderer.material = damageMaterial;
+			if (life <= 0) {
+				animator.SetTrigger ("Die");
+				dying = true;
+				following = false;
+				detectionArea = false;
+				transform.FindChild ("SensorArea").gameObject.SetActive (false);
 			}
 		}
 	}
 
 	public void ExitBodyCollider (Collider collider) {
-		if (collider.gameObject.CompareTag("Missile")) {
+		if (collider.gameObject.CompareTag ("Missile") || collider.gameObject.CompareTag ("Pick")) {
 			if (collisionCounter == 1) {
-				thisRenderer.material = defaultMaterial;
 				collisionCounter = 0;
 			}
 		}
