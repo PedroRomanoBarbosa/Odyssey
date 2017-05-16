@@ -14,7 +14,6 @@ public class Spaceship_Camera : MonoBehaviour {
 	float noTurn = 0.1f; //If the mouse is within the middle 10% of the screen, it shouldn't turn.
 	int planarFactor = 150; //Controls how fast the camera shifts its angle horizontally and vertically
 	int rotationFactor = 10; //Controls how fast you can rotate the view with Q/E
-
 	//Camera Delay and Boost variables
 	public float cameraDelay = 0.3f; //The smaller this value, the further behind the camera will be while chasing the player. Should be between 0 and 1
 	private float initialCameraDelay;
@@ -24,8 +23,17 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Boundary variables
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
-	bool wasOutside = false;
 	ScreenOverlay overlayScript;
+
+	//Planet Selection Interface
+	bool disableUI = true;
+	float waitForUI = 0f;
+
+	//Camera Movement Guide
+	GameObject guide;
+
+	//Swapping modes
+	bool requireReturnToChase = false;
 
 
 	void Start(){
@@ -44,10 +52,10 @@ public class Spaceship_Camera : MonoBehaviour {
 		
 		if(playerScript.isOutsideBounds()) 
 			cameraBehaviour_OutOfBounds();
-		else if(wasOutside)
-			cameraBehaviour_ReturningfromOutofBounds();
 		else if(playerScript.isSelectingPlanet())
 			cameraBehaviour_PlanetSelection();
+		else if(requireReturnToChase)
+			cameraBehaviour_ReturningToChase();
 		else 
 			cameraBehaviour_ChaseSpaceship();
  	}
@@ -88,6 +96,11 @@ public class Spaceship_Camera : MonoBehaviour {
 		//Find a point behind and above the player ship and go there smoothly
 		Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, cameraDelay);
+
+		//Garbage collection
+		if(guide != null)
+			Destroy(guide);
+
 	}
 	void cameraBehaviour_OutOfBounds(){
 		//While the ship is performing out of bounds actions, the camera should follow its location without moving
@@ -95,10 +108,10 @@ public class Spaceship_Camera : MonoBehaviour {
    		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
 
 		//Flag that the ship has been outside
-		if (!wasOutside) wasOutside = true;
+		if (!requireReturnToChase) requireReturnToChase = true;
  
 	}
-	void cameraBehaviour_ReturningfromOutofBounds(){
+	void cameraBehaviour_ReturningToChase(){
 		if(playerScript.actionTimer > 0){
 			//Find a point behind and above the player ship and go there quickly!
 			Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
@@ -107,10 +120,51 @@ public class Spaceship_Camera : MonoBehaviour {
 			//Rotate the camera to the ship's facing
 			transform.rotation = Quaternion.Slerp(transform.rotation, playerTransform.transform.rotation, playerScript.actionTimer);
 		} else {
-			wasOutside = false;
+			requireReturnToChase = false;
 		}
 	}
 	void cameraBehaviour_PlanetSelection(){
+		//Flag that the ship has been in selection mode
+		if (!requireReturnToChase){
+			waitForUI = 3f;
+			requireReturnToChase = true;
+			disableUI = true;
+		}
+
+		PlanetSelectionVars vars = playerScript.getPlanetVars();
+		if(guide == null)
+			guide = new GameObject();
+
+		//Get a vector between the planet and the origin
+		Vector3 direction = Vector3.zero - vars.planetPosition;
+		//Uniformize that vector to the planet's size
+		direction = direction.normalized;
+		//Find a spot for the camera to go to
+		Vector3 targetPosition = vars.planetPosition + direction*2*vars.planetSize;
+		//Send Guide there and make it look at the planet
+		guide.transform.position = targetPosition;
+		guide.transform.LookAt(vars.planetPosition, Vector3.up);
+		//Find a spot to the side of the planet to look at
+		Vector3 targetLookAt =  vars.planetPosition + guide.transform.right*1.2f*vars.planetSize;
+		
+		//Move camera and change rotation
+		transform.position = Vector3.Lerp(transform.position, guide.transform.position, 0.05f);
+		transform.LookAt(targetLookAt, Vector3.up);
+
+
+		//Interface timer
+		if(waitForUI > 0) 
+			waitForUI -= Time.deltaTime; 
+		else
+			disableUI = false;
+
+		//Interface Control
+		if(!disableUI) {
+			if(Input.GetKey(KeyCode.Escape) ){
+				playerScript.setLeavingPlanet();
+				disableUI = true;
+			}
+		}
 	}
 
 	float determineCameraDelay(){
