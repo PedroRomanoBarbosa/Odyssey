@@ -14,7 +14,6 @@ public class Spaceship_Camera : MonoBehaviour {
 	float noTurn = 0.1f; //If the mouse is within the middle 10% of the screen, it shouldn't turn.
 	int planarFactor = 150; //Controls how fast the camera shifts its angle horizontally and vertically
 	int rotationFactor = 10; //Controls how fast you can rotate the view with Q/E
-
 	//Camera Delay and Boost variables
 	public float cameraDelay = 0.3f; //The smaller this value, the further behind the camera will be while chasing the player. Should be between 0 and 1
 	private float initialCameraDelay;
@@ -26,11 +25,15 @@ public class Spaceship_Camera : MonoBehaviour {
 	public int SpaceSize = 1000;
 	ScreenOverlay overlayScript;
 
+	//Planet Selection Interface
+	bool disableUI = true;
+	float waitForUI = 0f;
+
 	//Camera Movement Guide
 	GameObject guide;
 
 	//Swapping modes
-	bool endedAnimation = false;
+	bool requireReturnToChase = false;
 
 
 	void Start(){
@@ -51,7 +54,7 @@ public class Spaceship_Camera : MonoBehaviour {
 			cameraBehaviour_OutOfBounds();
 		else if(playerScript.isSelectingPlanet())
 			cameraBehaviour_PlanetSelection();
-		else if(endedAnimation)
+		else if(requireReturnToChase)
 			cameraBehaviour_ReturningToChase();
 		else 
 			cameraBehaviour_ChaseSpaceship();
@@ -105,7 +108,7 @@ public class Spaceship_Camera : MonoBehaviour {
    		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
 
 		//Flag that the ship has been outside
-		if (!endedAnimation) endedAnimation = true;
+		if (!requireReturnToChase) requireReturnToChase = true;
  
 	}
 	void cameraBehaviour_ReturningToChase(){
@@ -117,10 +120,17 @@ public class Spaceship_Camera : MonoBehaviour {
 			//Rotate the camera to the ship's facing
 			transform.rotation = Quaternion.Slerp(transform.rotation, playerTransform.transform.rotation, playerScript.actionTimer);
 		} else {
-			endedAnimation = false;
+			requireReturnToChase = false;
 		}
 	}
 	void cameraBehaviour_PlanetSelection(){
+		//Flag that the ship has been in selection mode
+		if (!requireReturnToChase){
+			waitForUI = 3f;
+			requireReturnToChase = true;
+			disableUI = true;
+		}
+
 		PlanetSelectionVars vars = playerScript.getPlanetVars();
 		if(guide == null)
 			guide = new GameObject();
@@ -142,6 +152,19 @@ public class Spaceship_Camera : MonoBehaviour {
 		transform.LookAt(targetLookAt, Vector3.up);
 
 
+		//Interface timer
+		if(waitForUI > 0) 
+			waitForUI -= Time.deltaTime; 
+		else
+			disableUI = false;
+
+		//Interface Control
+		if(!disableUI) {
+			if(Input.GetKey(KeyCode.Escape) ){
+				playerScript.setLeavingPlanet();
+				disableUI = true;
+			}
+		}
 	}
 
 	float determineCameraDelay(){

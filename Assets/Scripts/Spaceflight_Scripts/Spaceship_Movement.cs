@@ -28,8 +28,10 @@ public class Spaceship_Movement : MonoBehaviour
     public float actionTimer = 0f;
 
     //Planet Selection variables
+    bool planetSelected = false;
+    bool planetLeaving = false;
     PlanetSelectionVars planetVars;
-    Vector3 previousPosition; 
+    Vector3 previousPosition;
 
     void Awake()
     {
@@ -126,16 +128,23 @@ public class Spaceship_Movement : MonoBehaviour
     void spaceshipBehaviour_PlanetSelection(){
         //The ship should rotate around the planet being selected.
         if(planetVars != null){
-            //Movement
-            transform.RotateAround(planetVars.planetPosition, Vector3.down, 35f * Time.deltaTime);
-            Vector3 orbitDesiredPosition = (transform.position - planetVars.planetPosition).normalized * planetVars.orbitRadius + planetVars.planetPosition;
-            transform.position = Vector3.Slerp(transform.position, orbitDesiredPosition, Time.deltaTime * 0.5f);
-        
-            //Rotation
-            Vector3 relativePos = transform.position - previousPosition;
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.5f * Time.deltaTime);
-            previousPosition = transform.position;
+
+            if(!planetLeaving && !planetSelected){
+                //Movement
+                transform.RotateAround(planetVars.planetPosition, Vector3.down, 35f * Time.deltaTime);
+                Vector3 orbitDesiredPosition = (transform.position - planetVars.planetPosition).normalized * planetVars.orbitRadius + planetVars.planetPosition;
+                transform.position = Vector3.Slerp(transform.position, orbitDesiredPosition, Time.deltaTime * 0.5f);
+
+                //Rotation
+                Vector3 relativePos = transform.position - previousPosition;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.5f * Time.deltaTime);
+                previousPosition = transform.position;
+            } else if (!planetSelected){
+
+            } else {
+                
+            }
 
         }
     }
@@ -169,5 +178,13 @@ public class Spaceship_Movement : MonoBehaviour
     }
     public PlanetSelectionVars getPlanetVars(){
         return planetVars;
+    }
+    public void setLeavingPlanet(){
+        planetLeaving = true;
+        actionTimer = 3.0f;
+    }
+    public void setSelectingPlanet(){
+        planetSelected = true;
+        actionTimer = 3.0f;
     }
 }
