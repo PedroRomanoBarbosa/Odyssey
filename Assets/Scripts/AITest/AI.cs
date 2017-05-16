@@ -11,6 +11,7 @@ public class AI : MonoBehaviour {
 	private bool following;
 	private bool wandering;
 	private Dying dyingBehaviour;
+	private Attack attackBehaviour;
 	private Vector3 moveVector;
 	private Animator animator;
 	private Renderer thisRenderer;
@@ -20,6 +21,7 @@ public class AI : MonoBehaviour {
 	private int pointIterator;
 	private bool stop;
 	private float damageCounter;
+	private bool damaged;
 
 	public GameObject modelObject;
 	public Material damageMaterial;
@@ -29,7 +31,9 @@ public class AI : MonoBehaviour {
 	public float sensorMaxAngle;
 	public float maxAttackRange;
 	public Transform[] points;
+	public int damage;
 	public float damageTime;
+	public Collider attackCollider;
 
 	void Start () {
 		thisRenderer = modelObject.GetComponent<SkinnedMeshRenderer> ();
@@ -40,15 +44,20 @@ public class AI : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		dyingBehaviour = animator.GetBehaviour<Dying> ();
 		dyingBehaviour.slime = this;
+		attackBehaviour = animator.GetBehaviour<Attack> ();
+		attackBehaviour.slime = this;
 	}
 
 	void Update () {
-		damageCounter += Time.deltaTime;
-		if (damageCounter >= damageTime) {
-			thisRenderer.material = defaultMaterial;
-			stop = false;
-		} else {
-			stop = true;
+		if (damaged) {
+			damageCounter += Time.deltaTime;
+			if (damageCounter >= damageTime) {
+				thisRenderer.material = defaultMaterial;
+				stop = false;
+				damaged = false;
+			} else {
+				stop = true;
+			}
 		}
 		if (dying) {
 			transform.localScale -= new Vector3 (0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
@@ -127,6 +136,7 @@ public class AI : MonoBehaviour {
 	}
 
 	void Attack () {
+		attackCollider.enabled = true;
 		animator.SetTrigger ("Attack");
 	}
 
@@ -137,11 +147,13 @@ public class AI : MonoBehaviour {
 				DealDamage (missile.damage);
 				collisionCounter++;
 				damageCounter = 0;
+				damaged = true;
 			}
 		} else if (collider.gameObject.CompareTag("Pick")) {
 			MiningPick pick = collider.transform.parent.GetComponent<MiningPick> ();
 			DealDamage (pick.damage);
 			damageCounter = 0;
+			damaged = true;
 		}
 	}
 
@@ -182,6 +194,10 @@ public class AI : MonoBehaviour {
 		stop = true;
 		Destroy (this.gameObject);
 		Instantiate (deathExplosion, transform.position, transform.rotation);
+	}
+
+	public void AttackEnd () {
+		attackCollider.enabled = false;
 	}
 
 }

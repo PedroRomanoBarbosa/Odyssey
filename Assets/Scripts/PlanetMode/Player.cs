@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
@@ -199,6 +200,21 @@ public class Player : FauxGravityBody {
 		if (gravityZoneCounter <= 0) {
 			planetGravity = true;
 		}
+	}
+
+	public void IncreaseMaxLife (int num) {
+		maxLives += num;
+	}
+
+	public void DecreaseLife (int num) {
+		lives -= num;
+		if (lives <= 0) {
+			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
+		}
+	}
+
+	public void IncreaseLife (int num) {
+		lives += num;
 	}
 
 }

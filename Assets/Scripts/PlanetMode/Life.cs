@@ -8,7 +8,7 @@ public class Life : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag ("Player")) {
 			Player player = collider.gameObject.GetComponent<Player> ();
-			player.maxLives += life;
+			player.IncreaseMaxLife (life);
 			Destroy (gameObject);
 		}
 	}
