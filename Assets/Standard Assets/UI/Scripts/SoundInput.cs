@@ -7,22 +7,17 @@ public class SoundInput : MonoBehaviour
 {
     public Slider soundSlider;
     public Slider effectsSlider;
-    public Button button;
+    public Button backButton;
 
     void Start ()
     {
-        Button btn = button.GetComponent<Button>();
-        btn.onClick.AddListener(SubmitSliderValue);
+        Button button = backButton.GetComponent<Button>();
+        button.onClick.AddListener(SubmitSliderValue);
     }
-
-	void Update ()
-    {
-		
-	}
 
     void SubmitSliderValue()
     {
-        Debug.Log(soundSlider.value);
-        Debug.Log(effectsSlider.value);
+        Debug.Log("Sound: " + soundSlider.value);
+        Debug.Log("Effects: " + effectsSlider.value);
     }
 }
