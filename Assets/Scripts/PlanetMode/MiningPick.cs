@@ -8,6 +8,8 @@ public class MiningPick : Tool {
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
 
+	public GameObject particles;
+
 	void Start () {
 		animator = GetComponent<Animator> ();
 		originalPosition = transform.localPosition;

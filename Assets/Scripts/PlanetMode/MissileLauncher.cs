@@ -8,6 +8,7 @@ public class MissileLauncher : Tool {
 	public float missileCooldown;
 	public float missileSpeed;
 	public float missileLifeDuration;
+	public int damage;
 
 	public override void Use() {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
@@ -20,6 +21,7 @@ public class MissileLauncher : Tool {
 				script.axis = transform.right;
 				script.speed = missileSpeed;
 				script.duration = missileLifeDuration;
+				script.damage = damage;
 			} else {
 				missileCooldownCounter += Time.deltaTime;
 			}

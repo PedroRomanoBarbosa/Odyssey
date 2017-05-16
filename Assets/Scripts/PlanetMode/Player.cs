@@ -135,8 +135,10 @@ public class Player : FauxGravityBody {
 				move += transform.up * jumpSpeed;
 			} else if (jumpCounter <= jumpDuration) {
 				if (Input.GetAxisRaw ("Jump") == 1f) {
-					move += transform.up * jumpFunction(jumpCounter, jumpDuration);
+					move += transform.up * jumpFunction (jumpCounter, jumpDuration);
 				}
+			} else {
+				move += -movementAxis.up * 10f;
 			}
 			move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
 			move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
