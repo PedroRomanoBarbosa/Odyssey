@@ -20,6 +20,9 @@ public class Boulder : MonoBehaviour {
 			animator.SetTrigger ("Vibrate");
 			life--;
 			if (life == 0) {
+				Transform anchor = transform.FindChild ("ExplosionAnchor");
+				GameObject explosion = Instantiate (explosionPrefab, anchor.position, anchor.rotation);
+				explosion.transform.localScale = new Vector3 (5, 5, 5);
 				Destroy (gameObject);
 			}
 		}
