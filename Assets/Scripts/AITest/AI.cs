@@ -46,7 +46,10 @@ public class AI : MonoBehaviour {
 		damageCounter += Time.deltaTime;
 		if (damageCounter >= damageTime) {
 			thisRenderer.material = defaultMaterial;
-		} 
+			stop = false;
+		} else {
+			stop = true;
+		}
 		if (dying) {
 			transform.localScale -= new Vector3 (0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
 			bodyCollider.radius -= bodyCollider.radius / 2f * Time.deltaTime;
@@ -136,7 +139,6 @@ public class AI : MonoBehaviour {
 				damageCounter = 0;
 			}
 		} else if (collider.gameObject.CompareTag("Pick")) {
-			Debug.Log ("DAMAGE");
 			MiningPick pick = collider.transform.parent.GetComponent<MiningPick> ();
 			DealDamage (pick.damage);
 			damageCounter = 0;

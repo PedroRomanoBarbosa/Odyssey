@@ -7,6 +7,7 @@ public class Player : FauxGravityBody {
 
 	// Status
 	public int lives;
+	public int maxLives;
 	public int energy;
 
 	// Movement Variables
@@ -118,10 +119,13 @@ public class Player : FauxGravityBody {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
 		Jump ();
+		if (!jumping && !isGrounded) {
+			move += -movementAxis.up * 10f;
+		}
 	}
 
 	void Jump() {
-		if (!jumping) {
+		if (!jumping && isGrounded) {
 			if (Input.GetAxisRaw("Jump") == 1f) {
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
