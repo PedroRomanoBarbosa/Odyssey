@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlanetSelectionVars : MonoBehaviour {
-	public int orbitRadius;
 	public string planetName;
 	public Object planetScene;
+	public int orbitRadius;
+	public int planetSize;
 	[HideInInspector]
 	public Vector3 planetPosition;
 

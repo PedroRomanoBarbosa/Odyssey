@@ -24,7 +24,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Boundary variables
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
-	bool wasOutside = false;
+	bool endedAnimation = false;
 	ScreenOverlay overlayScript;
 
 
@@ -44,10 +44,10 @@ public class Spaceship_Camera : MonoBehaviour {
 		
 		if(playerScript.isOutsideBounds()) 
 			cameraBehaviour_OutOfBounds();
-		else if(wasOutside)
-			cameraBehaviour_ReturningfromOutofBounds();
 		else if(playerScript.isSelectingPlanet())
 			cameraBehaviour_PlanetSelection();
+		else if(endedAnimation)
+			cameraBehaviour_ReturningToChase();
 		else 
 			cameraBehaviour_ChaseSpaceship();
  	}
@@ -95,10 +95,10 @@ public class Spaceship_Camera : MonoBehaviour {
    		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 90f);
 
 		//Flag that the ship has been outside
-		if (!wasOutside) wasOutside = true;
+		if (!endedAnimation) endedAnimation = true;
  
 	}
-	void cameraBehaviour_ReturningfromOutofBounds(){
+	void cameraBehaviour_ReturningToChase(){
 		if(playerScript.actionTimer > 0){
 			//Find a point behind and above the player ship and go there quickly!
 			Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
@@ -107,10 +107,28 @@ public class Spaceship_Camera : MonoBehaviour {
 			//Rotate the camera to the ship's facing
 			transform.rotation = Quaternion.Slerp(transform.rotation, playerTransform.transform.rotation, playerScript.actionTimer);
 		} else {
-			wasOutside = false;
+			endedAnimation = false;
 		}
 	}
 	void cameraBehaviour_PlanetSelection(){
+		PlanetSelectionVars vars = playerScript.getPlanetVars();
+
+		//Get a vector between the planet and the origin
+		Vector3 direction = Vector3.zero - vars.planetPosition;
+		//Uniformize that vector to the planet's size
+		direction = direction.normalized;
+		//Find a spot for the camera to go to
+		Vector3 targetPosition = vars.planetPosition + direction*2*vars.planetSize;
+		//Go there
+		transform.position = Vector3.Lerp(transform.position, targetPosition, 0.05f);
+
+		//Find a spot to the side of the planet to look at
+		Vector3 targetLookAt =  vars.planetPosition + Vector3.right*2f*vars.planetSize;
+
+		//Look at the planet
+		transform.LookAt(targetLookAt, Vector3.up);
+
+
 	}
 
 	float determineCameraDelay(){
