@@ -127,7 +127,7 @@ public class Spaceship_Movement : MonoBehaviour
         //The ship should rotate around the planet being selected.
         if(planetVars != null){
             //Movement
-            transform.RotateAround(planetVars.planetPosition, Vector3.down, 15f * Time.deltaTime);
+            transform.RotateAround(planetVars.planetPosition, Vector3.down, 35f * Time.deltaTime);
             Vector3 orbitDesiredPosition = (transform.position - planetVars.planetPosition).normalized * planetVars.orbitRadius + planetVars.planetPosition;
             transform.position = Vector3.Slerp(transform.position, orbitDesiredPosition, Time.deltaTime * 0.5f);
         

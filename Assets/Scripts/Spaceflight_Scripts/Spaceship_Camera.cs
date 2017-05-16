@@ -24,8 +24,13 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Boundary variables
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
-	bool endedAnimation = false;
 	ScreenOverlay overlayScript;
+
+	//Camera Movement Guide
+	GameObject guide;
+
+	//Swapping modes
+	bool endedAnimation = false;
 
 
 	void Start(){
@@ -88,6 +93,11 @@ public class Spaceship_Camera : MonoBehaviour {
 		//Find a point behind and above the player ship and go there smoothly
 		Vector3 targetPosition = playerTransform.position - playerTransform.forward * 5 + playerTransform.up * 1;
 		transform.position = Vector3.Lerp(transform.position, targetPosition, cameraDelay);
+
+		//Garbage collection
+		if(guide != null)
+			Destroy(guide);
+
 	}
 	void cameraBehaviour_OutOfBounds(){
 		//While the ship is performing out of bounds actions, the camera should follow its location without moving
@@ -112,6 +122,8 @@ public class Spaceship_Camera : MonoBehaviour {
 	}
 	void cameraBehaviour_PlanetSelection(){
 		PlanetSelectionVars vars = playerScript.getPlanetVars();
+		if(guide == null)
+			guide = new GameObject();
 
 		//Get a vector between the planet and the origin
 		Vector3 direction = Vector3.zero - vars.planetPosition;
@@ -119,13 +131,14 @@ public class Spaceship_Camera : MonoBehaviour {
 		direction = direction.normalized;
 		//Find a spot for the camera to go to
 		Vector3 targetPosition = vars.planetPosition + direction*2*vars.planetSize;
-		//Go there
-		transform.position = Vector3.Lerp(transform.position, targetPosition, 0.05f);
-
+		//Send Guide there and make it look at the planet
+		guide.transform.position = targetPosition;
+		guide.transform.LookAt(vars.planetPosition, Vector3.up);
 		//Find a spot to the side of the planet to look at
-		Vector3 targetLookAt =  vars.planetPosition + Vector3.right*2f*vars.planetSize;
-
-		//Look at the planet
+		Vector3 targetLookAt =  vars.planetPosition + guide.transform.right*1.2f*vars.planetSize;
+		
+		//Move camera and change rotation
+		transform.position = Vector3.Lerp(transform.position, guide.transform.position, 0.05f);
 		transform.LookAt(targetLookAt, Vector3.up);
 
 
