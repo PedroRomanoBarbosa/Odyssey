@@ -11,6 +11,8 @@ public class Flamable : MonoBehaviour {
 
 	public Transform[] flamePoints;
 	public GameObject firePrefab;
+	public GameObject explosionPrefab;
+	public Transform explosionAnchor;
 	public float burningTime;
 
 	void Start () {
@@ -33,6 +35,8 @@ public class Flamable : MonoBehaviour {
 					Destroy(flames [i]);
 				}
 				Destroy (gameObject);
+				GameObject explosion = Instantiate (explosionPrefab, explosionAnchor.position, explosionAnchor.rotation);
+				explosion.transform.localScale = new Vector3 (5, 5, 5);
 			} else {
 				if (counter >= flamepointCounter * flamePointTimeStep) {
 					flames [flamepointCounter] = Instantiate (firePrefab, flamePoints [flamepointCounter].position, flamePoints [flamepointCounter].rotation);
@@ -40,6 +44,7 @@ public class Flamable : MonoBehaviour {
 					flamepointCounter++;
 				}
 			}
+			burning = false;
 		}
 	}
 
