@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour {
+public class Slime : Enemy {
 	private Rigidbody rigidBody;
 	private SphereCollider bodyCollider;
 	private bool patrolling;
@@ -14,30 +14,18 @@ public class AI : MonoBehaviour {
 	private Attack attackBehaviour;
 	private Vector3 moveVector;
 	private Animator animator;
-	private Renderer thisRenderer;
-	private Material defaultMaterial;
-	private int collisionCounter;
 	private bool dying;
 	private int pointIterator;
-	private bool stop;
-	private float damageCounter;
-	private bool damaged;
 
 	public GameObject modelObject;
-	public Material damageMaterial;
 	public GameObject deathExplosion;
-	public int life;
 	public float speed;
 	public float sensorMaxAngle;
 	public float maxAttackRange;
 	public Transform[] points;
-	public int damage;
-	public float damageTime;
 	public Collider attackCollider;
 
 	void Start () {
-		thisRenderer = modelObject.GetComponent<SkinnedMeshRenderer> ();
-		defaultMaterial = thisRenderer.material;
 		rigidBody = GetComponent<Rigidbody> ();
 		bodyCollider = GetComponent<SphereCollider> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -48,17 +36,8 @@ public class AI : MonoBehaviour {
 		attackBehaviour.slime = this;
 	}
 
-	void Update () {
-		if (damaged) {
-			damageCounter += Time.deltaTime;
-			if (damageCounter >= damageTime) {
-				thisRenderer.material = defaultMaterial;
-				stop = false;
-				damaged = false;
-			} else {
-				stop = true;
-			}
-		}
+	public override void Update () {
+		base.Update ();
 		if (dying) {
 			transform.localScale -= new Vector3 (0, (transform.localScale.y / 1.001f) * Time.deltaTime, 0);
 			bodyCollider.radius -= bodyCollider.radius / 2f * Time.deltaTime;
@@ -140,25 +119,8 @@ public class AI : MonoBehaviour {
 		animator.SetTrigger ("Attack");
 	}
 
-	public void EnterBodyCollider (Collider collider) {
-		if (collider.gameObject.CompareTag("Missile")) {
-			if (collisionCounter == 0) {
-				MissileMovement missile = collider.gameObject.transform.parent.GetComponent<MissileMovement> ();
-				DealDamage (missile.damage);
-				collisionCounter++;
-				damageCounter = 0;
-				damaged = true;
-			}
-		} else if (collider.gameObject.CompareTag("Pick")) {
-			MiningPick pick = collider.transform.parent.GetComponent<MiningPick> ();
-			DealDamage (pick.damage);
-			damageCounter = 0;
-			damaged = true;
-		}
-	}
-
-	private void DealDamage (int damage) {
-		life -= damage;
+	public override void DecreaseLife (int damage) {
+		base.DecreaseLife (damage);
 		if (!dying) {
 			thisRenderer.material = damageMaterial;
 			if (life <= 0) {
@@ -167,14 +129,6 @@ public class AI : MonoBehaviour {
 				following = false;
 				detectionArea = false;
 				transform.FindChild ("SensorArea").gameObject.SetActive (false);
-			}
-		}
-	}
-
-	public void ExitBodyCollider (Collider collider) {
-		if (collider.gameObject.CompareTag ("Missile") || collider.gameObject.CompareTag ("Pick")) {
-			if (collisionCounter == 1) {
-				collisionCounter = 0;
 			}
 		}
 	}
@@ -190,9 +144,8 @@ public class AI : MonoBehaviour {
 		animator.SetTrigger ("Iddle");
 	}
 
-	public void Die () {
-		stop = true;
-		Destroy (this.gameObject);
+	public override void Die () {
+		base.Die ();
 		Instantiate (deathExplosion, transform.position, transform.rotation);
 	}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackArea : MonoBehaviour {
-	public AI parent;
+	public Enemy parent;
 
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.name == "DamageArea") {

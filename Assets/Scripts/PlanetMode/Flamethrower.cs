@@ -5,6 +5,8 @@ using UnityEngine;
 public class Flamethrower : Tool {
 	private Collider fireCollider;
 
+	public int damage;
+
 	void Start () {
 		fireCollider = GetComponent<BoxCollider> ();
 	}
