@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
 	// Status
 	public int lives;
+	public int maxLives;
 	public int energy;
 
 	// Movement Variables
@@ -118,10 +120,13 @@ public class Player : FauxGravityBody {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
 		Jump ();
+		if (!jumping && !isGrounded) {
+			move += -movementAxis.up * 10f;
+		}
 	}
 
 	void Jump() {
-		if (!jumping) {
+		if (!jumping && isGrounded) {
 			if (Input.GetAxisRaw("Jump") == 1f) {
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
@@ -135,8 +140,10 @@ public class Player : FauxGravityBody {
 				move += transform.up * jumpSpeed;
 			} else if (jumpCounter <= jumpDuration) {
 				if (Input.GetAxisRaw ("Jump") == 1f) {
-					move += transform.up * jumpFunction(jumpCounter, jumpDuration);
+					move += transform.up * jumpFunction (jumpCounter, jumpDuration);
 				}
+			} else {
+				move += -movementAxis.up * 10f;
 			}
 			move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
 			move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
@@ -193,6 +200,21 @@ public class Player : FauxGravityBody {
 		if (gravityZoneCounter <= 0) {
 			planetGravity = true;
 		}
+	}
+
+	public void IncreaseMaxLife (int num) {
+		maxLives += num;
+	}
+
+	public void DecreaseLife (int num) {
+		lives -= num;
+		if (lives <= 0) {
+			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
+		}
+	}
+
+	public void IncreaseLife (int num) {
+		lives += num;
 	}
 
 }
