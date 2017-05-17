@@ -9,6 +9,7 @@ public class MiningPick : Tool {
 	private Quaternion originalRotation;
 
 	public GameObject particles;
+	public int damage;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
