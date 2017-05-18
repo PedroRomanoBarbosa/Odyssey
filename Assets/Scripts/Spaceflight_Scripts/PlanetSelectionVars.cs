@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class PlanetSelectionVars : MonoBehaviour {
 	public string planetName;
 	public Object planetScene;
+	public Object moonScene;
 	public int orbitRadius;
 	public int planetSize;
+	[MultilineAttribute]
+	public string description;
+
 	[HideInInspector]
 	public Vector3 planetPosition;
 
