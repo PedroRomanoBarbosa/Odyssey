@@ -153,7 +153,7 @@ public class Spaceship_Camera : MonoBehaviour {
 
 
 		//Interface timer
-		if(waitForUI > 0) 
+		if(waitForUI > 0 && disableUI) 
 			waitForUI -= Time.deltaTime; 
 		else
 			disableUI = false;

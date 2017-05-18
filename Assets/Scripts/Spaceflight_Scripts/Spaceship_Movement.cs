@@ -12,6 +12,7 @@ public class Spaceship_Movement : MonoBehaviour
     bool SelectingPlanet = false;
 
     //Variables related to forward momentum
+	[HideInInspector]
     public float shipForwardSpeed;
     public float minSpeed = 0f;
     public float maxSpeed = 50f;
@@ -28,10 +29,10 @@ public class Spaceship_Movement : MonoBehaviour
     public float actionTimer = 0f;
 
     //Planet Selection variables
-    bool planetSelected = false;
     bool planetLeaving = false;
     PlanetSelectionVars planetVars;
     Vector3 previousPosition;
+    float startTime;
 
     void Awake()
     {
@@ -128,24 +129,47 @@ public class Spaceship_Movement : MonoBehaviour
     void spaceshipBehaviour_PlanetSelection(){
         //The ship should rotate around the planet being selected.
         if(planetVars != null){
+            if(!planetLeaving){
+                /*
+                    Orbiting the planet
+                 */
 
-            if(!planetLeaving && !planetSelected){
                 //Movement
-                transform.RotateAround(planetVars.planetPosition, Vector3.down, 35f * Time.deltaTime);
+                transform.RotateAround(planetVars.planetPosition, Vector3.down, 60f * Time.deltaTime);
                 Vector3 orbitDesiredPosition = (transform.position - planetVars.planetPosition).normalized * planetVars.orbitRadius + planetVars.planetPosition;
                 transform.position = Vector3.Slerp(transform.position, orbitDesiredPosition, Time.deltaTime * 0.5f);
-
                 //Rotation
                 Vector3 relativePos = transform.position - previousPosition;
                 Quaternion rotation = Quaternion.LookRotation(relativePos);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.5f * Time.deltaTime);
                 previousPosition = transform.position;
-            } else if (!planetSelected){
+
 
             } else {
-                
+                /*
+                    Multiple step motion to abandon orbit, crossing near the camera
+                 */
+                if (actionTimer > 0){
+                    //Find a spot within the camera's focus to move to
+                    Vector3 targetPosition = shipCamera.transform.position + shipCamera.transform.forward*5 - shipCamera.transform.up + shipCamera.transform.right*3;
+                    //Move there using ActionTimer
+                    float fracJourney = (3-actionTimer)/3;
+                    transform.position = Vector3.Slerp(previousPosition, targetPosition, fracJourney);
+                    //The ship faces the origin
+                    transform.LookAt(targetPosition);     
+                } else {
+                    transform.LookAt(Vector3.zero);  
+                    SelectingPlanet = false;
+                    planetLeaving = false;
+                    actionTimer = 2f;
+                    shipForwardSpeed = 15f;
+                }
             }
-
+            
+        } else {
+            Debug.Log("MISSING PLANET VARS!!");
+            SelectingPlanet = false;
+            actionTimer = -1f;
         }
     }
 
@@ -181,10 +205,6 @@ public class Spaceship_Movement : MonoBehaviour
     }
     public void setLeavingPlanet(){
         planetLeaving = true;
-        actionTimer = 3.0f;
-    }
-    public void setSelectingPlanet(){
-        planetSelected = true;
         actionTimer = 3.0f;
     }
 }
