@@ -110,7 +110,7 @@ public class Slime : Enemy {
 
 	void Move () {
 		moveVector = Vector3.zero;
-		Vector3 feet = player.transform.FindChild ("Feet").position;
+		Vector3 feet = player.transform.Find ("Feet").position;
 		transform.rotation = Quaternion.LookRotation (feet - transform.position, transform.up);
 	}
 
@@ -128,7 +128,7 @@ public class Slime : Enemy {
 				dying = true;
 				following = false;
 				detectionArea = false;
-				transform.FindChild ("SensorArea").gameObject.SetActive (false);
+				transform.Find ("SensorArea").gameObject.SetActive (false);
 			}
 		}
 	}
