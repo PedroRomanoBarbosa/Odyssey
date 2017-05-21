@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SensorArea : MonoBehaviour {
-	private AI parent;
+	private Slime parent;
 
 	void Start () {
-		parent = transform.parent.GetComponent<AI> ();
+		parent = transform.parent.GetComponent<Slime> ();
 	}
 
 	void OnTriggerEnter (Collider collider) {

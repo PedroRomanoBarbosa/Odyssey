@@ -5,10 +5,14 @@ using UnityEngine;
 public class CameraAnimation : MonoBehaviour {
 	private bool animate;
 	private float aniCounter;
-	private Vector3 startPosition, endPosition;
-	private Quaternion startRotation, endRotation;
+	private Vector3 startPosition;
+	private Quaternion startRotation;
+	private bool stopAction;
 
 	public float aniDuration;
+	public Camera camera;
+	public Action action;
+	public Transform anchor;
 
 	void Start () {
 		animate = false;
@@ -18,30 +22,31 @@ public class CameraAnimation : MonoBehaviour {
 		if (animate) {
 			aniCounter += Time.deltaTime;
 			float t = aniCounter / aniDuration;
-			if (aniCounter <= aniDuration) {
-				transform.rotation = Quaternion.Slerp (startRotation, endRotation, t);
-				transform.position = Vector3.Lerp (startPosition, endPosition, t);
-			} else if (aniCounter <= aniDuration * 2) {
-				t = t - aniDuration;
-				transform.rotation = Quaternion.Slerp (endRotation, startRotation, t);
-				transform.position = Vector3.Lerp (endPosition, startPosition, t);
+			if (t <= 0.5f) {
+				camera.transform.rotation = Quaternion.Slerp (startRotation, anchor.localRotation, t * 2f);
+				camera.transform.position = Vector3.Slerp (startPosition, anchor.localPosition, t * 2f);
+			} else if (t <= 1f) {
+				if (!stopAction) {
+					action.OnAction ();
+					stopAction = true;
+				}
+				camera.transform.rotation = Quaternion.Slerp (anchor.localRotation, startRotation, t * 2f - 1f);
+				camera.transform.position = Vector3.Slerp (anchor.localPosition, startPosition, t * 2f - 1f);
 			} else {
-				transform.rotation = startRotation;
-				transform.position = startPosition;
-				animate = false;
-				aniCounter = 0;
 				GameVariables.cinematicPaused = false;
+				animate = true;
+				camera.transform.rotation = startRotation;
+				camera.transform.position = startPosition;
+				animate = false;
 			}
 		}
 	}
 
-	public void Animate (Transform anchor, float duration) {
+	public void Animate () {
+		GameVariables.cinematicPaused = true;
 		animate = true;
 		aniCounter = 0;
-		aniDuration = duration;
-		startPosition = transform.position;
-		startRotation = transform.rotation;
-		endPosition = anchor.position;
-		endRotation = anchor.rotation;
+		startPosition = camera.transform.position;
+		startRotation = camera.transform.rotation;
 	}
 }
