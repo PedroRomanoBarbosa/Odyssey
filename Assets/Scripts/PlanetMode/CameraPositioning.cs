@@ -12,12 +12,14 @@ public class CameraPositioning : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector3 direction = transform.position - player.position;
-		RaycastHit hit;
-		if (Physics.Raycast (player.position, direction, out hit, defaultDistance)) {
-			transform.position = player.position + (direction.normalized * hit.distance);
-		} else {
-			transform.position = player.position + direction.normalized * defaultDistance;
+		if (!GameVariables.cinematicPaused) {
+			Vector3 direction = transform.position - player.position;
+			RaycastHit hit;
+			if (Physics.Raycast (player.position, direction, out hit, defaultDistance)) {
+				transform.position = player.position + (direction.normalized * hit.distance);
+			} else {
+				transform.position = player.position + direction.normalized * defaultDistance;
+			}
 		}
 	}
 }

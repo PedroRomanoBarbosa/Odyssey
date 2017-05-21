@@ -7,7 +7,6 @@ public class Deactivator : Action {
 	private bool used;
 
 	public GameObject[] objects;
-	public Action action;
 
 	public override void OnAction () {
 		if (!used) {
@@ -16,7 +15,7 @@ public class Deactivator : Action {
 				obj.SetActive (false);
 				counter--;
 				if (counter <= 0) {
-					action.OnAction ();
+					
 				}
 			}
 		}

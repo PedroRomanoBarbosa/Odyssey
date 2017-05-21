@@ -5,12 +5,12 @@ using UnityEngine;
 public class ActionZone : MonoBehaviour {
 	private bool playerAround;
 
-	public Action action;
+	public CameraAnimation cameraAnimation;
 
 	void Update () {
 		if (playerAround) {
 			if (Input.GetAxisRaw ("Use") == 1) {
-				action.OnAction ();
+				cameraAnimation.Animate ();
 			}
 		}
 	}
