@@ -18,6 +18,10 @@ public class Spaceship_Movement : MonoBehaviour
     public float maxSpeed = 50f;
     private float acceleration, deceleration;
 
+    //Fuel Variables
+    public float fuel = 100f;
+    public float fuelLoss = 0.1f;
+
     //Text Display Object
     public Text displaySpeed;
 
@@ -207,5 +211,9 @@ public class Spaceship_Movement : MonoBehaviour
     public void setLeavingPlanet(){
         planetLeaving = true;
         actionTimer = 3.0f;
+    }
+
+    public void DrainOutFuel(){
+        fuel -= fuelLoss * Time.deltaTime;
     }
 }
