@@ -19,8 +19,14 @@ public class Spaceship_Movement : MonoBehaviour
     private float acceleration, deceleration;
 
     //Fuel Variables
+    public float minFuel = 0f;
+    public float maxFuel = 100f;
     public float fuel = 100f;
-    public float fuelLoss = 0.1f;
+    public float fuelLoss = 10f;
+
+    //Image Variables
+    public Image fuelImage;
+    public Image speedImage;
 
     //Text Display Object
     public Text displaySpeed;
@@ -67,16 +73,24 @@ public class Spaceship_Movement : MonoBehaviour
 		else if(SelectingPlanet)
 			spaceshipBehaviour_PlanetSelection();
 		else 
-			spaceshipBehaviour_CameraChase();
+			spaceshipBehaviour_CameraChase();  
 
         //Update Speed Display
-        if(displaySpeed != null){
-            displaySpeed.text = 
-                "Speed: " + shipForwardSpeed.ToString() + "\n" + 
+        if (displaySpeed != null)
+        {
+            displaySpeed.text =
+                "Speed: " + shipForwardSpeed.ToString() + "\n" +
                 "Boosting: " + boosting.ToString();
-            Needle.MoveNeedle(shipForwardSpeed, maxSpeed, minSpeed);
+            speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed, minSpeed);
         }
 
+        if (fuel > 0)
+        {
+            DrainOutFuel();
+            fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
+        }
+
+        Debug.Log(fuel);
     }
 
 
@@ -214,6 +228,6 @@ public class Spaceship_Movement : MonoBehaviour
     }
 
     public void DrainOutFuel(){
-        fuel -= fuelLoss * Time.deltaTime;
+        fuel -= fuelLoss * Time.deltaTime * 2f;
     }
 }
