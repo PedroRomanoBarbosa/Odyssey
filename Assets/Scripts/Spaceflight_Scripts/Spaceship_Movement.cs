@@ -70,6 +70,7 @@ public class Spaceship_Movement : MonoBehaviour
             displaySpeed.text = 
                 "Speed: " + shipForwardSpeed.ToString() + "\n" + 
                 "Boosting: " + boosting.ToString();
+            Needle.MoveNeedle(shipForwardSpeed, maxSpeed, minSpeed);
         }
 
     }
