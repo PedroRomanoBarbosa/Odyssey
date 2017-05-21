@@ -8,6 +8,7 @@ public class Boulder : MonoBehaviour {
 
 	public int life;
 	public GameObject explosionPrefab;
+	public GameObject explosionAnchor;
 
 	void Start () {
 		animator = transform.GetChild (0).GetComponent<Animator> ();
@@ -20,8 +21,7 @@ public class Boulder : MonoBehaviour {
 			animator.SetTrigger ("Vibrate");
 			life--;
 			if (life == 0) {
-				Transform anchor = transform.Find ("ExplosionAnchor");
-				GameObject explosion = Instantiate (explosionPrefab, anchor.position, anchor.rotation);
+				GameObject explosion = Instantiate (explosionPrefab, explosionAnchor.transform.position, explosionAnchor.transform.rotation);
 				explosion.transform.localScale = new Vector3 (5, 5, 5);
 				Destroy (gameObject);
 			}
