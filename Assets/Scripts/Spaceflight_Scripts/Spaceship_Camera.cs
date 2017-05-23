@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
@@ -129,11 +130,19 @@ public class Spaceship_Camera : MonoBehaviour {
 			waitForUI = 3f;
 			requireReturnToChase = true;
 			disableUI = true;
+
+			//Fade Out the Ship Driving UI elements
+ 			playerScript.speedImage.CrossFadeAlpha(0f, 2, false);
+ 			playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+ 			playerScript.fuelImage.CrossFadeAlpha(0f, 2, false);
+ 			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
 		}
 
 		PlanetSelectionVars vars = playerScript.getPlanetVars();
 		if(guide == null)
 			guide = new GameObject();
+
+		
 
 		//Get a vector between the planet and the origin
 		Vector3 direction = Vector3.zero - vars.planetPosition;
@@ -160,9 +169,17 @@ public class Spaceship_Camera : MonoBehaviour {
 
 		//Interface Control
 		if(!disableUI) {
-			if(Input.GetKey(KeyCode.Escape) ){
+			if(Input.GetKey(KeyCode.Escape) && !playerScript.isLeavingPlanet()){
+				
 				playerScript.setLeavingPlanet();
 				disableUI = true;
+
+				//Fade In the Ship Driving UI elements
+				playerScript.speedImage.CrossFadeAlpha(1f, 2, false);
+				playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
+				playerScript.fuelImage.CrossFadeAlpha(1f, 2, false);
+				playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
+
 			}
 		}
 	}

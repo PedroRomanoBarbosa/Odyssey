@@ -228,6 +228,9 @@ public class Spaceship_Movement : MonoBehaviour
         planetLeaving = true;
         actionTimer = 3.0f;
     }
+    public bool isLeavingPlanet(){
+        return planetLeaving;
+    }
 
     public void DrainOutFuel()
     {
