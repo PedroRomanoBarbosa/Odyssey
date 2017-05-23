@@ -89,8 +89,7 @@ public class Spaceship_Movement : MonoBehaviour
             DrainOutFuel();
             fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
         }
-
-        Debug.Log(fuel);
+        
     }
 
 
