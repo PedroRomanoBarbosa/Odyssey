@@ -160,7 +160,7 @@ public class Spaceship_Camera : MonoBehaviour {
 
 		//Interface Control
 		if(!disableUI) {
-			if(Input.GetKey(KeyCode.Escape) ){
+			if(Input.GetKey(KeyCode.Escape) && !playerScript.isLeavingPlanet()){
 				playerScript.setLeavingPlanet();
 				disableUI = true;
 			}
