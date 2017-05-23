@@ -91,14 +91,22 @@ public class Spaceship_Movement : MonoBehaviour
             shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
-        if (Input.GetKey(KeyCode.Mouse0))
+        if(fuel>0)
         {
-            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                shipForwardSpeed += acceleration * Time.smoothDeltaTime;
+            }
+            else if (Input.GetKey(KeyCode.Mouse1))
+            {
+                shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
+            }
         }
-        else if (Input.GetKey(KeyCode.Mouse1))
+        else
         {
             shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
         }
+       
 
         //THIS HURTS EVERY TIME I SEE IT
         shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100;
@@ -112,10 +120,13 @@ public class Spaceship_Movement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
         //Drain Fuel
-        if (fuel > 0)
+        if(fuelImage!=null)
         {
-            DrainOutFuel();
-            fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
+            if (fuel > 0)
+            {
+                DrainOutFuel();
+                fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
+            }
         }
     }
     void spaceshipBehaviour_OutOfBounds(){
