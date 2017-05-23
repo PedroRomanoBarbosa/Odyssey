@@ -22,7 +22,8 @@ public class Spaceship_Movement : MonoBehaviour
     public float minFuel = 0f;
     public float maxFuel = 100f;
     public float fuel = 100f;
-    public float fuelLoss = 10f;
+    public float fuelLossMovement = 1f;
+    public float fuelLossStop = 0.1f;
 
     //Image Variables
     public Image fuelImage;
@@ -89,6 +90,8 @@ public class Spaceship_Movement : MonoBehaviour
             DrainOutFuel();
             fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
         }
+
+        Debug.Log(fuel);
         
     }
 
@@ -226,7 +229,15 @@ public class Spaceship_Movement : MonoBehaviour
         actionTimer = 3.0f;
     }
 
-    public void DrainOutFuel(){
-        fuel -= fuelLoss * Time.deltaTime * 2f;
+    public void DrainOutFuel()
+    {
+        if (shipForwardSpeed < 2)
+        {
+            fuel -= fuelLossStop * Time.deltaTime * 2f;
+        }
+        else
+        {
+            fuel -= fuelLossMovement * Time.deltaTime * 2f;
+        }
     }
 }
