@@ -18,8 +18,16 @@ public class Spaceship_Movement : MonoBehaviour
     public float maxSpeed = 50f;
     private float acceleration, deceleration;
 
-    //Text Display Object
-    public Text displaySpeed;
+    //Fuel Variables
+    public float minFuel = 0f;
+    public float maxFuel = 100f;
+    public float fuel = 100f;
+    public float fuelLossMovement = 1f;
+    public float fuelLossStop = 0.1f;
+
+    //Image Variables
+    public Image fuelImage;
+    public Image speedImage;
 
     //SpeedBoost
     private bool boosting = false;
@@ -66,12 +74,8 @@ public class Spaceship_Movement : MonoBehaviour
 			spaceshipBehaviour_CameraChase();
 
         //Update Speed Display
-        if(displaySpeed != null){
-            displaySpeed.text = 
-                "Speed: " + shipForwardSpeed.ToString() + "\n" + 
-                "Boosting: " + boosting.ToString();
-        }
-
+        if(speedImage != null)
+            speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed*1.5f, minSpeed);
     }
 
 
@@ -87,14 +91,22 @@ public class Spaceship_Movement : MonoBehaviour
             shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
-        if (Input.GetKey(KeyCode.Mouse0))
+        if(fuel>0)
         {
-            shipForwardSpeed += acceleration * Time.smoothDeltaTime;
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                shipForwardSpeed += acceleration * Time.smoothDeltaTime;
+            }
+            else if (Input.GetKey(KeyCode.Mouse1))
+            {
+                shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
+            }
         }
-        else if (Input.GetKey(KeyCode.Mouse1))
+        else
         {
             shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
         }
+       
 
         //THIS HURTS EVERY TIME I SEE IT
         shipForwardSpeed = Mathf.Round(shipForwardSpeed * 100)/100;
@@ -107,6 +119,15 @@ public class Spaceship_Movement : MonoBehaviour
         if(actionTimer < 0)
             transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
+        //Drain Fuel
+        if(fuelImage!=null)
+        {
+            if (fuel > 0)
+            {
+                DrainOutFuel();
+                fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
+            }
+        }
     }
     void spaceshipBehaviour_OutOfBounds(){
         //When the ship leaves, it should initially go forward, spin a bit, and then 
@@ -206,5 +227,17 @@ public class Spaceship_Movement : MonoBehaviour
     public void setLeavingPlanet(){
         planetLeaving = true;
         actionTimer = 3.0f;
+    }
+
+    public void DrainOutFuel()
+    {
+        if (shipForwardSpeed < 2)
+        {
+            fuel -= fuelLossStop * Time.deltaTime * 2f;
+        }
+        else
+        {
+            fuel -= fuelLossMovement * Time.deltaTime * 2f;
+        }
     }
 }

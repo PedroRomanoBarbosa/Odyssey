@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BodyCollider : MonoBehaviour {
-	private AI parent;
+	private Enemy parent;
 
 	void Start () {
-		parent = transform.parent.GetComponent<AI> ();
+		parent = transform.parent.GetComponent<Enemy> ();
 	}
 
 	void OnTriggerEnter (Collider collider) {

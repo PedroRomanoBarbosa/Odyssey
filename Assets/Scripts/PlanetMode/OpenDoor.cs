@@ -58,7 +58,7 @@ public class OpenDoor : Action {
 
 	public override void OnAction () {
 		GameVariables.cinematicPaused = true;
-		GameObject.Find ("Main Camera").GetComponent<CameraAnimation> ().Animate (GameObject.Find("CameraAnchor").transform, 1);
+		//GameObject.Find ("Main Camera").GetComponent<CameraAnimation> ().Animate (GameObject.Find("CameraAnchor").transform, 1);
 		counter = 0;
 		switch(state) {
 		case State.Opened:
