@@ -74,7 +74,7 @@ public class Spaceship_Movement : MonoBehaviour
 		else if(SelectingPlanet)
 			spaceshipBehaviour_PlanetSelection();
 		else 
-			spaceshipBehaviour_CameraChase();  
+			spaceshipBehaviour_CameraChase();
 
         //Update Speed Display
         if (displaySpeed != null)
@@ -84,15 +84,6 @@ public class Spaceship_Movement : MonoBehaviour
                 "Boosting: " + boosting.ToString();
             speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed, minSpeed);
         }
-
-        if (fuel > 0)
-        {
-            DrainOutFuel();
-            fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
-        }
-
-        Debug.Log(fuel);
-        
     }
 
 
@@ -128,6 +119,12 @@ public class Spaceship_Movement : MonoBehaviour
         if(actionTimer < 0)
             transform.rotation = Quaternion.Slerp(transform.rotation, shipCamera.transform.rotation, 0.1f);
 
+        //Drain Fuel
+        if (fuel > 0)
+        {
+            DrainOutFuel();
+            fuelImage.GetComponent<Needle>().MoveNeedle(fuel, maxFuel, minFuel);
+        }
     }
     void spaceshipBehaviour_OutOfBounds(){
         //When the ship leaves, it should initially go forward, spin a bit, and then 
