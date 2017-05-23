@@ -29,9 +29,6 @@ public class Spaceship_Movement : MonoBehaviour
     public Image fuelImage;
     public Image speedImage;
 
-    //Text Display Object
-    public Text displaySpeed;
-
     //SpeedBoost
     private bool boosting = false;
     private float boostTime = 0f;
@@ -77,13 +74,8 @@ public class Spaceship_Movement : MonoBehaviour
 			spaceshipBehaviour_CameraChase();
 
         //Update Speed Display
-        if (displaySpeed != null)
-        {
-            displaySpeed.text =
-                "Speed: " + shipForwardSpeed.ToString() + "\n" +
-                "Boosting: " + boosting.ToString();
-            speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed, minSpeed);
-        }
+        if(speedImage != null)
+            speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed*1.5f, minSpeed);
     }
 
 
