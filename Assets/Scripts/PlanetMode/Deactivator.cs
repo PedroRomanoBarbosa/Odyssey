@@ -14,9 +14,6 @@ public class Deactivator : Action {
 			foreach (GameObject obj in objects) {
 				obj.SetActive (false);
 				counter--;
-				if (counter <= 0) {
-					
-				}
 			}
 		}
 	}
