@@ -8,6 +8,7 @@ public class CameraView : Action {
 	private bool animating;
 	private Vector3 oldPosition;
 	private Quaternion oldRotation;
+    private bool middleAction;
 
 	public Camera cameraView;
 	public float duration;
@@ -20,18 +21,25 @@ public class CameraView : Action {
 	void Update () {
 		if (animating) {
 			counter += Time.deltaTime;
-			if (counter >= duration / 2f) {
-				action.OnAction ();
-			} else if (counter >= duration) {
+			if (counter >= duration / 2f && !middleAction) {
+                if (!middleAction) {
+                    action.OnAction();
+                    middleAction = true;
+                }
+            } else if (counter >= duration) {
 				counter = 0;
 				cameraView.enabled = false;
 				mainCamera.enabled = true;
+                animating = false;
 			}
 		}
 	}
 
 	public override void OnAction () {
-		mainCamera.enabled = false;
-		cameraView.enabled = true;
+        if (Deactivator.counter == 1) {
+            cameraView.enabled = true;
+            mainCamera.enabled = false;
+            animating = true;
+        }
 	}
 }
