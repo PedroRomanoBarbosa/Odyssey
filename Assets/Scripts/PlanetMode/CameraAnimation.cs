@@ -12,6 +12,7 @@ public class CameraAnimation : MonoBehaviour {
 	public float aniDuration;
 	public Camera camera;
 	public Action action;
+	public Action endAction;
 	public Transform anchor;
 
 	void Start () {
@@ -38,6 +39,9 @@ public class CameraAnimation : MonoBehaviour {
 				camera.transform.rotation = startRotation;
 				camera.transform.position = startPosition;
 				animate = false;
+				if (endAction != null) {
+					endAction.OnAction ();
+				}
 			}
 		}
 	}

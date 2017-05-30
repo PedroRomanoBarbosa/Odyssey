@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Deactivator : Action {
-	private static int counter = 2;
+	public static int counter = 3;
 	private bool used;
 
 	public GameObject[] objects;
@@ -14,9 +14,6 @@ public class Deactivator : Action {
 			foreach (GameObject obj in objects) {
 				obj.SetActive (false);
 				counter--;
-				if (counter <= 0) {
-					
-				}
 			}
 		}
 	}
