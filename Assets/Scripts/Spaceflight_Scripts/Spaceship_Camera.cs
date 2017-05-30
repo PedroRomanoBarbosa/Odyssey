@@ -129,17 +129,20 @@ public class Spaceship_Camera : MonoBehaviour {
 	void cameraBehaviour_PlanetSelection(){
 		//Flag that the ship has been in selection mode
 		if (!requireReturnToChase){
-			waitForUI = 3f;
 			requireReturnToChase = true;
 			selectionUIScript.selectionEnabled = false;
 
 			//Fade Out the Ship Driving UI elements
- 			playerScript.speedImage.CrossFadeAlpha(0f, 2, false);
- 			playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
- 			playerScript.fuelImage.CrossFadeAlpha(0f, 2, false);
- 			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+			playerScript.speedImage.CrossFadeAlpha(0f, 2, false);
+			playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+			playerScript.fuelImage.CrossFadeAlpha(0f, 2, false);
+			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
 
-			 //Tell the UI to enable
+			//Tell the UI to enable itself and appear
+			selectionUIScript.updateText(playerScript.getPlanetVars());
+			selectionUIScript.setToAppear();
+			
+
 		}
 
 		PlanetSelectionVars vars = playerScript.getPlanetVars();
@@ -163,14 +166,6 @@ public class Spaceship_Camera : MonoBehaviour {
 		//Move camera and change rotation
 		transform.position = Vector3.Lerp(transform.position, guide.transform.position, 0.05f);
 		transform.LookAt(targetLookAt, Vector3.up);
-
-
-
-		//Interface timer
-		if(waitForUI > 0 && !selectionUIScript.selectionEnabled) 
-			waitForUI -= Time.deltaTime; 
-		else
-			selectionUIScript.selectionEnabled = true;
 
 		//Disable Interface through Escape Key
 		if(selectionUIScript.selectionEnabled) {
@@ -223,21 +218,18 @@ public class Spaceship_Camera : MonoBehaviour {
 
 	}
 
-	void leavePlanet(){
-
+	public void leavePlanet(){
 		//Trigger planet leaving movement
 		playerScript.setLeavingPlanet();
 
-		//disable the UI
-		selectionUIScript.selectionEnabled = false;
+		//Tell the selection UI to go away and disable itself
+		selectionUIScript.setToDisappear();
 
 		//Fade In the Ship Driving UI elements
 		playerScript.speedImage.CrossFadeAlpha(1f, 2, false);
 		playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
 		playerScript.fuelImage.CrossFadeAlpha(1f, 2, false);
 		playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
-
-		//Fade Out Selection interface
-
 	}
+
 }
