@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1648978, g: 0.1086768, b: 0.22396868, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5866,14 +5866,6 @@ Prefab:
       propertyPath: m_Name
       value: MiningPickItem
       objectReference: {fileID: 0}
-    - target: {fileID: 4099051495525076, guid: 64ef0f32070c045b1aa49f8883372c77, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099051495525076, guid: 64ef0f32070c045b1aa49f8883372c77, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64ef0f32070c045b1aa49f8883372c77, type: 2}
   m_IsPrefabParent: 0
@@ -8866,7 +8858,7 @@ Prefab:
     - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
         type: 2}
       propertyPath: points.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -9858,47 +9850,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 2dcb55e9abd0bd940aa3529714af2223, type: 3}
---- !u!1 &1209238453 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1167540846944132, guid: 64ef0f32070c045b1aa49f8883372c77,
-    type: 2}
-  m_PrefabInternal: {fileID: 667817924}
---- !u!108 &1209238454
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1209238453}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 0.93103445, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 5
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!4 &1209238457 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4099051495525076, guid: 64ef0f32070c045b1aa49f8883372c77,
@@ -16494,7 +16445,7 @@ Prefab:
     - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
         type: 2}
       propertyPath: points.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
       propertyPath: m_LocalPosition.x
