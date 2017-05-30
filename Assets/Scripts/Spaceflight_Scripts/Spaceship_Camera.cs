@@ -27,7 +27,8 @@ public class Spaceship_Camera : MonoBehaviour {
 	ScreenOverlay overlayScript;
 
 	//Planet Selection Interface
-	bool disableUI = true;
+	public GameObject SelectionUI;
+	SelectionInterface selectionUIScript;
 	float waitForUI = 0f;
 
 	//Camera Movement Guide
@@ -41,6 +42,7 @@ public class Spaceship_Camera : MonoBehaviour {
 		playerTransform = playerShip.transform; 
 		playerScript = playerShip.GetComponent<Spaceship_Movement>();
 		overlayScript = GetComponent<ScreenOverlay>();
+		selectionUIScript = SelectionUI.GetComponent<SelectionInterface>();
 		initialCameraDelay = cameraDelay;
 
 		//Find the point in the center of the screen
@@ -127,15 +129,20 @@ public class Spaceship_Camera : MonoBehaviour {
 	void cameraBehaviour_PlanetSelection(){
 		//Flag that the ship has been in selection mode
 		if (!requireReturnToChase){
-			waitForUI = 3f;
 			requireReturnToChase = true;
-			disableUI = true;
+			selectionUIScript.selectionEnabled = false;
 
 			//Fade Out the Ship Driving UI elements
- 			playerScript.speedImage.CrossFadeAlpha(0f, 2, false);
- 			playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
- 			playerScript.fuelImage.CrossFadeAlpha(0f, 2, false);
- 			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+			playerScript.speedImage.CrossFadeAlpha(0f, 2, false);
+			playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+			playerScript.fuelImage.CrossFadeAlpha(0f, 2, false);
+			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
+
+			//Tell the UI to enable itself and appear
+			selectionUIScript.updateText(playerScript.getPlanetVars());
+			selectionUIScript.setToAppear();
+			
+
 		}
 
 		PlanetSelectionVars vars = playerScript.getPlanetVars();
@@ -160,27 +167,11 @@ public class Spaceship_Camera : MonoBehaviour {
 		transform.position = Vector3.Lerp(transform.position, guide.transform.position, 0.05f);
 		transform.LookAt(targetLookAt, Vector3.up);
 
-
-		//Interface timer
-		if(waitForUI > 0 && disableUI) 
-			waitForUI -= Time.deltaTime; 
-		else
-			disableUI = false;
-
-		//Interface Control
-		if(!disableUI) {
-			if(Input.GetKey(KeyCode.Escape) && !playerScript.isLeavingPlanet()){
-				
-				playerScript.setLeavingPlanet();
-				disableUI = true;
-
-				//Fade In the Ship Driving UI elements
-				playerScript.speedImage.CrossFadeAlpha(1f, 2, false);
-				playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
-				playerScript.fuelImage.CrossFadeAlpha(1f, 2, false);
-				playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
-
-			}
+		//Disable Interface through Escape Key
+		if(selectionUIScript.selectionEnabled) {
+			if(Input.GetKey(KeyCode.Escape) && !playerScript.isLeavingPlanet())
+				leavePlanet();
+			
 		}
 	}
 
@@ -225,6 +216,20 @@ public class Spaceship_Camera : MonoBehaviour {
 			overlayScript.intensity =  -diff*3/outterLength;
 		}
 
+	}
+
+	public void leavePlanet(){
+		//Trigger planet leaving movement
+		playerScript.setLeavingPlanet();
+
+		//Tell the selection UI to go away and disable itself
+		selectionUIScript.setToDisappear();
+
+		//Fade In the Ship Driving UI elements
+		playerScript.speedImage.CrossFadeAlpha(1f, 2, false);
+		playerScript.speedImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
+		playerScript.fuelImage.CrossFadeAlpha(1f, 2, false);
+		playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(1f, 2, false);
 	}
 
 }
