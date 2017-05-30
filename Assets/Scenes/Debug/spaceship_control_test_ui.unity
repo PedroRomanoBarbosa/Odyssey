@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 187690614}
   - component: {fileID: 187690613}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Leave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,7 +635,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0}
+    m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.472}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -650,7 +650,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 472837737}
   m_OnClick:
     m_PersistentCalls:
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 561565128}
   - component: {fileID: 561565127}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 693703226}
   - component: {fileID: 693703225}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,6 +1307,7 @@ MonoBehaviour:
   playerShip: {fileID: 215699483}
   cameraDelay: 0.3
   SpaceSize: 750
+  SelectionUI: {fileID: 2043134068}
 --- !u!114 &1339888728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1917,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2043134069}
+  - component: {fileID: 2043134070}
   m_Layer: 5
   m_Name: LevelSelectUI
   m_TagString: Untagged
@@ -1945,6 +1947,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2043134070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2043134068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9aa7b1696bd7ad4e87edd4b1368e812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: {fileID: 437680798}
+  enterPlanetButton: {fileID: 472837736}
+  enterMoonButton: {fileID: 1975270947}
+  leavePlanetButton: {fileID: 1475971920}
+  selectionEnabled: 0
 --- !u!1 &2048583712
 GameObject:
   m_ObjectHideFlags: 0
