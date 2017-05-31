@@ -28,8 +28,10 @@ public class Spaceship_Camera : MonoBehaviour {
 
 	//Planet Selection Interface
 	public GameObject SelectionUI;
+	public Image whiteFadeScreen;
 	SelectionInterface selectionUIScript;
 	float sequenceTimer = 0f;
+	bool isScreenFading = false;
 	Object sceneToLoad;
 
 	//Camera Movement Guide
@@ -49,6 +51,9 @@ public class Spaceship_Camera : MonoBehaviour {
 
 		//Find the point in the center of the screen
 		mouseCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+		//Set fade screen to transparent
+		whiteFadeScreen.gameObject.SetActive(false);
 	}
 	void LateUpdate () {
 		//If the player is getting closer to the space boundaries, the camera should have a warning effect
@@ -201,8 +206,16 @@ public class Spaceship_Camera : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
 		}
 		//Then make it approach it and fade the screen white (animation runs from sequenceTimer [5, 0])
-		else
+		else if(sequenceTimer > -1)
 		{
+			//Tell white screen to fade in
+			if(!isScreenFading){
+				isScreenFading = true;
+				whiteFadeScreen.gameObject.SetActive(true);
+				whiteFadeScreen.canvasRenderer.SetAlpha(0);
+				whiteFadeScreen.CrossFadeAlpha(1,5,false);
+			}
+
 			//Make sure we are facing the planet
 			transform.LookAt(vars.planetPosition);
 
@@ -225,6 +238,10 @@ public class Spaceship_Camera : MonoBehaviour {
 
 			//Move the camera towards the guide
 			transform.position = Vector3.Lerp(movementStart, guide.transform.position, fraction);
+		}
+		else{
+			//Load the thing already!
+			
 		}
 
 	}
