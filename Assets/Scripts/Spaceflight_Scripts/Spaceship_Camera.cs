@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
+using UnityEngine.SceneManagement;
 
 public class Spaceship_Camera : MonoBehaviour {
 	//Some access to the ship script will be required.
@@ -32,6 +33,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	SelectionInterface selectionUIScript;
 	float sequenceTimer = 0f;
 	bool isScreenFading = false;
+	bool isSceneLoading = false;
 	Object sceneToLoad;
 
 	//Camera Movement Guide
@@ -241,7 +243,11 @@ public class Spaceship_Camera : MonoBehaviour {
 		}
 		else{
 			//Load the thing already!
-			
+			if(!isSceneLoading){
+				isSceneLoading = true;
+				Debug.Log(sceneToLoad.name);				
+				SceneManager.LoadSceneAsync (sceneToLoad.name);
+			}
 		}
 
 	}
