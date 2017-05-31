@@ -139,7 +139,7 @@ public class Spaceship_Camera : MonoBehaviour {
 			playerScript.fuelImage.transform.parent.GetComponent<Image>().CrossFadeAlpha(0f, 2, false);
 
 			//Tell the UI to enable itself and appear
-			selectionUIScript.updateText(playerScript.getPlanetVars());
+			selectionUIScript.updateVars(playerScript.getPlanetVars());
 			selectionUIScript.setToAppear();
 			
 
@@ -171,8 +171,8 @@ public class Spaceship_Camera : MonoBehaviour {
 		if(selectionUIScript.selectionEnabled) {
 			if(Input.GetKey(KeyCode.Escape) && !playerScript.isLeavingPlanet())
 				leavePlanet();
-			
 		}
+
 	}
 
 	float determineCameraDelay(){
