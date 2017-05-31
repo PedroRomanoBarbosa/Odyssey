@@ -7,10 +7,25 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/teste1.unity
+    guid: 23ad217a1f4894b96b7006779250bd72
+  - enabled: 1
+    path: Assets/Scenes/Debug/spaceship_control_test_ui.unity
+    guid: eafe9f84271acef46b757f3b0deee5b4
+  - enabled: 1
+    path: Assets/Scenes/AITest.unity
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SmallPlanet.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/Menus/Main.unity
+    guid: 262a0c01f5f1b7646b326155f8b4e4c1
   - enabled: 1
     path: Assets/Scenes/FirstPlanet.unity
-    guid: 00000000000000000000000000000000
+    guid: fe86bafe3c0e24c5a9f332c0a8a869fa
+  - enabled: 1
+    path: Assets/Scenes/JunglePlanet.unity
+    guid: ec046ba2acfa6408db1579b224342633
+  - enabled: 1
+    path: Assets/Scenes/SmallPlanet.unity
+    guid: c2b09807e2997498b81d01a2cceff09a
+  - enabled: 1
+    path: Assets/Scenes/VulcanicPlanet.unity
+    guid: bb7c58c18671c49d7a21bbe0a8871b0c
