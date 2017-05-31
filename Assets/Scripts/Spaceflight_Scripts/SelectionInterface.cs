@@ -67,7 +67,7 @@ public class SelectionInterface : MonoBehaviour {
 			else
 				activateUI();
 
-			if(timer < 7 && !alreadyFadedText)
+			if(timer < 5 && !alreadyFadedText)
 				fadeIn_text(5);
 			if(timer < 2 && !alreadyFadedButtons)
 				fadeIn_buttons(2);
@@ -93,7 +93,7 @@ public class SelectionInterface : MonoBehaviour {
 	public void setToAppear(){
 		Debug.Log("Selection interface timer started");
 
-		timer = 10f;
+		timer = 8f;
 		counting = true;
 		alreadyFadedText = false;
 		alreadyFadedButtons = false;
@@ -156,8 +156,10 @@ public class SelectionInterface : MonoBehaviour {
 	}
 	private void enterPlanetPressed(){
 		Debug.Log("You have clicked to enter Planet!");
+		cameraScript.loadPlanetScene(selectedPlanetVars.planetScene);
 	}
 	private void enterMoonPressed(){
 		Debug.Log("You have clicked to enter Moon!");
+		cameraScript.loadPlanetScene(selectedPlanetVars.moonScene);
 	}
 }
