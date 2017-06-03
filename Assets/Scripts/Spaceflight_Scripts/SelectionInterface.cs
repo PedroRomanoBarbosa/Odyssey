@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SelectionInterface : MonoBehaviour {
 
+    public GameObject shipCamera;
+    private Spaceship_Camera cameraScript;
+
 	public Text planetName;
 	public Text planetDescription;
 	public Button enterPlanetButton;
@@ -15,20 +18,23 @@ public class SelectionInterface : MonoBehaviour {
 	private Text enterMoon;
 	private Text leavePlanet;
 
+	private PlanetSelectionVars selectedPlanetVars;
+
 	[HideInInspector]
 	public bool selectionEnabled;
 
 	private bool counting = false;
 	private float timer = -10f;
-	
+
 	private bool showMoon = false;
 	private bool alreadyFadedText = false;
 	private bool alreadyFadedButtons = false;
 
 
-
 	// Use this for initialization
 	void Start () {
+		cameraScript = shipCamera.GetComponent<Spaceship_Camera>();
+
 		enterPlanet = enterPlanetButton.transform.GetChild(0).GetComponent<Text>();
 		enterMoon = enterMoonButton.transform.GetChild(0).GetComponent<Text>();
 		leavePlanet = leavePlanetButton.transform.GetChild(0).GetComponent<Text>();
@@ -41,6 +47,10 @@ public class SelectionInterface : MonoBehaviour {
 		enterPlanet.GetComponent<CanvasRenderer>().SetAlpha(0f);
 		enterMoon.GetComponent<CanvasRenderer>().SetAlpha(0f);
 		leavePlanet.GetComponent<CanvasRenderer>().SetAlpha(0f);
+
+		leavePlanetButton.GetComponent<Button>().onClick.AddListener(leavePlanetPressed);
+		enterPlanetButton.GetComponent<Button>().onClick.AddListener(enterPlanetPressed);
+		enterMoonButton.GetComponent<Button>().onClick.AddListener(enterMoonPressed);
 
 		enterPlanetButton.interactable = false;
 		enterMoonButton.interactable = false;
@@ -57,7 +67,7 @@ public class SelectionInterface : MonoBehaviour {
 			else
 				activateUI();
 
-			if(timer < 7 && !alreadyFadedText)
+			if(timer < 5 && !alreadyFadedText)
 				fadeIn_text(5);
 			if(timer < 2 && !alreadyFadedButtons)
 				fadeIn_buttons(2);
@@ -65,9 +75,15 @@ public class SelectionInterface : MonoBehaviour {
 	}
 
 	//Public Functions for the Camera to Invoke
-	public void updateText(PlanetSelectionVars vars){
+	public void updateVars(PlanetSelectionVars vars){
+		//Store vars
+		selectedPlanetVars = vars;
+
+		//Update Text
 		planetName.text = vars.planetName;
 		planetDescription.text = vars.description;
+
+		//Change moon flag
 		if(vars.moonScene != null)
 			showMoon = true;
 		else
@@ -77,7 +93,7 @@ public class SelectionInterface : MonoBehaviour {
 	public void setToAppear(){
 		Debug.Log("Selection interface timer started");
 
-		timer = 10f;
+		timer = 8f;
 		counting = true;
 		alreadyFadedText = false;
 		alreadyFadedButtons = false;
@@ -130,5 +146,20 @@ public class SelectionInterface : MonoBehaviour {
 		if(showMoon)
 			enterMoonButton.interactable = true;
 		leavePlanetButton.interactable = true;
+	}
+
+
+	//Button functions
+	private void leavePlanetPressed(){
+		Debug.Log("You have clicked to Leave!");
+		cameraScript.leavePlanet();
+	}
+	private void enterPlanetPressed(){
+		Debug.Log("You have clicked to enter Planet!");
+		cameraScript.loadPlanetScene(selectedPlanetVars.planetScene);
+	}
+	private void enterMoonPressed(){
+		Debug.Log("You have clicked to enter Moon!");
+		cameraScript.loadPlanetScene(selectedPlanetVars.moonScene);
 	}
 }
