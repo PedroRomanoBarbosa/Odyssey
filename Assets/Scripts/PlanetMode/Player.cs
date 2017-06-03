@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
+	// Animator
+	public Animator animator;
+
 	// Status
 	public int lives;
 	public int maxLives;
@@ -116,6 +119,7 @@ public class Player : FauxGravityBody {
 			velocity *= aerialSlowDown;
 		}
 		move = Vector3.ClampMagnitude (velocity, 1f) * speed;
+		animator.SetFloat ("Speed", move.magnitude / speed);
 		if (move != Vector3.zero) {
 			model.rotation = Quaternion.LookRotation (move, movementAxis.up);
 		}
