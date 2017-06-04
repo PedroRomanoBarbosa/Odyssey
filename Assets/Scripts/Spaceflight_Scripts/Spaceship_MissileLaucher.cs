@@ -39,9 +39,5 @@ public class Spaceship_MissileLaucher : MonoBehaviour {
 		}
 			
 	}
-	void OnTriggerEnter(Collider other)
-	{
-		
-	}
 
 }
