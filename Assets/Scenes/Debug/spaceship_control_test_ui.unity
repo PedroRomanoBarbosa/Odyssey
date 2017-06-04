@@ -597,6 +597,11 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 1898787136}
+    - target: {fileID: 54519318196971760, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f751e2b1f806b549bfb6a56dc06e0ca, type: 2}
   m_IsPrefabParent: 0
@@ -1229,11 +1234,11 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966050090}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.50000006
-  m_Center: {x: 0, y: 0, z: 0.000000059604645}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1049494420
 Prefab:
   m_ObjectHideFlags: 0
@@ -1803,15 +1808,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 21
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 21
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 21
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
@@ -1928,6 +1933,11 @@ Prefab:
     - target: {fileID: 135876105323989294, guid: d402be11cb94b0e4892ee83e64a76bec,
         type: 2}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114586179230556154, guid: d402be11cb94b0e4892ee83e64a76bec,
+        type: 2}
+      propertyPath: barrier
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

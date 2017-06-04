@@ -88,7 +88,6 @@ public class SelectionInterface : MonoBehaviour {
 			showMoon = true;
 		else
 			showMoon = false;
-
 	}
 	public void setToAppear(){
 		Debug.Log("Selection interface timer started");
@@ -130,9 +129,11 @@ public class SelectionInterface : MonoBehaviour {
 	private void fadeIn_buttons(int time){
 		Debug.Log("Buttons fading in");
 		alreadyFadedButtons = true;
-		enterPlanet.CrossFadeAlpha(1f, time, false);
-		if(showMoon)
-			enterMoon.CrossFadeAlpha(1f, time, false);
+		if(!selectedPlanetVars.barrier){
+			enterPlanet.CrossFadeAlpha(1f, time, false);
+			if(showMoon)
+				enterMoon.CrossFadeAlpha(1f, time, false);
+		}
 		leavePlanet.CrossFadeAlpha(1f, time, false);
 
 	}
@@ -141,10 +142,11 @@ public class SelectionInterface : MonoBehaviour {
 
 		selectionEnabled = true;
 		counting = false;
-
-		enterPlanetButton.interactable = true;
-		if(showMoon)
-			enterMoonButton.interactable = true;
+		if(!selectedPlanetVars.barrier){
+			enterPlanetButton.interactable = true;
+			if(showMoon)
+				enterMoonButton.interactable = true;
+		}
 		leavePlanetButton.interactable = true;
 	}
 
