@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 23103533847050328}
   - component: {fileID: 114230149347247362}
   - component: {fileID: 114250679461630012}
+  - component: {fileID: 114572289603467484}
   - component: {fileID: 54519318196971760}
   - component: {fileID: 64461396735819996}
   m_Layer: 0
@@ -491,16 +492,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipCamera: {fileID: 0}
+  missilePrefab: {fileID: 0}
   shipForwardSpeed: 0
   minSpeed: 0
   maxSpeed: 50
   minFuel: 0
   maxFuel: 100
   fuel: 100
-  fuelLoss: 0.1
+  fuelLossMovement: 1
+  fuelLossStop: 0.1
   fuelImage: {fileID: 0}
   speedImage: {fileID: 0}
-  displaySpeed: {fileID: 0}
   actionTimer: 0
 --- !u!114 &114250679461630012
 MonoBehaviour:
@@ -513,3 +515,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9873ee84415f1d443987d83663c99dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114572289603467484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838600176377362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe64ff41b10d494dbab4c1317d40d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missilePrefab: {fileID: 1370057320921086, guid: 24b68b4aacda041479247c0669c3520f,
+    type: 2}
+  missileCooldown: 5
+  missileSpeed: 120
+  missileLifeDuration: 5
+  canFire: 1

@@ -15,6 +15,7 @@ TagManager:
   - BoostRing
   - GameBoundary
   - PlanetSelection
+  - PlanetBarrier
   layers:
   - Default
   - TransparentFX
