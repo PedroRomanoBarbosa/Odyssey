@@ -6,10 +6,12 @@ using UnityEngine;
 public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
+	public GameObject missilePrefab;
 
     //Space and Planet Bounds controller bools - changes behaviour.
     bool OutsideBounds = false;
     bool SelectingPlanet = false;
+    bool planetLeaving = false;
 
     //Variables related to forward momentum
 	[HideInInspector]
@@ -37,7 +39,6 @@ public class Spaceship_Movement : MonoBehaviour
     public float actionTimer = 0f;
 
     //Planet Selection variables
-    bool planetLeaving = false;
     PlanetSelectionVars planetVars;
     Vector3 previousPosition;
     float startTime;
@@ -194,6 +195,8 @@ public class Spaceship_Movement : MonoBehaviour
         }
     }
 
+
+    //Getters, Setters and Helpers
     public void initiateBoost(){
         boosting = true;
         boostTime = 10f;
@@ -232,6 +235,11 @@ public class Spaceship_Movement : MonoBehaviour
         return planetLeaving;
     }
 
+    //Useful!
+    public bool isUnderPlayerControl(){
+        return (!planetLeaving && !OutsideBounds && !SelectingPlanet);
+    }
+
     public void DrainOutFuel()
     {
         if (shipForwardSpeed < 2)
@@ -243,4 +251,5 @@ public class Spaceship_Movement : MonoBehaviour
             fuel -= fuelLossMovement * Time.deltaTime * 2f;
         }
     }
+
 }

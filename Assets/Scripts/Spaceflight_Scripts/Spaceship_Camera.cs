@@ -225,8 +225,10 @@ public class Spaceship_Camera : MonoBehaviour {
 			Vector3 direction = transform.position - vars.planetPosition;
 			direction = direction.normalized;
 			//Create a Guide object
-			if(guide == null)
+			if(guide == null){
 				guide = new GameObject();
+				guide.name = "CameraGuide";
+			}
 			//Send the guide to a spot between the camera and the planet's surface
 			guide.transform.position = vars.planetPosition + direction*vars.planetSize;
 
