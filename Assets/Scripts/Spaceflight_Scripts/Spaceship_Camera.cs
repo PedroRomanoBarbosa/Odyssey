@@ -43,6 +43,8 @@ public class Spaceship_Camera : MonoBehaviour {
 	bool isLoadingPlanet = false;
 	bool requireReturnToChase = false;
 
+    //Canvas HUD
+    public GameObject pause;
 
 	void Start(){
 		playerTransform = playerShip.transform; 
@@ -56,7 +58,10 @@ public class Spaceship_Camera : MonoBehaviour {
 
 		//Set fade screen to transparent
 		whiteFadeScreen.gameObject.SetActive(false);
-	}
+
+        //Don´t destroy when loading another scene
+        DontDestroyOnLoad(pause);
+    }
 	void LateUpdate () {
 		//If the player is getting closer to the space boundaries, the camera should have a warning effect
 		if(overlayScript != null)
