@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
@@ -46,6 +47,9 @@ public class Player : FauxGravityBody {
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
+    //Planet Interface
+    public Text live;
+
 	void Start () {
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
@@ -69,8 +73,14 @@ public class Player : FauxGravityBody {
 			CheckGrounded ();
 			MovePlayer ();
 			ChangeWeapon ();
+            UpdateUIText();
 		}
 	}
+
+    void UpdateUIText()
+    {
+        live.text = "X " + lives;
+    }
 
 	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
