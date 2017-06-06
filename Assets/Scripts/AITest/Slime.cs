@@ -151,7 +151,7 @@ public class Slime : Enemy {
 		playerInAttackArea = true;
 	}
 
-	public override void OnAttackAreaLeave (Collider collider) {
+	public override void OnAttackAreaExit (Collider collider) {
 		playerInAttackArea = false;
 	}
 

@@ -75,7 +75,7 @@ public abstract class Enemy : MonoBehaviour {
 		
 	}
 
-	public virtual void OnAttackAreaLeave (Collider collider) {
+	public virtual void OnAttackAreaExit (Collider collider) {
 
 	}
 

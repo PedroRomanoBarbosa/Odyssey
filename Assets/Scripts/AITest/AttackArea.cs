@@ -9,8 +9,8 @@ public class AttackArea : MonoBehaviour {
 		parent.OnAttackAreaStay (collider);
 	}
 
-	void OnTriggerLeave (Collider collider) {
-		parent.OnAttackAreaLeave (collider);
+	void OnTriggerExit (Collider collider) {
+		parent.OnAttackAreaExit (collider);
 	}
 
 }
