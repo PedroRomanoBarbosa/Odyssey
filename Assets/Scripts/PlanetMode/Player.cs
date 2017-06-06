@@ -50,6 +50,10 @@ public class Player : FauxGravityBody {
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
+	// Sound Variables
+	private float walkingCounter;
+	private float stepTimeCounter;
+
 	void Start () {
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
@@ -247,6 +251,28 @@ public class Player : FauxGravityBody {
 		} else {
 			image.color = new Color (image.color.r, image.color.g, image.color.b, 0f);
 		}
+	}
+
+	private void WalkingSound() {
+		if (move.magnitude != 0 && isGrounded) {
+			stepTimeCounter += Time.deltaTime;
+			walkingCounter += Time.deltaTime;
+			if (walkingCounter >= 1f) {
+				stepTimeCounter = 0;
+				walkingCounter = 0;
+
+			}
+		} else {
+			walkingCounter = 0;
+		}
+	}
+
+	public void Heel() {
+		Debug.Log ("Heel");
+	}
+
+	public void Foot() {
+		Debug.Log ("Foot");
 	}
 
 }
