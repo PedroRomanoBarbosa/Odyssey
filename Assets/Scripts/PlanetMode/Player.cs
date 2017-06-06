@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
-	// Animator
+	// Other
 	public Animator animator;
+	private float damageCounter;
+	private bool damaged;
+	public float damageDuration;
 
 	// Status
 	public int lives;
@@ -70,6 +74,7 @@ public class Player : FauxGravityBody {
 			MovePlayer ();
 			ChangeWeapon ();
 		}
+		DamageLoop ();
 	}
 
 	public new void FixedUpdate () {
@@ -81,6 +86,17 @@ public class Player : FauxGravityBody {
 				attractor.Attract (this, gravityVector);
 			}
 			rigidBody.velocity += move;
+		}
+	}
+
+	void DamageLoop () {
+		if (damaged) {
+			if (damageCounter >= damageDuration) {
+				ChangeColor (false);
+				damaged = false;
+			} else {
+				damageCounter += Time.deltaTime;
+			}
 		}
 	}
 
@@ -212,6 +228,9 @@ public class Player : FauxGravityBody {
 
 	public void DecreaseLife (int num) {
 		lives -= num;
+		damaged = true;
+		damageCounter = 0f;
+		ChangeColor (true);
 		if (lives <= 0) {
 			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
 		}
@@ -219,6 +238,15 @@ public class Player : FauxGravityBody {
 
 	public void IncreaseLife (int num) {
 		lives += num;
+	}
+
+	private void ChangeColor (bool active) {
+		RawImage image = GameObject.Find ("Canvas").GetComponent<RawImage> ();
+		if (active) {
+			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.50f);
+		} else {
+			image.color = new Color (image.color.r, image.color.g, image.color.b, 0f);
+		}
 	}
 
 }

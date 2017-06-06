@@ -71,4 +71,12 @@ public abstract class Enemy : MonoBehaviour {
 		life -= damage;
 	}
 
+	public virtual void OnAttackAreaStay (Collider collider) {
+		
+	}
+
+	public virtual void OnAttackAreaLeave (Collider collider) {
+
+	}
+
 }

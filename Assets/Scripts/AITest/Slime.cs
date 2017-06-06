@@ -11,11 +11,11 @@ public class Slime : Enemy {
 	private bool following;
 	private bool wandering;
 	private Dying dyingBehaviour;
-	private Attack attackBehaviour;
 	private Vector3 moveVector;
 	private Animator animator;
 	private bool dying;
 	private int pointIterator;
+	private bool playerInAttackArea;
 
 	public GameObject modelObject;
 	public GameObject deathExplosion;
@@ -32,8 +32,6 @@ public class Slime : Enemy {
 		animator = GetComponent<Animator> ();
 		dyingBehaviour = animator.GetBehaviour<Dying> ();
 		dyingBehaviour.slime = this;
-		attackBehaviour = animator.GetBehaviour<Attack> ();
-		attackBehaviour.slime = this;
 	}
 
 	public override void Update () {
@@ -149,7 +147,19 @@ public class Slime : Enemy {
 		Instantiate (deathExplosion, transform.position, transform.rotation);
 	}
 
-	public void AttackEnd () {
+	public override void OnAttackAreaStay (Collider collider) {
+		playerInAttackArea = true;
+	}
+
+	public override void OnAttackAreaLeave (Collider collider) {
+		playerInAttackArea = false;
+	}
+
+	public void Bite() {
+		if (playerInAttackArea) {
+			Player player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
+			player.DecreaseLife (damage);
+		}
 		attackCollider.enabled = false;
 	}
 
