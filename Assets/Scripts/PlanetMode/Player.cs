@@ -51,10 +51,10 @@ public class Player : FauxGravityBody {
 	private int toolIndex;
 
 	// Sound Variables
-	private float walkingCounter;
-	private float stepTimeCounter;
+	private AudioSource[] audioSources;
 
 	void Start () {
+		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
@@ -208,6 +208,7 @@ public class Player : FauxGravityBody {
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MineralCollider") {
+			audioSources [0].Play ();
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
 		}
@@ -251,28 +252,6 @@ public class Player : FauxGravityBody {
 		} else {
 			image.color = new Color (image.color.r, image.color.g, image.color.b, 0f);
 		}
-	}
-
-	private void WalkingSound() {
-		if (move.magnitude != 0 && isGrounded) {
-			stepTimeCounter += Time.deltaTime;
-			walkingCounter += Time.deltaTime;
-			if (walkingCounter >= 1f) {
-				stepTimeCounter = 0;
-				walkingCounter = 0;
-
-			}
-		} else {
-			walkingCounter = 0;
-		}
-	}
-
-	public void Heel() {
-		Debug.Log ("Heel");
-	}
-
-	public void Foot() {
-		Debug.Log ("Foot");
 	}
 
 }
