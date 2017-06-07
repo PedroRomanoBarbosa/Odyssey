@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spaceship_ColliderController : MonoBehaviour {
 	Spaceship_Movement playerScript;
+	public AudioClip boostSound;
 
 	void Start()
 	{
@@ -17,11 +18,19 @@ public class Spaceship_ColliderController : MonoBehaviour {
 
 			if(other.gameObject.CompareTag("BoostRing")){
 				Debug.Log("BOOSTIO!");
+				if(boostSound != null)
+					AudioSource.PlayClipAtPoint(boostSound, transform.position);
 				if(playerScript != null)
 					playerScript.initiateBoost();
 			}
 
 			if(other.gameObject.CompareTag("PlanetSelection")){
+				//Remove all missiles
+				Transform missileHolder = GameObject.Find("Missiles").transform;
+				foreach (Transform child in missileHolder) {
+					GameObject.Destroy(child.gameObject);
+				}
+
 				Debug.Log("Approached a Planet!");
 				PlanetSelectionVars vars = other.GetComponent<PlanetSelectionVars>();
 				if(playerScript != null){

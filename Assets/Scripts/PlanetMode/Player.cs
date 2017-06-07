@@ -50,6 +50,9 @@ public class Player : FauxGravityBody {
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
+    //Planet Interface
+    public Text live;
+
 	// Sound Variables
 	private AudioSource[] audioSources;
 
@@ -77,9 +80,15 @@ public class Player : FauxGravityBody {
 			CheckGrounded ();
 			MovePlayer ();
 			ChangeWeapon ();
+            UpdateUIText();
 		}
 		DamageLoop ();
 	}
+
+    void UpdateUIText()
+    {
+        live.text = "X " + lives;
+    }
 
 	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;

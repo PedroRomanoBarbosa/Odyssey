@@ -55,10 +55,27 @@ GameObject:
   - component: {fileID: 23103533847050328}
   - component: {fileID: 114230149347247362}
   - component: {fileID: 114250679461630012}
+  - component: {fileID: 114572289603467484}
   - component: {fileID: 54519318196971760}
   - component: {fileID: 64461396735819996}
   m_Layer: 0
   m_Name: Red_Ship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1868168462145668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4456370020992150}
+  - component: {fileID: 82945584243679978}
+  m_Layer: 0
+  m_Name: Warning Signal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,6 +110,7 @@ Transform:
   - {fileID: 4474885607658984}
   - {fileID: 4716622244685102}
   - {fileID: 4273538401897102}
+  - {fileID: 4456370020992150}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -50.74}
@@ -108,6 +126,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4211119678381630}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4456370020992150
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868168462145668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4211119678381630}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4474885607658984
 Transform:
@@ -203,6 +234,86 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 6c11e79470dad4b4bb66b279d2660007, type: 3}
+--- !u!82 &82945584243679978
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868168462145668}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ecb233529514c53448fd72cbfe1a9351, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 40
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!96 &96436195535909854
 TrailRenderer:
   serializedVersion: 2
@@ -491,16 +602,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipCamera: {fileID: 0}
+  missilePrefab: {fileID: 0}
   shipForwardSpeed: 0
   minSpeed: 0
   maxSpeed: 50
   minFuel: 0
   maxFuel: 100
   fuel: 100
-  fuelLoss: 0.1
+  fuelLossMovement: 1
+  fuelLossStop: 0.1
   fuelImage: {fileID: 0}
   speedImage: {fileID: 0}
-  displaySpeed: {fileID: 0}
   actionTimer: 0
 --- !u!114 &114250679461630012
 MonoBehaviour:
@@ -513,3 +625,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9873ee84415f1d443987d83663c99dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostSound: {fileID: 8300000, guid: 66bf97e3f4d220a458aa6fe02090351a, type: 3}
+--- !u!114 &114572289603467484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838600176377362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe64ff41b10d494dbab4c1317d40d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missilePrefab: {fileID: 1370057320921086, guid: 24b68b4aacda041479247c0669c3520f,
+    type: 2}
+  fireSounds:
+  - {fileID: 8300000, guid: a58b4916eb42a4f8ba599d2e163217ca, type: 3}
+  - {fileID: 8300000, guid: 8b1d3454ba58f4e8cabc591b5457aaf7, type: 3}
+  missileCooldown: 2.5
+  missileSpeed: 120
+  missileLifeDuration: 5
+  canFire: 1
