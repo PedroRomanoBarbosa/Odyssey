@@ -108,6 +108,133 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4508089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4508090}
+  - component: {fileID: 4508091}
+  m_Layer: 0
+  m_Name: Engine Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4508090
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4508089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 215699491}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &4508091
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4508089}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 06c09cf0bc4ce184a9f537e7eab5045d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 3
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 2
+  MinDistance: 1
+  MaxDistance: 24
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.083843365
+      value: 1
+      inSlope: -11.931772
+      outSlope: -11.931772
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.16768673
+      value: 0.5
+      inSlope: -2.982943
+      outSlope: -2.982943
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33537346
+      value: 0.25
+      inSlope: -0.74573576
+      outSlope: -0.74573576
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.66104233
+      value: 0.08213806
+      inSlope: -0.18643394
+      outSlope: -0.18643394
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -0.08387677
+      outSlope: -0.08387677
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &187690611
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +312,11 @@ CanvasRenderer:
 --- !u!1 &215699483 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1838600176377362, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 378021221}
+--- !u!4 &215699491 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4211119678381630, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
     type: 2}
   m_PrefabInternal: {fileID: 378021221}
 --- !u!1 &238895413
@@ -457,6 +589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipCamera: {fileID: 1339888721}
+  planetApproachStinger: {fileID: 8300000, guid: f6122cedeba0ba94faa77a85a30573f4,
+    type: 3}
   planetName: {fileID: 437680798}
   planetDescription: {fileID: 345132876}
   enterPlanetButton: {fileID: 472837736}
@@ -597,6 +731,11 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 1898787136}
+    - target: {fileID: 114250679461630012, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+        type: 2}
+      propertyPath: engineStart
+      value: 
+      objectReference: {fileID: 8300000, guid: bc0e7612469267140bfee6dd8755e280, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f751e2b1f806b549bfb6a56dc06e0ca, type: 2}
   m_IsPrefabParent: 0
