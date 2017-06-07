@@ -23,6 +23,7 @@ public class Space_MissileLogic : MonoBehaviour {
 			Debug.Log("Shot a barrier!");
 			//Destroy the barrier and the missile
 			PlanetSelectionVars vars = other.transform.parent.transform.GetComponent<PlanetSelectionVars>();
+			//AudioSource.PlayClipAtPoint(fireSounds[Random.Range(0,fireSounds.Length)], transform.position);
 			vars.barrier = false;
 			Destroy(this.gameObject);
 
