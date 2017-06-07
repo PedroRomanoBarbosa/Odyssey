@@ -26,6 +26,7 @@ public class Spaceship_Camera : MonoBehaviour {
 	//Note: The space boundaries should be a sphere, centered at the origin (0,0,0)
 	public int SpaceSize = 1000;
 	ScreenOverlay overlayScript;
+	public AudioSource warningSignal;
 
 	//Planet Selection Interface
 	public GameObject SelectionUI;
@@ -294,12 +295,15 @@ public class Spaceship_Camera : MonoBehaviour {
 		//if he isn't outside the outtermost 10%, no need to warn him
 		if(diff > 0){
 			overlayScript.intensity = 0;
+			warningSignal.volume = 0;
 		} 
 		//Otherwise, intensity is a percentage of how far he's gone
 		else {
 			overlayScript.intensity =  -diff*3/outterLength;
+			warningSignal.volume = -diff/outterLength;
 		}
 
+	
 	}
 
 	public void leavePlanet(){

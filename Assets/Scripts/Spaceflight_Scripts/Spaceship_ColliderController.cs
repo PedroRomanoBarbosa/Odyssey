@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spaceship_ColliderController : MonoBehaviour {
 	Spaceship_Movement playerScript;
+	public AudioClip boostSound;
 
 	void Start()
 	{
@@ -17,6 +18,8 @@ public class Spaceship_ColliderController : MonoBehaviour {
 
 			if(other.gameObject.CompareTag("BoostRing")){
 				Debug.Log("BOOSTIO!");
+				if(boostSound != null)
+					AudioSource.PlayClipAtPoint(boostSound, transform.position);
 				if(playerScript != null)
 					playerScript.initiateBoost();
 			}
