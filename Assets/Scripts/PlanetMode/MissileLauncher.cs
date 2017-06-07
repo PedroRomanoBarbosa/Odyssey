@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MissileLauncher : Tool {
-	public GameObject missilePrefab;
 	private float missileCooldownCounter;
+	private AudioSource audioFire;
+
+	public GameObject missilePrefab;
 	public float missileCooldown;
 	public float missileSpeed;
 	public float missileLifeDuration;
 	public int damage;
+
+	public void Start () {
+		audioFire = GetComponent<AudioSource> ();
+	}
 
 	public override void Use() {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
@@ -22,6 +28,7 @@ public class MissileLauncher : Tool {
 				script.speed = missileSpeed;
 				script.duration = missileLifeDuration;
 				script.damage = damage;
+				audioFire.Play ();
 			} else {
 				missileCooldownCounter += Time.deltaTime;
 			}

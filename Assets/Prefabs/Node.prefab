@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4464067743415752}
   - component: {fileID: 198384745920993520}
   - component: {fileID: 199085785149449522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4748722673672294}
   - component: {fileID: 33638612811553986}
   - component: {fileID: 23761282783551488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: State2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4734841656154446}
   - component: {fileID: 33750916104692008}
   - component: {fileID: 23921429060256368}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: State3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4652142631666698}
   - component: {fileID: 198250714297291628}
   - component: {fileID: 199658215695633586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_GlowExParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,8 @@ GameObject:
   - component: {fileID: 4867284234464742}
   - component: {fileID: 65668010141107198}
   - component: {fileID: 114275667470181368}
-  m_Layer: 0
+  - component: {fileID: 82989494407260602}
+  m_Layer: 2
   m_Name: Node
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -106,7 +107,7 @@ GameObject:
   - component: {fileID: 4943204451930156}
   - component: {fileID: 198832994375959234}
   - component: {fileID: 199916065580356372}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_WaveExParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +124,7 @@ GameObject:
   - component: {fileID: 4893347439408308}
   - component: {fileID: 198749180686629208}
   - component: {fileID: 199277662011283638}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_ExplosionPartsParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +141,7 @@ GameObject:
   - component: {fileID: 4613863413585996}
   - component: {fileID: 198577182861283612}
   - component: {fileID: 199921399258409196}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +158,7 @@ GameObject:
   - component: {fileID: 4074051175982232}
   - component: {fileID: 198241593320352116}
   - component: {fileID: 199834364550810972}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_ExpPartParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4093465210115696}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MineralAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +190,7 @@ GameObject:
   - component: {fileID: 4945414560394312}
   - component: {fileID: 33674776027812430}
   - component: {fileID: 23562053138423736}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: State1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +207,7 @@ GameObject:
   - component: {fileID: 4921617738058770}
   - component: {fileID: 198625022112381382}
   - component: {fileID: 199131661008743896}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_GlowExParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,8 +315,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292177369693746}
-  m_LocalRotation: {x: -0.004413761, y: -0, z: -0, w: 0.9999903}
-  m_LocalPosition: {x: 5, y: 50.13, z: 5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 36.438835, y: 23.304436, z: -56.607338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4734841656154446}
@@ -509,6 +510,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 3, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82989494407260602
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1292177369693746}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114275667470181368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,6 +603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineralPrefab: {fileID: 1493057258766534, guid: 3381696000e3c4f8ea7f0bd8f34f8886,
     type: 2}
+  pickAudioClips:
+  - {fileID: 8300000, guid: b3b87cb9d48664de998882218c064508, type: 3}
+  - {fileID: 8300000, guid: e5b7a31cb10f545db8625e57082cfcc8, type: 3}
+  - {fileID: 8300000, guid: 5c3f37fd652374ed3967f0e75b9dbb9b, type: 3}
+  - {fileID: 8300000, guid: f1b893a7311aa479aa3b8358e57235a2, type: 3}
+  - {fileID: 8300000, guid: 0a4d3edc9c4f84ac68b3cff2dfa95bbb, type: 3}
+  explosionClip: {fileID: 8300000, guid: 757719d2279234238967a63085941293, type: 3}
 --- !u!198 &198241593320352116
 ParticleSystem:
   m_ObjectHideFlags: 1
