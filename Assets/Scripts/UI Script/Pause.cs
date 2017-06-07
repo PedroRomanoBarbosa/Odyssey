@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     public Transform canvas;
+    public GameObject pause;
 
 	void Update ()
     {
@@ -32,6 +33,7 @@ public class Pause : MonoBehaviour
     public void LoadByIndex(int sceneIndex)
     {
         Time.timeScale = 1;
+        Destroy(pause);
         SceneManager.LoadScene(sceneIndex);
     }
 }
