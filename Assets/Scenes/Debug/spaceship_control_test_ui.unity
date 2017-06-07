@@ -589,6 +589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipCamera: {fileID: 1339888721}
+  planetApproachStinger: {fileID: 8300000, guid: f6122cedeba0ba94faa77a85a30573f4,
+    type: 3}
   planetName: {fileID: 437680798}
   planetDescription: {fileID: 345132876}
   enterPlanetButton: {fileID: 472837736}
