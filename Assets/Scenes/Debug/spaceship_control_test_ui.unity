@@ -1527,6 +1527,7 @@ MonoBehaviour:
   playerShip: {fileID: 215699483}
   cameraDelay: 0.3
   SpaceSize: 750
+  warningSignal: {fileID: 1668864888}
   SelectionUI: {fileID: 312056156}
   whiteFadeScreen: {fileID: 909764561}
   pause: {fileID: 578622220}
@@ -1836,6 +1837,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4093492968538120, guid: fcfffb5727d64844fa5086e5e0020e97,
     type: 2}
   m_PrefabInternal: {fileID: 1591660341}
+--- !u!82 &1668864888 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82945584243679978, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 378021221}
 --- !u!1 &1692623274
 GameObject:
   m_ObjectHideFlags: 0
