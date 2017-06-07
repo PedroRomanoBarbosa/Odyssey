@@ -528,7 +528,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 1370057320921086, guid: 24b68b4aacda041479247c0669c3520f,
     type: 2}
-  missileCooldown: 5
+  fireSounds:
+  - {fileID: 8300000, guid: a58b4916eb42a4f8ba599d2e163217ca, type: 3}
+  - {fileID: 8300000, guid: 8b1d3454ba58f4e8cabc591b5457aaf7, type: 3}
+  missileCooldown: 2.5
   missileSpeed: 120
   missileLifeDuration: 5
   canFire: 1
