@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Flamethrower : Tool {
 	private Collider fireCollider;
+	private AudioSource audioSource;
 
 	public int damage;
+	public AudioClip beginningClip;
+	public AudioClip clip;
 
 	void Start () {
 		fireCollider = GetComponent<BoxCollider> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	public override void Use () {

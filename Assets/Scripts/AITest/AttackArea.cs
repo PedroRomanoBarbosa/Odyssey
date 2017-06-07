@@ -5,11 +5,12 @@ using UnityEngine;
 public class AttackArea : MonoBehaviour {
 	public Enemy parent;
 
-	void OnTriggerEnter (Collider collider) {
-		if (collider.gameObject.name == "DamageArea") {
-			Player player = collider.transform.parent.GetComponent<Player> ();
-			player.DecreaseLife (parent.damage);
-		}
+	void OnTriggerStay (Collider collider) {
+		parent.OnAttackAreaStay (collider);
+	}
+
+	void OnTriggerExit (Collider collider) {
+		parent.OnAttackAreaExit (collider);
 	}
 
 }

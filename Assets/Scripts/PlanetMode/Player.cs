@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
-	// Animator
+	// Other
 	public Animator animator;
+	private float damageCounter;
+	private bool damaged;
+	public float damageDuration;
 
 	// Status
 	public int lives;
@@ -50,7 +53,11 @@ public class Player : FauxGravityBody {
     //Planet Interface
     public Text live;
 
+	// Sound Variables
+	private AudioSource[] audioSources;
+
 	void Start () {
+		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
 		rigidBody = GetComponent<Rigidbody> ();
@@ -75,6 +82,7 @@ public class Player : FauxGravityBody {
 			ChangeWeapon ();
             UpdateUIText();
 		}
+		DamageLoop ();
 	}
 
     void UpdateUIText()
@@ -91,6 +99,17 @@ public class Player : FauxGravityBody {
 				attractor.Attract (this, gravityVector);
 			}
 			rigidBody.velocity += move;
+		}
+	}
+
+	void DamageLoop () {
+		if (damaged) {
+			if (damageCounter >= damageDuration) {
+				ChangeColor (false);
+				damaged = false;
+			} else {
+				damageCounter += Time.deltaTime;
+			}
 		}
 	}
 
@@ -198,6 +217,7 @@ public class Player : FauxGravityBody {
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MineralCollider") {
+			audioSources [0].Play ();
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
 		}
@@ -222,6 +242,9 @@ public class Player : FauxGravityBody {
 
 	public void DecreaseLife (int num) {
 		lives -= num;
+		damaged = true;
+		damageCounter = 0f;
+		ChangeColor (true);
 		if (lives <= 0) {
 			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
 		}
@@ -229,6 +252,15 @@ public class Player : FauxGravityBody {
 
 	public void IncreaseLife (int num) {
 		lives += num;
+	}
+
+	private void ChangeColor (bool active) {
+		RawImage image = GameObject.Find ("Canvas").GetComponent<RawImage> ();
+		if (active) {
+			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.50f);
+		} else {
+			image.color = new Color (image.color.r, image.color.g, image.color.b, 0f);
+		}
 	}
 
 }

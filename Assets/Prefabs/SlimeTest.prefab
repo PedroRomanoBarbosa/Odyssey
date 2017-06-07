@@ -471,7 +471,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1471653217243684}
   m_LocalRotation: {x: -0, y: 0.9999201, z: -0, w: -0.0126410015}
-  m_LocalPosition: {x: 8.034497, y: 48.847275, z: 2.1431425}
+  m_LocalPosition: {x: 5.838954, y: 49.131172, z: -2.6901445}
   m_LocalScale: {x: 100.00008, y: 100, z: 100.00011}
   m_Children:
   - {fileID: 4819597663496358}
@@ -638,7 +638,7 @@ MonoBehaviour:
   modelObject: {fileID: 1749864751675188}
   deathExplosion: {fileID: 1862189058772948, guid: e3f3f908d8fb4440c857f44573cad7b4,
     type: 2}
-  speed: 5
+  speed: 4
   sensorMaxAngle: 45
   maxAttackRange: 3
   points: []

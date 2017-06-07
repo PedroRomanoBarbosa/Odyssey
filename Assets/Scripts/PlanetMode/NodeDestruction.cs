@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class NodeDestruction : MonoBehaviour {
 	private int state;
-	public GameObject mineralPrefab;
 	private GameObject sparkle, explosion;
+	private AudioSource audioSource;
+
+	public GameObject mineralPrefab;
+	public AudioClip[] pickAudioClips;
+	public AudioClip explosionClip;
 
 	void Start () {
+		audioSource = GetComponent<AudioSource> ();
 		state = 2;
 		sparkle = transform.Find ("Sparkle").gameObject;
 		explosion = transform.Find ("Explosion").gameObject;
@@ -19,6 +24,9 @@ public class NodeDestruction : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.CompareTag ("Pick")) {
+			if (pickAudioClips.Length > 0) {
+				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)]);
+			}
 			transform.GetChild (state).GetComponent<Renderer> ().enabled = false;
 			state -= 1;
 			sparkle.SetActive (true);
@@ -26,6 +34,9 @@ public class NodeDestruction : MonoBehaviour {
 			if (state == -1) {
 				GetComponent<BoxCollider> ().enabled = false;
 				state = 2;
+				if (explosionClip != null) {
+					audioSource.PlayOneShot (explosionClip, 1f);
+				}
 				explosion.SetActive (true);
 				explosion.GetComponent<ParticleSystem> ().Play(true);
 				int rand = Random.Range (2,5);

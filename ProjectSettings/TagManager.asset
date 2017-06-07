@@ -15,6 +15,7 @@ TagManager:
   - BoostRing
   - GameBoundary
   - PlanetSelection
+  - Node
   - PlanetBarrier
   layers:
   - Default
