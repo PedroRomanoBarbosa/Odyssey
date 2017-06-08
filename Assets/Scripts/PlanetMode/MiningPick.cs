@@ -7,12 +7,17 @@ public class MiningPick : Tool {
 	private bool animating;
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
+	private Collider pickCollider;
+	private AudioSource audioSource;
 
 	public GameObject particles;
 	public int damage;
+	public AudioClip[] pickAudioClips;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
+		pickCollider = GetComponent<Collider> ();
+		audioSource = GetComponent<AudioSource> ();
 		originalPosition = transform.localPosition;
 		originalRotation = transform.localRotation;
 	}
@@ -21,7 +26,7 @@ public class MiningPick : Tool {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
 			if (animating == false) {
 				animating = true;
-				transform.GetChild (1).GetComponent<BoxCollider> ().enabled = true;
+				pickCollider.enabled = true;
 				animator.SetTrigger ("Swing");
 			}
 		}
@@ -33,7 +38,7 @@ public class MiningPick : Tool {
 
 	// Used as an animation event
 	public void AnimationEnd () {
-		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
+		pickCollider.enabled = false;
 		animating = false;
 		transform.localPosition = originalPosition;
 		transform.localRotation = originalRotation;
@@ -41,7 +46,15 @@ public class MiningPick : Tool {
 
 	// Used as an animation event
 	public void EndDownSwing () {
-		transform.GetChild (1).GetComponent<BoxCollider> ().enabled = false;
+		pickCollider.enabled = false;
+	}
+
+	void OnTriggerEnter (Collider collider) {
+		if (collider.gameObject.CompareTag ("Node") || collider.gameObject.CompareTag ("Boulder")) {
+			if (pickAudioClips.Length > 0) {
+				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)]);
+			}
+		}
 	}
 
 }
