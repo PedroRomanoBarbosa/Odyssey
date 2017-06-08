@@ -6,7 +6,7 @@ public class Target : MonoBehaviour {
 	private Renderer missileRenderer;
 	private bool active;
 
-	public Action action;
+	public CameraAnimation cameraAnimation;
 	public Material off;
 	public Material on;
 
@@ -29,8 +29,8 @@ public class Target : MonoBehaviour {
 			} else {
 				missileRenderer.material = off;
 			}
-			if (action != null) {
-				action.OnAction ();
+			if (cameraAnimation != null) {
+				cameraAnimation.Animate ();
 			}
 		}
 	}

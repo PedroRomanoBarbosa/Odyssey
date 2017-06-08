@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 82989494407260602}
   m_Layer: 2
   m_Name: Node
-  m_TagString: Obstacle
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,8 +315,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292177369693746}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.438835, y: 23.304436, z: -56.607338}
+  m_LocalRotation: {x: 0.15563378, y: 0.025579048, z: -0.16014834, w: 0.9744108}
+  m_LocalPosition: {x: 44.348843, y: 28.914436, z: -7.4673386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4734841656154446}
@@ -327,7 +327,7 @@ Transform:
   - {fileID: 4613863413585996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.50600004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.149, y: 0, z: -18.667002}
 --- !u!4 &4893347439408308
 Transform:
   m_ObjectHideFlags: 1
@@ -505,7 +505,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292177369693746}
   m_Material: {fileID: 13400000, guid: c4ec81a5384fc4150a9d9a084289b4c3, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.5, y: 3, z: 1.5}
@@ -520,7 +520,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -603,12 +603,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineralPrefab: {fileID: 1493057258766534, guid: 3381696000e3c4f8ea7f0bd8f34f8886,
     type: 2}
-  pickAudioClips:
-  - {fileID: 8300000, guid: b3b87cb9d48664de998882218c064508, type: 3}
-  - {fileID: 8300000, guid: e5b7a31cb10f545db8625e57082cfcc8, type: 3}
-  - {fileID: 8300000, guid: 5c3f37fd652374ed3967f0e75b9dbb9b, type: 3}
-  - {fileID: 8300000, guid: f1b893a7311aa479aa3b8358e57235a2, type: 3}
-  - {fileID: 8300000, guid: 0a4d3edc9c4f84ac68b3cff2dfa95bbb, type: 3}
   explosionClip: {fileID: 8300000, guid: 757719d2279234238967a63085941293, type: 3}
 --- !u!198 &198241593320352116
 ParticleSystem:
