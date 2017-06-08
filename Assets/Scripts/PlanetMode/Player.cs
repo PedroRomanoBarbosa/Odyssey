@@ -72,7 +72,7 @@ public class Player : FauxGravityBody {
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
 			equippedTools [toolIndex].gameObject.SetActive (true);
-		}
+        }
 	}
 
 	void Update () {
@@ -134,8 +134,9 @@ public class Player : FauxGravityBody {
 				if (toolIndex >= equippedTools.Count) {
 					toolIndex = 0;
 				}
-				equippedTools [toolIndex].gameObject.SetActive (true);
-			}
+                FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+                equippedTools [toolIndex].gameObject.SetActive (true);
+            }
 		}
 	}
 
@@ -196,25 +197,29 @@ public class Player : FauxGravityBody {
 			equippedTools.Add (miningPick);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MissileLauncherItem") {
 			equippedTools.Add (missileLauncher);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "FlamethrowerItem") {
 			equippedTools.Add (flamethrower);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (collider.gameObject.name == "WateringCanItem") {
 			equippedTools.Add (wateringCan);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MineralCollider") {
 			audioSources [0].Play ();
