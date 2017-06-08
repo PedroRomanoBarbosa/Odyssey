@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 114519708486783688}
   - component: {fileID: 82145049624908600}
   - component: {fileID: 65689876794016472}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MiningPick
   m_TagString: Pick
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 4316794162942002}
   - component: {fileID: 114233655721267794}
   - component: {fileID: 82358827487228448}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MissileLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 4265248381355178}
   - component: {fileID: 95749827080744930}
   - component: {fileID: 114674053861141428}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WateringCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 65083607407098696}
   - component: {fileID: 82230486479715438}
   - component: {fileID: 82703436242463406}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1509,7 +1509,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1988113884864582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.0022252593, y: 0.00001625402, z: 0.0073041143, w: 0.9999709}
   m_LocalPosition: {x: 0.61, y: 0.38, z: 0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1520,7 +1520,7 @@ Transform:
   - {fileID: 4923790429382934}
   m_Father: {fileID: 4944772670161314}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.25500003, y: 0, z: 0.837}
 --- !u!4 &4061848207851804
 Transform:
   m_ObjectHideFlags: 1
@@ -1826,14 +1826,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1814543641949430}
-  m_LocalRotation: {x: -0.1857213, y: 0.13890183, z: 0.02652996, w: 0.9723735}
+  m_LocalRotation: {x: 0.0010820947, y: -0.000009669978, z: 0.008935989, w: 0.9999595}
   m_LocalPosition: {x: 0.78, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4349550302847092}
   m_Father: {fileID: 4944772670161314}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -21.626001, y: 16.259, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.124000005, y: 0, z: 1.024}
 --- !u!4 &4273011947934156
 Transform:
   m_ObjectHideFlags: 1
@@ -1928,7 +1928,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485236830307562}
-  m_LocalRotation: {x: 0.002652865, y: 0.00028526736, z: -0.006087021, w: 0.99997795}
+  m_LocalRotation: {x: -0.007297147, y: -0.998136, z: -0.0026648603, w: -0.060534127}
   m_LocalPosition: {x: 0.62, y: 0.20000076, z: 0.27000046}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -2466,8 +2466,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918617923865772}
-  m_LocalRotation: {x: -0.0865946, y: 0, z: -0.083642505, w: 0.9927262}
-  m_LocalPosition: {x: 8.5, y: 49.7, z: -8.8}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4488866677827990}
@@ -2476,7 +2476,7 @@ Transform:
   - {fileID: 4177481286767496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.521, y: -75.318, z: 46.529003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4817152877238336
 Transform:
   m_ObjectHideFlags: 1
@@ -3916,7 +3916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da69614cac16c4d62b5a21354e068dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
 --- !u!114 &114233655721267794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4039,8 +4039,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082747e3209874eca9541e06263f27af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heelsIce: []
-  feetIce: []
+  heelsIce:
+  - {fileID: 8300000, guid: b5fe776107e484db3be4789980843dad, type: 3}
+  - {fileID: 8300000, guid: bf070eca362d84f8c9f7a9bdd8721efa, type: 3}
+  - {fileID: 8300000, guid: 4923bc776204e4701838d166c4fd6b20, type: 3}
+  - {fileID: 8300000, guid: d724a7a2094ee4b52807576a448fb7ab, type: 3}
+  feetIce:
+  - {fileID: 8300000, guid: a19ff44f77d7f45b590c43fbcea3a302, type: 3}
+  - {fileID: 8300000, guid: 6689ae836a0784ca99608a8a76f8681a, type: 3}
+  - {fileID: 8300000, guid: ee062e681f0ef4973a489d1b24f8fd21, type: 3}
+  - {fileID: 8300000, guid: a936098103c224ac3821e181073d4cb5, type: 3}
   heelsNormal:
   - {fileID: 8300000, guid: 112e906f7d85443dea2b7a770cd233f5, type: 3}
   - {fileID: 8300000, guid: 16668231b22a8487c809c0c81c3e54fd, type: 3}
@@ -4051,10 +4059,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: abd88455a8c11451dbc27cca618e5136, type: 3}
   - {fileID: 8300000, guid: b0d78ccc4ee95466f826ba0a1b4a9380, type: 3}
   - {fileID: 8300000, guid: 6319aaea4152143e7815f3d3bfa452e7, type: 3}
-  heelsVulcanic: []
-  feetVulcanic: []
-  heelsForest: []
-  feetForest: []
+  heelsVulcanic:
+  - {fileID: 8300000, guid: 965ece6189e0e46a098c8ac1a99af5f4, type: 3}
+  - {fileID: 8300000, guid: 499a1310c25e945a39f225058e5a5b3b, type: 3}
+  - {fileID: 8300000, guid: 841cc6de59c0c42a4954788f7d3811a8, type: 3}
+  - {fileID: 8300000, guid: cb973827b08f7452a8692e9bcf9e00dc, type: 3}
+  feetVulcanic:
+  - {fileID: 8300000, guid: 17d2d26531dd34154a39b27dc3c01e70, type: 3}
+  - {fileID: 8300000, guid: 1bdbf2b3a9ca14c3f9c0a4397d88b913, type: 3}
+  - {fileID: 8300000, guid: 340ea749c58884d6a99a45dfdd38e534, type: 3}
+  - {fileID: 8300000, guid: dd5fced1859bb46afaf25672b5adb2fa, type: 3}
+  heelsForest:
+  - {fileID: 8300000, guid: 112e906f7d85443dea2b7a770cd233f5, type: 3}
+  - {fileID: 8300000, guid: 16668231b22a8487c809c0c81c3e54fd, type: 3}
+  - {fileID: 8300000, guid: ee7f6d7c27f334b45aee523825321981, type: 3}
+  - {fileID: 8300000, guid: d079f8bd13b7146369e7b7f00eb224b8, type: 3}
+  feetForest:
+  - {fileID: 8300000, guid: 387fe5cdb7f34452f8f40fa5ffd6396d, type: 3}
+  - {fileID: 8300000, guid: abd88455a8c11451dbc27cca618e5136, type: 3}
+  - {fileID: 8300000, guid: b0d78ccc4ee95466f826ba0a1b4a9380, type: 3}
+  - {fileID: 8300000, guid: 6319aaea4152143e7815f3d3bfa452e7, type: 3}
   heelsMetal: []
   feetMetal: []
 --- !u!114 &114911148098606178

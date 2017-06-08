@@ -5309,6 +5309,53 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0954bd92817da104caa16539d7ab19ad, type: 3}
+--- !u!1001 &908331718
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 21.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 21.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375284128118504, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084302842860916, guid: e879aedeab54e41c6b5386011679e0c5,
+        type: 2}
+      propertyPath: planet
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &923415562 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 3a8c9064b4badb64b99ca59ed18651e3, type: 3}
