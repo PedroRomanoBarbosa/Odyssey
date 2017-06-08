@@ -38,6 +38,8 @@ GameObject:
   - component: {fileID: 33827654681026942}
   - component: {fileID: 23229057234623706}
   - component: {fileID: 114383964593374244}
+  - component: {fileID: 135272705901218894}
+  - component: {fileID: 114216296657527332}
   m_Layer: 0
   m_Name: Cuboid
   m_TagString: Untagged
@@ -147,6 +149,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114216296657527332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873353248980434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b6a27016a8441848012858ec93d63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifact: 3
 --- !u!114 &114383964593374244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,3 +184,15 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
+--- !u!135 &135272705901218894
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873353248980434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3880419
+  m_Center: {x: 0, y: 0, z: -0.00000005960466}
