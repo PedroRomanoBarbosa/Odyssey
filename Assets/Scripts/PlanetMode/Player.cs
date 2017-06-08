@@ -238,6 +238,7 @@ public class Player : FauxGravityBody {
 
 	public void IncreaseMaxLife (int num) {
 		maxLives += num;
+		lives = maxLives;
 	}
 
 	public void DecreaseLife (int num) {
