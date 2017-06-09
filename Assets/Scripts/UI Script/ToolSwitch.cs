@@ -14,7 +14,6 @@ public class ToolSwitch : MonoBehaviour
     {
         if(tool != null)
         {
-            Debug.Log(tool.name);
             if (tool.name == "MiningPick")
             {
                 flame.SetActive(false);

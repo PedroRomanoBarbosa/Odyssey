@@ -8,7 +8,28 @@ public class Artifact : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag("Player")) {
 			GameVariables.artifacts [(int)artifact] = true;
-			Destroy (gameObject);
+            CatchArtifact(artifact);
+            Destroy (gameObject);
 		}
 	}
+
+    void CatchArtifact(GameVariables.Artifact a)
+    {
+        if(a.ToString() == "Cuboid")
+        {
+            FindObjectOfType<GemDisplay>().SetCatchCuboid(true);
+        }
+        if (a.ToString() == "Star")
+        {
+            FindObjectOfType<GemDisplay>().SetCatchStar(true);
+        }
+        if (a.ToString() == "Penthagon")
+        {
+            FindObjectOfType<GemDisplay>().SetCatchPenta(true);
+        }
+        if (a.ToString() == "Spiral")
+        {
+            FindObjectOfType<GemDisplay>().SetCatchSpiral(true);
+        }
+    }
 }
