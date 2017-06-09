@@ -17,6 +17,7 @@ public class GameVariables {
 		Cuboid
 	};
 	public static bool cinematicPaused = false;
+	public static bool shipFirstPlanet = true;
 	public static Planet planet = Planet.Normal;
 	public static bool[] artifacts = { false, false, false, false };
 }
