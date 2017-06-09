@@ -8,8 +8,8 @@ public class NodeDestruction : MonoBehaviour {
 	private AudioSource audioSource;
 
 	public GameObject mineralPrefab;
-	public AudioClip[] pickAudioClips;
 	public AudioClip explosionClip;
+	public Renderer boulderRenderer;
 
 	void Start () {
 		audioSource = GetComponent<AudioSource> ();
@@ -24,9 +24,6 @@ public class NodeDestruction : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.CompareTag ("Pick")) {
-			if (pickAudioClips.Length > 0) {
-				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)]);
-			}
 			transform.GetChild (state).GetComponent<Renderer> ().enabled = false;
 			state -= 1;
 			sparkle.SetActive (true);
@@ -39,7 +36,7 @@ public class NodeDestruction : MonoBehaviour {
 				}
 				explosion.SetActive (true);
 				explosion.GetComponent<ParticleSystem> ().Play(true);
-				int rand = Random.Range (2,5);
+				int rand = Random.Range (1,5);
 				float rotAngle = 360f / rand;
 				GameObject mineral;
 				for (int i = 0; i < rand; i++) {

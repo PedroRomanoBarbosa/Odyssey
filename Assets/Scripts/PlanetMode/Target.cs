@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour {
-	private Renderer missileRenderer;
 	private bool active;
 
-	public Action action;
+	public Renderer targetRenderer;
+	public CameraAnimation cameraAnimation;
 	public Material off;
 	public Material on;
 
 	void Start () {
-		missileRenderer = GetComponent<Renderer> ();
-		missileRenderer.material = off;
+		targetRenderer.material = off;
 		active = false;
 		transform.GetChild (0).gameObject.SetActive (false);
 		transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ().Stop ();
@@ -20,17 +19,15 @@ public class Target : MonoBehaviour {
 
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag ("Missile")) {
-			active = !active;
-			ParticleSystem ps = transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ();
-			ps.gameObject.SetActive (true);
-			ps.Play (true);
-			if (active) {
-				missileRenderer.material = on;
-			} else {
-				missileRenderer.material = off;
-			}
-			if (action != null) {
-				action.OnAction ();
+			if (!active) {
+				active = !active;
+				ParticleSystem ps = transform.GetChild (0).gameObject.GetComponent<ParticleSystem> ();
+				ps.gameObject.SetActive (true);
+				ps.Play (true);
+				targetRenderer.material = on;
+				if (cameraAnimation != null) {
+					cameraAnimation.Animate ();
+				}
 			}
 		}
 	}

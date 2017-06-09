@@ -58,6 +58,10 @@ public class Player : FauxGravityBody {
 	// Sound Variables
 	private AudioSource[] audioSources;
 
+	void Awake() {
+		DontDestroyOnLoad(gameObject);
+	}
+
 	void Start () {
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
@@ -252,6 +256,7 @@ public class Player : FauxGravityBody {
 
 	public void IncreaseMaxLife (int num) {
 		maxLives += num;
+		lives = maxLives;
 	}
 
 	public void DecreaseLife (int num) {
