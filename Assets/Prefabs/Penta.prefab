@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33092710043905412}
   - component: {fileID: 23191837767034812}
   - component: {fileID: 114149213082446580}
+  - component: {fileID: 135129610373280322}
+  - component: {fileID: 114955880468683166}
   m_Layer: 0
   m_Name: Penta
   m_TagString: Untagged
@@ -170,3 +172,27 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
+--- !u!114 &114955880468683166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1152724584672496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b6a27016a8441848012858ec93d63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifact: 2
+--- !u!135 &135129610373280322
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1152724584672496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1547909
+  m_Center: {x: 0.00000017881393, y: -0.0000004321338, z: 0.11594781}

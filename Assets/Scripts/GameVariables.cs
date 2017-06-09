@@ -9,7 +9,14 @@ public class GameVariables {
 		Vulcanic,
 		Forest,
 		Metal
-	}
+	};
+	public enum Artifact {
+		Spiral,
+		Star,
+		Penthagon,
+		Cuboid
+	};
 	public static bool cinematicPaused = false;
 	public static Planet planet = Planet.Normal;
+	public static bool[] artifacts = { false, false, false, false };
 }

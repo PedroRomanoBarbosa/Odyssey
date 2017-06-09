@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33850436035821228}
   - component: {fileID: 23062924802963484}
   - component: {fileID: 114215100502016148}
+  - component: {fileID: 114722535680529924}
+  - component: {fileID: 135300101571280130}
   m_Layer: 0
   m_Name: HardStar
   m_TagString: Untagged
@@ -170,3 +172,27 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
+--- !u!114 &114722535680529924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589671749108032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b6a27016a8441848012858ec93d63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifact: 1
+--- !u!135 &135300101571280130
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589671749108032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5648482
+  m_Center: {x: -0.00000017881393, y: -0.00055719924, z: 0.15712135}
