@@ -192,8 +192,7 @@ GameObject:
   - component: {fileID: 114713226870504794}
   - component: {fileID: 114506260035944170}
   - component: {fileID: 54315314981998578}
-  - component: {fileID: 135551700228263734}
-  - component: {fileID: 114290146027262544}
+  - component: {fileID: 135158479548453816}
   m_Layer: 2
   m_Name: GiantSlime
   m_TagString: Untagged
@@ -630,18 +629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf8b2e78fe634db3b2eef49a12279b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114290146027262544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482537540622498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc476a5fd607b4e669834acbfb176abd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drop: {fileID: 1589671749108032, guid: 203ac8c84f8c842f8bc23a5d4d90e1b2, type: 2}
 --- !u!114 &114478642267261778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -667,6 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 7
   damage: 2
+  drop: {fileID: 1589671749108032, guid: 203ac8c84f8c842f8bc23a5d4d90e1b2, type: 2}
   thisRenderer: {fileID: 137854165541215380}
   defaultMaterial: {fileID: 2100000, guid: 34ed69aa6bba2c144ab35c115118a86c, type: 2}
   damageMaterial: {fileID: 2100000, guid: f8c84f5460f47374081e84f9c4d3df3e, type: 2}
@@ -674,9 +662,9 @@ MonoBehaviour:
   modelObject: {fileID: 1141636897712272}
   deathExplosion: {fileID: 1862189058772948, guid: e3f3f908d8fb4440c857f44573cad7b4,
     type: 2}
-  speed: 6
-  sensorMaxAngle: 45
-  maxAttackRange: 3
+  speed: 15
+  sensorMaxAngle: 90
+  maxAttackRange: 10
   points: []
   attackCollider: {fileID: 65395883181775162}
 --- !u!114 &114713226870504794
@@ -714,6 +702,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 114506260035944170}
+--- !u!135 &135158479548453816
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1482537540622498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Center: {x: 0, y: 0.06, z: 0}
 --- !u!135 &135258442095488444
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -736,20 +736,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135551700228263734
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482537540622498}
-  m_Material: {fileID: 13400000, guid: c4ec81a5384fc4150a9d9a084289b4c3, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.01
-  m_Center: {x: 0, y: 0.008, z: 0}
 --- !u!137 &137854165541215380
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

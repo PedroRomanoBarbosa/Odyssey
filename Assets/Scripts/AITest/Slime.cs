@@ -89,6 +89,7 @@ public class Slime : Enemy {
 		Debug.DrawRay (transform.position, direction, Color.red);
 		RaycastHit raycasthit;
 		if (Physics.Raycast (transform.position, direction, out raycasthit)) {
+			Debug.Log (raycasthit.collider.name);
 			if (raycasthit.collider.gameObject.CompareTag ("Player")) {
 				float angle = Vector3.Angle (transform.forward, direction);
 				if (angle <= sensorMaxAngle) {

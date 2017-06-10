@@ -470,9 +470,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1471653217243684}
-  m_LocalRotation: {x: -0, y: 0.9999201, z: -0, w: -0.0126410015}
-  m_LocalPosition: {x: 5.838954, y: 49.131172, z: -2.6901445}
-  m_LocalScale: {x: 100.00008, y: 100, z: 100.00011}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100.00011, y: 100.00003, z: 100.00011}
   m_Children:
   - {fileID: 4819597663496358}
   - {fileID: 4342617204053488}
@@ -631,6 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 3
   damage: 1
+  drop: {fileID: 0}
   thisRenderer: {fileID: 137991171730935598}
   defaultMaterial: {fileID: 2100000, guid: d6a1f0e1963add14bb2658c510969934, type: 2}
   damageMaterial: {fileID: 2100000, guid: f8c84f5460f47374081e84f9c4d3df3e, type: 2}
@@ -639,7 +640,7 @@ MonoBehaviour:
   deathExplosion: {fileID: 1862189058772948, guid: e3f3f908d8fb4440c857f44573cad7b4,
     type: 2}
   speed: 4
-  sensorMaxAngle: 45
+  sensorMaxAngle: 50
   maxAttackRange: 3
   points: []
   attackCollider: {fileID: 65226562586682846}

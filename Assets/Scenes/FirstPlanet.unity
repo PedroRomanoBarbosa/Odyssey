@@ -2542,11 +2542,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 494702732}
     m_Modifications:
-    - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
-        type: 2}
-      propertyPath: points.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.5934677
@@ -2579,10 +2574,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1471653217243684, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
-      propertyPath: m_Name
-      value: SlimeTest (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 114423707855339458, guid: b9acf6e6eb84448528d56b35c0f1161f,
         type: 2}
       propertyPath: attractor
@@ -2603,14 +2594,9 @@ Prefab:
       propertyPath: points.Array.data[2]
       value: 
       objectReference: {fileID: 228567502}
-    - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
-        type: 2}
-      propertyPath: points.Array.data[3]
-      value: 
-      objectReference: {fileID: 228567502}
-    - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 100.000015
+    - target: {fileID: 1471653217243684, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
+      propertyPath: m_Name
+      value: SlimeTest (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
@@ -8958,11 +8944,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 801408177}
     m_Modifications:
-    - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
-        type: 2}
-      propertyPath: points.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9000,24 +8981,6 @@ Prefab:
       propertyPath: attractor
       value: 
       objectReference: {fileID: 583876104}
-    - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 100.00011
-      objectReference: {fileID: 0}
-    - target: {fileID: 4516769453985018, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 100.00003
-      objectReference: {fileID: 0}
-    - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
-        type: 2}
-      propertyPath: points.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114126661030713470, guid: b9acf6e6eb84448528d56b35c0f1161f,
-        type: 2}
-      propertyPath: points.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9acf6e6eb84448528d56b35c0f1161f, type: 2}
   m_IsPrefabParent: 0
@@ -9567,6 +9530,11 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: 8d6e2af26f8f3487aafbf7f06c8b199f,
         type: 2}
+    - target: {fileID: 136319084352217770, guid: a23af220eb07d4f4ab3a1e19d0a17430,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a23af220eb07d4f4ab3a1e19d0a17430, type: 2}
   m_IsPrefabParent: 0
