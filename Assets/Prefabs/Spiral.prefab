@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33994005003000882}
   - component: {fileID: 23610338528188394}
   - component: {fileID: 114506557566179934}
+  - component: {fileID: 135997362297916690}
+  - component: {fileID: 114206460135982724}
   m_Layer: 0
   m_Name: Spiral
   m_TagString: Untagged
@@ -64,8 +66,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1178757543903878}
-  m_LocalRotation: {x: -0.15977697, y: -0.535946, z: 0.5413951, w: 0.6277935}
-  m_LocalPosition: {x: -6.909197, y: -20.247381, z: 11.250706}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 21.949402, y: 47.04, z: -6.273141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102464233373440}
@@ -147,6 +149,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114206460135982724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178757543903878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b6a27016a8441848012858ec93d63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifact: 0
 --- !u!114 &114506557566179934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,3 +184,15 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
+--- !u!135 &135997362297916690
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178757543903878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
