@@ -47,7 +47,7 @@ public class Player : FauxGravityBody {
 	public float aerialSlowDown;
 
 	// Weapon variables
-	private Tool miningPick, missileLauncher, flamethrower, wateringCan;
+	public Tool[] tools;
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
@@ -65,11 +65,12 @@ public class Player : FauxGravityBody {
 		planetGravity = true;
 		gravityZoneCounter = 0;
 		isGrounded = false;
-		//miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
-		//missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
-		//flamethrower = model.Find ("Flamethrower").GetComponent<Tool> ();
-		//wateringCan = model.Find ("WateringCan").GetComponent<Tool> ();
 		equippedTools = new List<Tool> ();
+		for (int i = 0; i < GameVariables.tools.Length; i++) {
+			if (GameVariables.tools [i]) {
+				equippedTools.Add (tools[i]);
+			}
+		}
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
 			equippedTools [toolIndex].gameObject.SetActive (true);
@@ -194,25 +195,25 @@ public class Player : FauxGravityBody {
 	void OnTriggerEnter(Collider collider) {
 		GameObject colliderObject = collider.gameObject;
 		if (colliderObject.name == "MiningPickItem") {
-			equippedTools.Add (miningPick);
+			equippedTools.Add (tools[(int)GameVariables.Tools.MiningPick]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MissileLauncherItem") {
-			equippedTools.Add (missileLauncher);
+			equippedTools.Add (tools[(int)GameVariables.Tools.MissileLauncher]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "FlamethrowerItem") {
-			equippedTools.Add (flamethrower);
+			equippedTools.Add (tools[(int)GameVariables.Tools.Flamethrower]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (collider.gameObject.name == "WateringCanItem") {
-			equippedTools.Add (wateringCan);
+			equippedTools.Add (tools[(int)GameVariables.Tools.WateringCan]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);

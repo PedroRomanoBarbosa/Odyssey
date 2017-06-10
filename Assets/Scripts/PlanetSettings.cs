@@ -12,7 +12,8 @@ public class PlanetSettings : MonoBehaviour {
 	void Start() {
 		GameVariables.planet = planet;
 		GameObject playerInstance = Instantiate (player);
-		playerInstance.GetComponent<Player> ().attractor = attractor;
+		Player playerScript = playerInstance.GetComponent<Player> ();
+		playerScript.attractor = attractor;
 		if (GameVariables.shipFirstPlanet) {
 			playerInstance.transform.position = playerStartPosition.position;
 			playerInstance.transform.rotation = playerStartPosition.rotation;
