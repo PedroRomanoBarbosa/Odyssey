@@ -16,6 +16,13 @@ public class GameVariables {
 		Penthagon,
 		Cuboid
 	};
+	public enum Tools {
+		MiningPick,
+		MissileLauncher,
+		Flamethrowe,
+		WateringCan
+	}
+	public int diamonds;
 	public static bool cinematicPaused = false;
 	public static bool shipFirstPlanet = true;
 	public static Planet planet = Planet.Normal;

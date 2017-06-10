@@ -57,10 +57,6 @@ public class Player : FauxGravityBody {
 	// Sound Variables
 	private AudioSource[] audioSources;
 
-	void Awake() {
-		DontDestroyOnLoad(gameObject);
-	}
-
 	void Start () {
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
