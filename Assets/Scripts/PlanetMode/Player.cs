@@ -12,6 +12,7 @@ public class Player : FauxGravityBody {
 	private float damageCounter;
 	private bool damaged;
 	public float damageDuration;
+	public Transform detectionAnchor;
 
 	// Status
 	public int lives;
@@ -119,7 +120,7 @@ public class Player : FauxGravityBody {
 
 	void CheckGrounded () {
 		Debug.DrawRay (transform.position, -transform.up * 1.2f);
-		if (Physics.Raycast (transform.position, -transform.up, 1.2f)) {
+		if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
 			isGrounded = true;
 			jumpCounter = 0f;
 			jumping = false;

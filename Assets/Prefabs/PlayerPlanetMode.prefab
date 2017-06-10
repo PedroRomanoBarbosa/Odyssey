@@ -41,6 +41,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1017616727550510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4221635863418166}
+  m_Layer: 0
+  m_Name: DetectionAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1018071591775502
 GameObject:
   m_ObjectHideFlags: 1
@@ -889,7 +904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1488365228887898
 GameObject:
   m_ObjectHideFlags: 1
@@ -1736,6 +1751,19 @@ Transform:
   m_Father: {fileID: 4466587625719268}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4221635863418166
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017616727550510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4812492394427282}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4238151081784430
 Transform:
   m_ObjectHideFlags: 1
@@ -2464,14 +2492,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918617923865772}
-  m_LocalRotation: {x: -0.3035757, y: 0, z: -0.09377324, w: 0.9481816}
-  m_LocalPosition: {x: -4.93, y: 38.38, z: -66.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4488866677827990}
   - {fileID: 4944772670161314}
   - {fileID: 4344361314072800}
   - {fileID: 4177481286767496}
+  - {fileID: 4221635863418166}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3918,6 +3947,7 @@ MonoBehaviour:
   attractor: {fileID: 0}
   animator: {fileID: 95783456956445524}
   damageDuration: 0.25
+  detectionAnchor: {fileID: 4221635863418166}
   lives: 3
   maxLives: 3
   energy: 0

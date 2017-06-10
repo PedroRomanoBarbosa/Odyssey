@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 114506260035944170}
   - component: {fileID: 54315314981998578}
   - component: {fileID: 135551700228263734}
+  - component: {fileID: 114290146027262544}
   m_Layer: 2
   m_Name: GiantSlime
   m_TagString: Untagged
@@ -600,7 +601,7 @@ BoxCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.06, y: 0.03, z: 0.03}
-  m_Center: {x: 0, y: 0, z: 0.07}
+  m_Center: {x: 0, y: 0, z: 0.06}
 --- !u!95 &95742432512949712
 Animator:
   serializedVersion: 3
@@ -629,6 +630,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf8b2e78fe634db3b2eef49a12279b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114290146027262544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1482537540622498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc476a5fd607b4e669834acbfb176abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 1589671749108032, guid: 203ac8c84f8c842f8bc23a5d4d90e1b2, type: 2}
 --- !u!114 &114478642267261778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -655,7 +668,7 @@ MonoBehaviour:
   life: 7
   damage: 2
   thisRenderer: {fileID: 137854165541215380}
-  defaultMaterial: {fileID: 2100000, guid: d6a1f0e1963add14bb2658c510969934, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 34ed69aa6bba2c144ab35c115118a86c, type: 2}
   damageMaterial: {fileID: 2100000, guid: f8c84f5460f47374081e84f9c4d3df3e, type: 2}
   damageTime: 0.5
   modelObject: {fileID: 1141636897712272}

@@ -23,7 +23,10 @@ GameObject:
   - component: {fileID: 23062924802963484}
   - component: {fileID: 114215100502016148}
   - component: {fileID: 114722535680529924}
+  - component: {fileID: 135006627215483880}
   - component: {fileID: 135300101571280130}
+  - component: {fileID: 114738539803735352}
+  - component: {fileID: 54515500340721148}
   m_Layer: 0
   m_Name: HardStar
   m_TagString: Untagged
@@ -113,6 +116,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589671749108032}
   m_Mesh: {fileID: 4300000, guid: 9d0e73dbf5dfc6e4e800cbe52651ac4d, type: 3}
+--- !u!54 &54515500340721148
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589671749108032}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!108 &108284639297312208
 Light:
   m_ObjectHideFlags: 1
@@ -160,12 +178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAnimated: 1
-  isRotating: 1
-  isFloating: 1
-  isScaling: 1
-  rotationAngle: {x: 0, y: 0, z: 10}
-  rotationSpeed: 10
+  isAnimated: 0
+  isRotating: 0
+  isFloating: 0
+  isScaling: 0
+  rotationAngle: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0
   floatSpeed: 0.04
   floatRate: 0.5
   startScale: {x: 1, y: 1, z: 1}
@@ -184,6 +202,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifact: 1
+--- !u!114 &114738539803735352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589671749108032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b74ef689afa844b0b180dc17f63c5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractor: {fileID: 0}
+--- !u!135 &135006627215483880
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589671749108032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5648482
+  m_Center: {x: -0.00000017881393, y: -0.00055719924, z: 0.15712135}
 --- !u!135 &135300101571280130
 SphereCollider:
   m_ObjectHideFlags: 1

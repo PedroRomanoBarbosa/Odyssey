@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour {
 
 	public int life;
 	public int damage;
+	public GameObject drop;
 	public SkinnedMeshRenderer thisRenderer;
 	public Material defaultMaterial;
 	public Material damageMaterial;
@@ -48,6 +49,11 @@ public abstract class Enemy : MonoBehaviour {
 	public virtual void Die () {
 		stop = true;
 		Destroy (this.gameObject);
+		if (drop != null) {
+			FauxGravityAttractor attractor = GetComponent<FauxGravityBody> ().attractor;
+			GameObject dropInstance = Instantiate (drop, transform.position, transform.rotation);
+			dropInstance.GetComponent<FauxGravityBody> ().attractor = attractor;
+		}
 	}
 
 	public void ExitBodyCollider (Collider collider) {
