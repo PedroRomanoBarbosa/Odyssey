@@ -85,7 +85,7 @@ public class Slime : Enemy {
 	}
 
 	void SearchPlayer () {
-		Vector3 direction = player.transform.position - transform.position;
+		Vector3 direction = player.GetComponent<Player>().detectionAnchor.transform.position - transform.position;
 		Debug.DrawRay (transform.position, direction, Color.red);
 		RaycastHit raycasthit;
 		if (Physics.Raycast (transform.position, direction, out raycasthit)) {

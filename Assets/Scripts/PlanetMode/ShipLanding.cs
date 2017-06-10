@@ -21,6 +21,8 @@ public class ShipLanding : MonoBehaviour {
 			startRotation = transform.rotation;
 			camera.enabled = true;
 			GameVariables.cinematicPaused = true;
+		} else {
+			camera.enabled = false;
 		}
 	}
 

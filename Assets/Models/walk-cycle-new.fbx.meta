@@ -127,8 +127,9 @@ ModelImporter:
     4300006: jet-pack.003
     4300008: leg.L.002
     4300010: leg.R.002
-    7400000: Armature|ArmatureAction
+    7400000: Running
     7400002: Armature|walk_blocking.001
+    7400004: Idle
     9500000: //RootNode
     13700000: arm.L.002
     13700002: arm.R.002
@@ -160,7 +161,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction
+      name: Running
       takeName: Armature|ArmatureAction
       firstFrame: 0
       lastFrame: 36
