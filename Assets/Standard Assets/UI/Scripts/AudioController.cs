@@ -7,7 +7,12 @@ public class AudioController : MonoBehaviour
     private int musicVolume;
     private int effectsVolume;
 
-	void Start ()
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start ()
     {
         musicVolume = 1;
         effectsVolume = 1;

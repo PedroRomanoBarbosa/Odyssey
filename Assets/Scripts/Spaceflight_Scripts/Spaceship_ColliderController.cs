@@ -11,8 +11,13 @@ public class Spaceship_ColliderController : MonoBehaviour {
 	void Start()
 	{
 		playerScript = GetComponent<Spaceship_Movement>();
-		if(engineStart != null)
-			AudioSource.PlayClipAtPoint(engineStart, transform.position);
+        if (engineStart != null)
+        {
+            if (FindObjectOfType<AudioController>().GetEffectsVolume() != 0)
+            {
+                AudioSource.PlayClipAtPoint(engineStart, transform.position);
+            }
+        }
 	}
 	
 
@@ -22,8 +27,11 @@ public class Spaceship_ColliderController : MonoBehaviour {
 
 			if(other.gameObject.CompareTag("BoostRing")){
 				Debug.Log("BOOSTIO!");
-				if(boostSound != null)
-					AudioSource.PlayClipAtPoint(boostSound, transform.position);
+                if (boostSound != null)
+                {
+                    if (FindObjectOfType<AudioController>().GetEffectsVolume() != 0)
+                        AudioSource.PlayClipAtPoint(boostSound, transform.position);
+                }
 				if(playerScript != null)
 					playerScript.initiateBoost();
 			}
