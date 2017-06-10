@@ -20,7 +20,7 @@ public class AudioController : MonoBehaviour
 	
     void Update()
     {
-        Debug.Log(musicVolume);
+        //Debug.Log(musicVolume);
     }
 
 	public void SetMusicVolume(int v)
