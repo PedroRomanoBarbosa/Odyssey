@@ -283,4 +283,12 @@ public class Player : FauxGravityBody {
 		}
 	}
 
+	public void HideModel () {
+		transform.Find ("Model").gameObject.SetActive (false);
+	}
+
+	public void ShowModel () {
+		transform.Find ("Model").gameObject.SetActive (true);
+	}
+
 }
