@@ -132,6 +132,7 @@ ModelImporter:
     7400004: Armature|jump 03
     7400006: Armature|walk-cycle
     7400008: Armature|firing-weapon-stay
+    7400010: Armature|firing-weapon-final
     9500000: //RootNode
     13700000: arm.L.002
     13700002: arm.R.002
@@ -166,7 +167,7 @@ ModelImporter:
       name: Armature|firing-weapon
       takeName: Armature|firing-weapon
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -751,6 +752,150 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm.L.002
+        weight: 1
+      - path: arm.R.002
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/arm-target.L
+        weight: 1
+      - path: Armature/arm-target.L/arm-target.L_end
+        weight: 1
+      - path: Armature/arm-target.R
+        weight: 1
+      - path: Armature/arm-target.R/arm-target.R_end
+        weight: 1
+      - path: Armature/base
+        weight: 1
+      - path: Armature/base/torso
+        weight: 1
+      - path: Armature/base/torso/head
+        weight: 1
+      - path: Armature/base/torso/head/head_end
+        weight: 1
+      - path: Armature/base/torso/L_arm_top
+        weight: 1
+      - path: Armature/base/torso/L_arm_top/L_arm_hand
+        weight: 1
+      - path: Armature/base/torso/L_arm_top/L_arm_hand/L_arm_hand.001
+        weight: 1
+      - path: Armature/base/torso/L_arm_top/L_arm_hand/L_arm_hand.001/L_arm_hand.001_end
+        weight: 1
+      - path: Armature/base/torso/R_arm_top
+        weight: 1
+      - path: Armature/base/torso/R_arm_top/R_arm_hand
+        weight: 1
+      - path: Armature/base/torso/R_arm_top/R_arm_hand/R_arm_hand.001
+        weight: 1
+      - path: Armature/base/torso/R_arm_top/R_arm_hand/R_arm_hand.001/R_arm_hand.001_end
+        weight: 1
+      - path: Armature/base/upper_leg.L
+        weight: 1
+      - path: Armature/base/upper_leg.L/bottom_leg.L
+        weight: 1
+      - path: Armature/base/upper_leg.L/bottom_leg.L/bottom_leg.L_end
+        weight: 1
+      - path: Armature/base/upper_leg.R
+        weight: 1
+      - path: Armature/base/upper_leg.R/bottom_leg.R
+        weight: 1
+      - path: Armature/base/upper_leg.R/bottom_leg.R/bottom_leg.R_end
+        weight: 1
+      - path: Armature/L_arm_IK
+        weight: 1
+      - path: Armature/L_arm_IK/L_arm_IK_end
+        weight: 1
+      - path: Armature/leg_poletarget.L
+        weight: 1
+      - path: Armature/leg_poletarget.L/leg_poletarget.L_end
+        weight: 1
+      - path: Armature/leg_poletarget.R
+        weight: 1
+      - path: Armature/leg_poletarget.R/leg_poletarget.R_end
+        weight: 1
+      - path: Armature/legcontrol.L
+        weight: 1
+      - path: Armature/legcontrol.L/foot_start.L
+        weight: 1
+      - path: Armature/legcontrol.L/foot_start.L/foot_tip.L
+        weight: 1
+      - path: Armature/legcontrol.L/foot_start.L/foot_tip.L/foot_tip.L_end
+        weight: 1
+      - path: Armature/legcontrol.L/footroll.L
+        weight: 1
+      - path: Armature/legcontrol.L/footroll.L/leg_IK.L
+        weight: 1
+      - path: Armature/legcontrol.L/footroll.L/leg_IK.L/leg_IK.L_end
+        weight: 1
+      - path: Armature/legcontrol.L/tipcontrol.L
+        weight: 1
+      - path: Armature/legcontrol.L/tipcontrol.L/tipcontrol.L_end
+        weight: 1
+      - path: Armature/legcontrol.R
+        weight: 1
+      - path: Armature/legcontrol.R/foot_start.R
+        weight: 1
+      - path: Armature/legcontrol.R/foot_start.R/foot_tip.R
+        weight: 1
+      - path: Armature/legcontrol.R/foot_start.R/foot_tip.R/foot_tip.R_end
+        weight: 1
+      - path: Armature/legcontrol.R/footroll.R
+        weight: 1
+      - path: Armature/legcontrol.R/footroll.R/leg_IK.R
+        weight: 1
+      - path: Armature/legcontrol.R/footroll.R/leg_IK.R/leg_IK.R_end
+        weight: 1
+      - path: Armature/legcontrol.R/tipcontrol.R
+        weight: 1
+      - path: Armature/legcontrol.R/tipcontrol.R/tipcontrol.R_end
+        weight: 1
+      - path: Armature/main-controler
+        weight: 1
+      - path: Armature/main-controler/main-controler_end
+        weight: 1
+      - path: Armature/R_arm_IK
+        weight: 1
+      - path: Armature/R_arm_IK/R_arm_IK_end
+        weight: 1
+      - path: Headandbody.002
+        weight: 1
+      - path: jet-pack.003
+        weight: 1
+      - path: leg.L.002
+        weight: 1
+      - path: leg.R.002
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|firing-weapon-final
+      takeName: Armature|firing-weapon
+      firstFrame: 29
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

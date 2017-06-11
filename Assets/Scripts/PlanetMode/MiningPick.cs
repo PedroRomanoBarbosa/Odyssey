@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MiningPick : Tool {
-	private Animator animator;
 	private bool animating;
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
@@ -15,7 +14,6 @@ public class MiningPick : Tool {
 	public AudioClip[] pickAudioClips;
 
 	void Start () {
-		animator = GetComponent<Animator> ();
 		pickCollider = GetComponent<Collider> ();
 		audioSource = GetComponent<AudioSource> ();
 		originalPosition = transform.localPosition;
@@ -27,7 +25,6 @@ public class MiningPick : Tool {
 			if (animating == false) {
 				animating = true;
 				pickCollider.enabled = true;
-				animator.SetTrigger ("Swing");
 			}
 		}
 	}
