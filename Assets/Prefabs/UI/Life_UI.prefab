@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23361285943674762}
   - component: {fileID: 114862687453029432}
   - component: {fileID: 114841426029103070}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4373119341962258}
   - component: {fileID: 108374493926541602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4864027457348036}
   - component: {fileID: 114814405975145486}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Life_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,9 +95,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984065343462038}
-  m_LocalRotation: {x: -0.30370712, y: 0, z: 0.6568292, w: 0.690172}
-  m_LocalPosition: {x: -47.32, y: -2.47, z: -21.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.9999996, y: -0.5, z: 12.500003}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 4141850040259500}
   m_Father: {fileID: 0}
@@ -192,13 +192,13 @@ MonoBehaviour:
   isAnimated: 1
   isRotating: 1
   isFloating: 0
-  isScaling: 1
+  isScaling: 0
   rotationAngle: {x: 0, y: 10, z: 0}
   rotationSpeed: 10
   floatSpeed: 0.04
   floatRate: 0.5
-  startScale: {x: 1, y: 1, z: 1}
-  endScale: {x: 0.5, y: 0.5, z: 0.5}
+  startScale: {x: 0, y: 0, z: 0}
+  endScale: {x: 0, y: 0, z: 0}
   scaleSpeed: 1
   scaleRate: 0.5
 --- !u!114 &114841426029103070
