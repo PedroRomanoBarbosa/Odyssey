@@ -12,7 +12,7 @@ public class ToolSwitch : MonoBehaviour
 
 	void Update ()
     {
-        if(tool != null)
+        if (tool != null)
         {
             if (tool.name == "MiningPick")
             {
