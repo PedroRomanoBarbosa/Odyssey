@@ -741,7 +741,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|firing-weapon-stay
       takeName: Armature|firing-weapon
-      firstFrame: 15
+      firstFrame: 16
       lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0

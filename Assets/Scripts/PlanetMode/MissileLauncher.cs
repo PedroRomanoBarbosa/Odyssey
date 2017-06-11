@@ -19,7 +19,7 @@ public class MissileLauncher : Tool {
 	}
 
 	public override void Use() {
-		if (Input.GetAxisRaw ("Fire1") == 1) {
+		if (Input.GetButton ("Fire1")) {
 			if (missileCooldownCounter >= missileCooldown) {
 				missileCooldownCounter = 0f;
 				GameObject missile = Instantiate (missilePrefab, missileAnchor.position, Quaternion.identity);
@@ -33,9 +33,10 @@ public class MissileLauncher : Tool {
 				audioFire.Play ();
 				player.SetShootAnimation ();
 			} else {
-				player.StopShootAnimation ();
 				missileCooldownCounter += Time.deltaTime;
 			}
+		} else {
+			player.StopShootAnimation ();
 		}
 	}
 
