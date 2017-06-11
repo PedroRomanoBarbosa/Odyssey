@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 4951944758621658}
   - component: {fileID: 33073326143630058}
   - component: {fileID: 23103127251846166}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 199588849743770300}
   - component: {fileID: 65811859825392734}
   - component: {fileID: 114240991996238344}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ef_WaterBigParticle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

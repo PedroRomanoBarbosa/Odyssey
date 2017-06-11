@@ -121,6 +121,7 @@ public class Player : FauxGravityBody {
 			isGrounded = true;
 			jumpCounter = 0f;
 			jumping = false;
+			animator.SetBool ("Jump", false);
 		} else {
 			isGrounded = false;
 		}
@@ -156,6 +157,7 @@ public class Player : FauxGravityBody {
 		}
 		Jump ();
 		if (!jumping && !isGrounded) {
+			animator.SetBool ("Jump", true);
 			move += -movementAxis.up * 10f;
 		}
 	}
@@ -163,6 +165,7 @@ public class Player : FauxGravityBody {
 	void Jump() {
 		if (!jumping && isGrounded) {
 			if (Input.GetAxisRaw("Jump") == 1f) {
+				animator.SetBool ("Jump", true);
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
 				jumpCounter = 0f;
