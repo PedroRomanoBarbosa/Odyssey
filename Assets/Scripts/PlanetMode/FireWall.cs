@@ -11,7 +11,7 @@ public class FireWall : MonoBehaviour {
 	void Update () {
 		if (extinguish) {
 			if (extinguishCounter >= duration) {
-				enabled = false;
+				gameObject.SetActive (false);
 			} else {
 				extinguishCounter += Time.deltaTime;
 				transform.position -= transform.up * Time.deltaTime;

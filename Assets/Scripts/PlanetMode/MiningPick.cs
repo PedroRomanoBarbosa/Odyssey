@@ -43,8 +43,9 @@ public class MiningPick : Tool {
 
 	void OnTriggerEnter (Collider collider) {
 		if (collider.gameObject.CompareTag ("Node") || collider.gameObject.CompareTag ("Boulder")) {
+			Debug.Log (collider.name);
 			if (pickAudioClips.Length > 0) {
-				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)]);
+				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)], 1f);
 			}
 		}
 	}
