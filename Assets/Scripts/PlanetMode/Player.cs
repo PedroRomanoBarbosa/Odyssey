@@ -251,7 +251,7 @@ public class Player : FauxGravityBody {
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
 		} else if (colliderObject.CompareTag ("LifeBall")) {
-			audioSources [0].Play ();
+			audioSources [1].Play ();
 			lives++;
 			if (lives > maxLives) {
 				lives = maxLives;
