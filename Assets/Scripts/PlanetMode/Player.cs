@@ -70,7 +70,7 @@ public class Player : FauxGravityBody {
 		equippedTools = new List<Tool> ();
 		for (int i = 0; i < GameVariables.tools.Length; i++) {
 			if (GameVariables.tools [i]) {
-				equippedTools.Add (tools[i]);
+				//equippedTools.Add (tools[i]);
 			}
 		}
 		toolIndex = 0;
