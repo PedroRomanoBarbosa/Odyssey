@@ -7,25 +7,20 @@ public class WateringCan : Tool {
 	private bool animating;
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
-	private GameObject particle;
+
+	public GameObject particle;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
 		originalPosition = transform.localPosition;
 		originalRotation = transform.localRotation;
-		particle = transform.GetChild (0).GetChild (1).GetChild (0).gameObject;
 	}
 
 	public override void Use () {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
-			if (animating == false) {
-				animating = true;
-				animator.SetTrigger ("Use");
-			}
-		} else if (Input.GetAxisRaw ("Fire1") == 0) {
-			if (animating) {
-				animator.SetTrigger ("Stop");
-			}
+			
+		} else {
+			
 		}
 	}
 
