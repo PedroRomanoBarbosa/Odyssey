@@ -9,7 +9,7 @@ public class PlanetSettings : MonoBehaviour {
 	public GameObject player;
 	public FauxGravityAttractor attractor;
 
-	void Start() {
+	void Awake () {
 		GameVariables.planet = planet;
 		GameObject playerInstance = Instantiate (player);
 		Player playerScript = playerInstance.GetComponent<Player> ();
