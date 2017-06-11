@@ -42,6 +42,7 @@ public class Player : FauxGravityBody {
 	private Vector3 gravityVector;
 
 	// Jump Variables
+	private bool isGroundedLastFrame;
 	public bool isGrounded;
 	public bool jumping;
 	private Vector3 jumpingVelocity;
@@ -140,11 +141,16 @@ public class Player : FauxGravityBody {
 		Debug.DrawRay (transform.position, -transform.up * 1.2f);
 		if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
 			isGrounded = true;
+			if (isGroundedLastFrame != isGrounded) {
+				audioSources [2].Play ();
+			}
+			isGroundedLastFrame = isGrounded;
 			jumpCounter = 0f;
 			jumping = false;
 			animator.SetBool ("Jump", false);
 		} else {
 			isGrounded = false;
+			isGroundedLastFrame = isGrounded;
 		}
 	}
 
