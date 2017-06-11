@@ -7,6 +7,7 @@ public class SelectionInterface : MonoBehaviour {
 
     public GameObject shipCamera;
     private Spaceship_Camera cameraScript;
+	public AudioClip planetApproachStinger;
 
 	public Text planetName;
 	public Text planetDescription;
@@ -67,8 +68,12 @@ public class SelectionInterface : MonoBehaviour {
 			else
 				activateUI();
 
-			if(timer < 5 && !alreadyFadedText)
+			if(timer < 5 && !alreadyFadedText){
 				fadeIn_text(5);
+				//Stinger
+				if(planetApproachStinger != null)
+					AudioSource.PlayClipAtPoint(planetApproachStinger, shipCamera.transform.position);
+			}
 			if(timer < 2 && !alreadyFadedButtons)
 				fadeIn_buttons(2);
 		}

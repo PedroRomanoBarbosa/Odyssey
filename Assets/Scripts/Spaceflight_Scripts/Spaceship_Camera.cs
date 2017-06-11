@@ -157,9 +157,7 @@ public class Spaceship_Camera : MonoBehaviour {
 
 			//Tell the UI to enable itself and appear
 			selectionUIScript.updateVars(playerScript.getPlanetVars());
-			selectionUIScript.setToAppear();
-			
-
+			selectionUIScript.setToAppear();			
 		}
 
 		PlanetSelectionVars vars = playerScript.getPlanetVars();

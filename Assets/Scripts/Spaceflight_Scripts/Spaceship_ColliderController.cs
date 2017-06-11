@@ -5,10 +5,14 @@ using UnityEngine;
 public class Spaceship_ColliderController : MonoBehaviour {
 	Spaceship_Movement playerScript;
 	public AudioClip boostSound;
+	public AudioClip engineStart;
+	public AudioClip engineLoop;
 
 	void Start()
 	{
 		playerScript = GetComponent<Spaceship_Movement>();
+		if(engineStart != null)
+			AudioSource.PlayClipAtPoint(engineStart, transform.position);
 	}
 	
 
