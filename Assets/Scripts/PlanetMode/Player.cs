@@ -269,6 +269,7 @@ public class Player : FauxGravityBody {
 			speed = baseSpeed + collider.GetComponent<SpeedBall> ().speed;
 			collider.GetComponent<SpeedBall> ().Cath ();
 			speedTrail.SetActive (true);
+			audioSources [3].Play ();
 		}
 	}
 
