@@ -250,6 +250,13 @@ public class Player : FauxGravityBody {
 			audioSources [0].Play ();
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
+		} else if (colliderObject.CompareTag ("LifeBall")) {
+			audioSources [0].Play ();
+			lives++;
+			if (lives > maxLives) {
+				lives = maxLives;
+			}
+			Destroy (colliderObject);
 		} else if (collider.CompareTag ("SpeedBall")) {
 			speeding = true;
 			speedCounter = 0f;

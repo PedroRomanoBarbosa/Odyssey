@@ -8,6 +8,7 @@ public class NodeDestruction : MonoBehaviour {
 	private AudioSource audioSource;
 
 	public GameObject mineralPrefab;
+	public GameObject lifeBallPrefab;
 	public AudioClip explosionClip;
 	public Renderer boulderRenderer;
 
@@ -36,7 +37,7 @@ public class NodeDestruction : MonoBehaviour {
 				}
 				explosion.SetActive (true);
 				explosion.GetComponent<ParticleSystem> ().Play(true);
-				int rand = Random.Range (1,5);
+				int rand = Random.Range (1, 5);
 				float rotAngle = 360f / rand;
 				GameObject mineral;
 				for (int i = 0; i < rand; i++) {
@@ -44,6 +45,11 @@ public class NodeDestruction : MonoBehaviour {
 					mineral.GetComponent<Mineral> ().attractor = GameObject.Find ("Planet").GetComponent<FauxGravityAttractor> ();
 					mineral.transform.Rotate (0, rotAngle * i, 0);
 					mineral.transform.Translate (transform.forward);
+				}
+				rand = Random.Range (0, 2);
+				GameObject lifeBall;
+				for (int i = 0; i < rand; i++) {
+					lifeBall = Instantiate (lifeBallPrefab, transform.Find("MineralAnchor").position, Quaternion.identity, transform);
 				}
 			} else {
 				transform.GetChild (state).GetComponent<Renderer> ().enabled = true;

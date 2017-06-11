@@ -603,6 +603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineralPrefab: {fileID: 1493057258766534, guid: 3381696000e3c4f8ea7f0bd8f34f8886,
     type: 2}
+  lifeBallPrefab: {fileID: 1549246618984762, guid: 4cd8a1e372b6a4459b305f504f474b31,
+    type: 2}
   explosionClip: {fileID: 8300000, guid: 757719d2279234238967a63085941293, type: 3}
   boulderRenderer: {fileID: 0}
 --- !u!198 &198241593320352116
