@@ -274,4 +274,12 @@ public class Player : FauxGravityBody {
 		transform.Find ("Model").gameObject.SetActive (true);
 	}
 
+	public void SetShootAnimation () {
+		animator.SetBool ("Shoot", true);
+	}
+
+	public void StopShootAnimation () {
+		animator.SetBool ("Shoot", false);
+	}
+
 }

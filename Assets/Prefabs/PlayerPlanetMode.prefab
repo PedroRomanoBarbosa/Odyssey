@@ -887,7 +887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1488365228887898
 GameObject:
   m_ObjectHideFlags: 1
@@ -1908,15 +1908,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485236830307562}
-  m_LocalRotation: {x: -0.60885364, y: 0.069799855, z: 0.55914736, w: 0.55837226}
-  m_LocalPosition: {x: -0.002, y: 0.0058, z: 0.0036}
+  m_LocalRotation: {x: -0.44916824, y: 0.44916826, z: 0.5461208, w: 0.54612076}
+  m_LocalPosition: {x: 0, y: 0.0051, z: -0}
   m_LocalScale: {x: 0.009960781, y: 0.008815121, z: 0.009960781}
   m_Children:
   - {fileID: 4503449814595996}
   - {fileID: 4634659573285956}
   m_Father: {fileID: 4955361526821452}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -0.254, y: 0, z: 0.85300004}
+  m_LocalEulerAnglesHint: {x: -101.127, y: 180, z: -90}
 --- !u!4 &4320455421154088
 Transform:
   m_ObjectHideFlags: 1
@@ -2274,7 +2274,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951171488587998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.63, z: 0.94}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4316794162942002}
@@ -3782,6 +3782,8 @@ MonoBehaviour:
   missileSpeed: 80
   missileLifeDuration: 2.5
   damage: 1
+  missileAnchor: {fileID: 4634659573285956}
+  player: {fileID: 114255088365525580}
 --- !u!114 &114240991996238344
 MonoBehaviour:
   m_ObjectHideFlags: 1
