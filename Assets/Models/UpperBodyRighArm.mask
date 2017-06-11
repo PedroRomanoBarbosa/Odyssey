@@ -5,15 +5,15 @@ AvatarMask:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: UpperBody
+  m_Name: UpperBodyRighArm
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: arm.L.002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: arm.R.002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature
     m_Weight: 0
   - m_Path: Armature/arm-target.L
@@ -41,13 +41,13 @@ AvatarMask:
   - m_Path: Armature/base/torso/L_arm_top/L_arm_hand/L_arm_hand.001/L_arm_hand.001_end
     m_Weight: 1
   - m_Path: Armature/base/torso/R_arm_top
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/torso/R_arm_top/R_arm_hand
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/torso/R_arm_top/R_arm_hand/R_arm_hand.001
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/torso/R_arm_top/R_arm_hand/R_arm_hand.001/R_arm_hand.001_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/upper_leg.L
     m_Weight: 0
   - m_Path: Armature/base/upper_leg.L/bottom_leg.L
@@ -117,10 +117,10 @@ AvatarMask:
   - m_Path: Armature/R_arm_IK/R_arm_IK_end
     m_Weight: 0
   - m_Path: Headandbody.002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: jet-pack.003
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: leg.L.002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: leg.R.002
-    m_Weight: 1
+    m_Weight: 0

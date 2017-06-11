@@ -13,6 +13,7 @@ public class Player : FauxGravityBody {
 	private bool damaged;
 	public float damageDuration;
 	public Transform detectionAnchor;
+	private bool inputActive;
 
 	// Status
 	public int lives;
@@ -75,6 +76,7 @@ public class Player : FauxGravityBody {
 		if (equippedTools.Count > 0) {
 			equippedTools [toolIndex].gameObject.SetActive (true);
 		}
+		inputActive = true;
 	}
 
 	void Update () {
@@ -129,7 +131,7 @@ public class Player : FauxGravityBody {
 
 	void ChangeWeapon () {
 		if (equippedTools.Count > 1) {
-			if (Input.GetKeyUp("q")) {
+			if (Input.GetKeyUp("q") && inputActive) {
 				Tool currentTool = equippedTools [toolIndex];
 				currentTool.Stop ();
 				currentTool.gameObject.SetActive (false);
@@ -145,8 +147,10 @@ public class Player : FauxGravityBody {
 	void MovePlayer () {
 		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
 		velocity = Vector3.zero;
-		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
-		velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
+		if (inputActive) {
+			velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
+			velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
+		}
 		if (!isGrounded) {
 			velocity *= aerialSlowDown;
 		}
@@ -164,7 +168,7 @@ public class Player : FauxGravityBody {
 
 	void Jump() {
 		if (!jumping && isGrounded) {
-			if (Input.GetAxisRaw("Jump") == 1f) {
+			if (Input.GetAxisRaw("Jump") == 1f && inputActive) {
 				animator.SetBool ("Jump", true);
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
@@ -177,14 +181,16 @@ public class Player : FauxGravityBody {
 			if (jumpCounter <= jumpDuration / 3f) {
 				move += transform.up * jumpSpeed;
 			} else if (jumpCounter <= jumpDuration) {
-				if (Input.GetAxisRaw ("Jump") == 1f) {
+				if (Input.GetAxisRaw ("Jump") == 1f  && inputActive) {
 					move += transform.up * jumpFunction (jumpCounter, jumpDuration);
 				}
 			} else {
 				move += -movementAxis.up * 10f;
 			}
-			move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
-			move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
+			if (inputActive) {
+				move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
+				move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
+			}
 			move += Vector3.ClampMagnitude((jumpingVelocity * jumpMomentum), (jumpingVelocity * jumpMomentum).magnitude - jumpCounter);
 		}
 	}
@@ -283,6 +289,17 @@ public class Player : FauxGravityBody {
 
 	public void StopShootAnimation () {
 		animator.SetBool ("Shoot", false);
+	}
+
+	public void TriggerPickAnimation() {
+		animator.SetBool("MiningPick", true);
+		inputActive = false;
+	}
+
+	public void OnPickingAnimatioEnd() {
+		animator.SetBool("MiningPick", false);
+		inputActive = true;
+		((MiningPick)tools [0]).AnimationEnd ();
 	}
 
 }
