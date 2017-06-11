@@ -12,6 +12,7 @@ public class Player : FauxGravityBody {
 	private float damageCounter;
 	private bool damaged;
 	public float damageDuration;
+	public Transform detectionAnchor;
 
 	// Status
 	public int lives;
@@ -58,10 +59,6 @@ public class Player : FauxGravityBody {
 	// Sound Variables
 	private AudioSource[] audioSources;
 
-	void Awake() {
-		DontDestroyOnLoad(gameObject);
-	}
-
 	void Start () {
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
@@ -70,10 +67,10 @@ public class Player : FauxGravityBody {
 		planetGravity = true;
 		gravityZoneCounter = 0;
 		isGrounded = false;
-		miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
-		missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
-		flamethrower = model.Find ("Flamethrower").GetComponent<Tool> ();
-		wateringCan = model.Find ("WateringCan").GetComponent<Tool> ();
+		//miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
+		//missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
+		//flamethrower = model.Find ("Flamethrower").GetComponent<Tool> ();
+		//wateringCan = model.Find ("WateringCan").GetComponent<Tool> ();
 		equippedTools = new List<Tool> ();
 		toolIndex = 0;
 		if (equippedTools.Count > 0) {
@@ -94,8 +91,7 @@ public class Player : FauxGravityBody {
 
     void UpdateUIText()
     {
-        live.text = "X " + lives;
-        points.text = pts + " Points";
+        //live.text = "X " + lives;
     }
 
 	public new void FixedUpdate () {
@@ -123,7 +119,7 @@ public class Player : FauxGravityBody {
 
 	void CheckGrounded () {
 		Debug.DrawRay (transform.position, -transform.up * 1.2f);
-		if (Physics.Raycast (transform.position, -transform.up, 1.2f)) {
+		if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
 			isGrounded = true;
 			jumpCounter = 0f;
 			jumping = false;
@@ -279,7 +275,7 @@ public class Player : FauxGravityBody {
 		if (active) {
 			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.50f);
 		} else {
-			image.color = new Color (image.color.r, image.color.g, image.color.b, 0f);
+			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.00f);
 		}
 	}
 
