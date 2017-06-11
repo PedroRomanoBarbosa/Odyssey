@@ -3425,7 +3425,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243922714726349164, guid: 4e46b0d4dbf5048dba26c1aa7bfe3da4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a58b4916eb42a4f8ba599d2e163217ca, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3921,6 +3921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   player: {fileID: 114255088365525580}
+  energyPerBurningTime: 2
+  burningTime: 1
 --- !u!114 &114233655721267794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3940,6 +3942,9 @@ MonoBehaviour:
   damage: 1
   missileAnchor: {fileID: 4634659573285956}
   player: {fileID: 114255088365525580}
+  energyPerShot: 1
+  shotClip: {fileID: 8300000, guid: a58b4916eb42a4f8ba599d2e163217ca, type: 3}
+  blanksClip: {fileID: 8300000, guid: 8b1d3454ba58f4e8cabc591b5457aaf7, type: 3}
 --- !u!114 &114240991996238344
 MonoBehaviour:
   m_ObjectHideFlags: 1
