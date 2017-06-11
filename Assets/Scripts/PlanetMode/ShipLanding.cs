@@ -23,6 +23,8 @@ public class ShipLanding : MonoBehaviour {
 			camera.enabled = true;
 			GameVariables.cinematicPaused = true;
 		} else {
+			transform.position = end.position;
+			transform.rotation = end.rotation;
 			camera.enabled = false;
 		}
 		animating = true;
@@ -53,16 +55,19 @@ public class ShipLanding : MonoBehaviour {
 				transform.position = Vector3.Slerp (startPosition, end.position, t);
 				transform.rotation = Quaternion.Slerp (startRotation, end.rotation, t);
 			}
+		}
 
-			// Action to leave planet
-			if (playerInArea) {
-				if (Input.GetAxisRaw ("Use") == 1) {
-					reverse = true;
-					camera.enabled = true;
-					GameVariables.cinematicPaused = true;
-					aniCounter = 0;
-					GameObject.FindGameObjectWithTag("Player").GetComponent<Player> ().HideModel ();
-					animating = true;
+		// Action to leave planet
+		if (playerInArea) {
+			if (Input.GetAxisRaw ("Use") == 1) {
+				reverse = true;
+				camera.enabled = true;
+				GameVariables.cinematicPaused = true;
+				aniCounter = 0;
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Player> ().HideModel ();
+				animating = true;
+				if (!GameVariables.shipFirstPlanet) {
+					GameVariables.shipFirstPlanet = true;
 				}
 			}
 		}

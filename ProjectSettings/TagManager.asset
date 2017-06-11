@@ -19,6 +19,7 @@ TagManager:
   - PlanetBarrier
   - Boulder
   - Fire
+  - SpeedBall
   layers:
   - Default
   - TransparentFX

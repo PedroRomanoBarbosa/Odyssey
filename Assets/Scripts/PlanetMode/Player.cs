@@ -21,11 +21,16 @@ public class Player : FauxGravityBody {
 	public int energy;
 
 	// Movement Variables
+	private float baseSpeed;
 	private Vector3 move;
 	private Vector3 velocity;
+	private float speedCounter;
+	private bool speeding;
 	public float speed;
+	public float speedingCooldown;
 	public float rotationSpeed;
 	public float maxClimbAngle;
+	public GameObject speedTrail;
 
 	// Children Variables
 	private Transform movementAxis;
@@ -59,6 +64,7 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
+		baseSpeed = speed;
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
@@ -85,6 +91,7 @@ public class Player : FauxGravityBody {
 			MovePlayer ();
 			ChangeWeapon ();
             UpdateUIText();
+			SpeedingLoop ();
 		}
 		DamageLoop ();
 	}
@@ -113,6 +120,18 @@ public class Player : FauxGravityBody {
 				damaged = false;
 			} else {
 				damageCounter += Time.deltaTime;
+			}
+		}
+	}
+
+	void SpeedingLoop() {
+		if (speeding) {
+			if (speedCounter >= speedingCooldown) {
+				speeding = false;
+				speedTrail.SetActive (false);
+				speed = baseSpeed;
+			} else {
+				speedCounter += Time.deltaTime;
 			}
 		}
 	}
@@ -204,25 +223,25 @@ public class Player : FauxGravityBody {
 	void OnTriggerEnter(Collider collider) {
 		GameObject colliderObject = collider.gameObject;
 		if (colliderObject.name == "MiningPickItem") {
-			equippedTools.Add (tools[(int)GameVariables.Tools.MiningPick]);
+			equippedTools.Add (tools [(int)GameVariables.Tools.MiningPick]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "MissileLauncherItem") {
-			equippedTools.Add (tools[(int)GameVariables.Tools.MissileLauncher]);
+			equippedTools.Add (tools [(int)GameVariables.Tools.MissileLauncher]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (colliderObject.name == "FlamethrowerItem") {
-			equippedTools.Add (tools[(int)GameVariables.Tools.Flamethrower]);
+			equippedTools.Add (tools [(int)GameVariables.Tools.Flamethrower]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 		} else if (collider.gameObject.name == "WateringCanItem") {
-			equippedTools.Add (tools[(int)GameVariables.Tools.WateringCan]);
+			equippedTools.Add (tools [(int)GameVariables.Tools.WateringCan]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
@@ -231,6 +250,12 @@ public class Player : FauxGravityBody {
 			audioSources [0].Play ();
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
+		} else if (collider.CompareTag ("SpeedBall")) {
+			speeding = true;
+			speedCounter = 0f;
+			speed = baseSpeed + collider.GetComponent<SpeedBall> ().speed;
+			collider.GetComponent<SpeedBall> ().Cath ();
+			speedTrail.SetActive (true);
 		}
 	}
 
