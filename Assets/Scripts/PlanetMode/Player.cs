@@ -13,6 +13,7 @@ public class Player : FauxGravityBody {
 	private bool damaged;
 	public float damageDuration;
 	public Transform detectionAnchor;
+	private bool inputActive;
 
 	// Status
 	public int lives;
@@ -47,7 +48,7 @@ public class Player : FauxGravityBody {
 	public float aerialSlowDown;
 
 	// Weapon variables
-	private Tool miningPick, missileLauncher, flamethrower, wateringCan;
+	public Tool[] tools;
 	public List<Tool> equippedTools;
 	private int toolIndex;
 
@@ -67,16 +68,18 @@ public class Player : FauxGravityBody {
 		planetGravity = true;
 		gravityZoneCounter = 0;
 		isGrounded = false;
-		//miningPick = model.Find ("MiningPick").GetComponent<Tool> ();
-		//missileLauncher = model.Find ("MissileLauncher").GetComponent<Tool> ();
-		//flamethrower = model.Find ("Flamethrower").GetComponent<Tool> ();
-		//wateringCan = model.Find ("WateringCan").GetComponent<Tool> ();
 		equippedTools = new List<Tool> ();
+		for (int i = 0; i < GameVariables.tools.Length; i++) {
+			if (GameVariables.tools [i]) {
+				equippedTools.Add (tools[i]);
+			}
+		}
 		toolIndex = 0;
-		if (equippedTools.Count > 0) {
-			equippedTools [toolIndex].gameObject.SetActive (true);
+        if (equippedTools.Count > 0){
+            equippedTools[toolIndex].gameObject.SetActive(true);
         }
-        pts = 0;
+		inputActive = true;
+
 	}
 
 	void Update () {
@@ -123,6 +126,7 @@ public class Player : FauxGravityBody {
 			isGrounded = true;
 			jumpCounter = 0f;
 			jumping = false;
+			animator.SetBool ("Jump", false);
 		} else {
 			isGrounded = false;
 		}
@@ -130,7 +134,7 @@ public class Player : FauxGravityBody {
 
 	void ChangeWeapon () {
 		if (equippedTools.Count > 1) {
-			if (Input.GetKeyUp("q")) {
+			if (Input.GetKeyUp("q") && inputActive) {
 				Tool currentTool = equippedTools [toolIndex];
 				currentTool.Stop ();
 				currentTool.gameObject.SetActive (false);
@@ -147,8 +151,10 @@ public class Player : FauxGravityBody {
 	void MovePlayer () {
 		movementAxis.Rotate (0f, Input.GetAxis ("Mouse X") * rotationSpeed, 0f);
 		velocity = Vector3.zero;
-		velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
-		velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
+		if (inputActive) {
+			velocity += Input.GetAxis ("Vertical") * movementAxis.forward;
+			velocity += Input.GetAxis ("Horizontal") * movementAxis.right;
+		}
 		if (!isGrounded) {
 			velocity *= aerialSlowDown;
 		}
@@ -159,13 +165,15 @@ public class Player : FauxGravityBody {
 		}
 		Jump ();
 		if (!jumping && !isGrounded) {
+			animator.SetBool ("Jump", true);
 			move += -movementAxis.up * 10f;
 		}
 	}
 
 	void Jump() {
 		if (!jumping && isGrounded) {
-			if (Input.GetAxisRaw("Jump") == 1f) {
+			if (Input.GetAxisRaw("Jump") == 1f && inputActive) {
+				animator.SetBool ("Jump", true);
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
 				jumpCounter = 0f;
@@ -177,14 +185,16 @@ public class Player : FauxGravityBody {
 			if (jumpCounter <= jumpDuration / 3f) {
 				move += transform.up * jumpSpeed;
 			} else if (jumpCounter <= jumpDuration) {
-				if (Input.GetAxisRaw ("Jump") == 1f) {
+				if (Input.GetAxisRaw ("Jump") == 1f  && inputActive) {
 					move += transform.up * jumpFunction (jumpCounter, jumpDuration);
 				}
 			} else {
 				move += -movementAxis.up * 10f;
 			}
-			move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
-			move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
+			if (inputActive) {
+				move += Input.GetAxis ("Vertical") * movementAxis.forward * speed * aerialSlowDown;
+				move += Input.GetAxis ("Horizontal") * movementAxis.right * speed * aerialSlowDown;
+			}
 			move += Vector3.ClampMagnitude((jumpingVelocity * jumpMomentum), (jumpingVelocity * jumpMomentum).magnitude - jumpCounter);
 		}
 	}
@@ -195,49 +205,48 @@ public class Player : FauxGravityBody {
 		return gravity * -attractor.gravity + -attractor.gravity;
 	}
 
-	void OnTriggerEnter(Collider collider) {
-		GameObject colliderObject = collider.gameObject;
-		if (colliderObject.name == "MiningPickItem") {
-			equippedTools.Add (miningPick);
-            pts += 200;
-            equippedTools [toolIndex].gameObject.SetActive (false);
-			toolIndex = equippedTools.Count - 1;
+    void OnTriggerEnter(Collider collider){
+        GameObject colliderObject = collider.gameObject;
+        if (colliderObject.name == "MiningPickItem"){
+            equippedTools.Add(tools[(int)GameVariables.Tools.MiningPick]);
+            equippedTools[toolIndex].gameObject.SetActive(false);
+            toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-			equippedTools [toolIndex].gameObject.SetActive (true);
-			Destroy (colliderObject);
-		} else if (colliderObject.name == "MissileLauncherItem") {
-			equippedTools.Add (missileLauncher);
-            pts += 200;
-            equippedTools [toolIndex].gameObject.SetActive (false);
-			toolIndex = equippedTools.Count - 1;
+            equippedTools[toolIndex].gameObject.SetActive(true);
+            Destroy(colliderObject);
+        }
+        else if (colliderObject.name == "MissileLauncherItem"){
+            equippedTools.Add(tools[(int)GameVariables.Tools.MissileLauncher]);
+            equippedTools[toolIndex].gameObject.SetActive(false);
+            toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools [toolIndex].gameObject.SetActive (true);
-			Destroy (colliderObject);
-		} else if (colliderObject.name == "FlamethrowerItem") {
-			equippedTools.Add (flamethrower);
-            pts += 200;
-            equippedTools [toolIndex].gameObject.SetActive (false);
-			toolIndex = equippedTools.Count - 1;
+            equippedTools[toolIndex].gameObject.SetActive(true);
+            Destroy(colliderObject);
+        }
+        else if (colliderObject.name == "FlamethrowerItem") {
+            equippedTools.Add(tools[(int)GameVariables.Tools.Flamethrower]);
+            equippedTools[toolIndex].gameObject.SetActive(false);
+            toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools [toolIndex].gameObject.SetActive (true);
-			Destroy (colliderObject);
-		} else if (collider.gameObject.name == "WateringCanItem") {
-			equippedTools.Add (wateringCan);
-            pts += 200;
-			equippedTools [toolIndex].gameObject.SetActive (false);
-			toolIndex = equippedTools.Count - 1;
+            equippedTools[toolIndex].gameObject.SetActive(true);
+            Destroy(colliderObject);
+        }
+        else if (collider.gameObject.name == "WateringCanItem"){
+            equippedTools.Add(tools[(int)GameVariables.Tools.WateringCan]);
+            equippedTools[toolIndex].gameObject.SetActive(false);
+            toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools [toolIndex].gameObject.SetActive (true);
-			Destroy (colliderObject);
-		} else if (colliderObject.name == "MineralCollider") {
-			audioSources [0].Play ();
-            pts += 500;
-			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
-			Destroy (colliderObject.transform.parent.gameObject);
-		}
-	}
+            equippedTools[toolIndex].gameObject.SetActive(true);
+            Destroy(colliderObject);
+        }
+        else if (colliderObject.name == "MineralCollider"){
+            audioSources[0].Play();
+            energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral>().value;
+            Destroy(colliderObject.transform.parent.gameObject);
+        }
+    }
 
-	public void EnterGravityZone (Vector3 vector) {
+    public void EnterGravityZone (Vector3 vector) {
 		planetGravity = false;
 		gravityZoneCounter++;
 		gravityVector = vector;
@@ -285,6 +294,25 @@ public class Player : FauxGravityBody {
 
 	public void ShowModel () {
 		transform.Find ("Model").gameObject.SetActive (true);
+	}
+
+	public void SetShootAnimation () {
+		animator.SetBool ("Shoot", true);
+	}
+
+	public void StopShootAnimation () {
+		animator.SetBool ("Shoot", false);
+	}
+
+	public void TriggerPickAnimation() {
+		animator.SetBool("MiningPick", true);
+		inputActive = false;
+	}
+
+	public void OnPickingAnimatioEnd() {
+		animator.SetBool("MiningPick", false);
+		inputActive = true;
+		((MiningPick)tools [0]).AnimationEnd ();
 	}
 
 }

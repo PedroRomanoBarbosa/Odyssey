@@ -9,6 +9,7 @@ public class ShipLanding : MonoBehaviour {
 	private Quaternion startRotation;
 	private bool playerInArea;
 	private bool reverse;
+	private bool animating;
 
 	public Camera camera;
 	public GameObject ship;
@@ -24,11 +25,12 @@ public class ShipLanding : MonoBehaviour {
 		} else {
 			camera.enabled = false;
 		}
+		animating = true;
 	}
 
 	void Update () {
 		// If player has already the ship
-		if (GameVariables.shipFirstPlanet) {
+		if (GameVariables.shipFirstPlanet && animating) {
 			if (aniCounter > duration) {
 				if (reverse) {
 					transform.position = startPosition;
@@ -38,6 +40,7 @@ public class ShipLanding : MonoBehaviour {
 					transform.position = end.position;
 					transform.rotation = end.rotation;
 					ShipLanded ();
+					animating = false;
 				}
 			} else {
 				aniCounter += Time.deltaTime;
@@ -59,6 +62,7 @@ public class ShipLanding : MonoBehaviour {
 					GameVariables.cinematicPaused = true;
 					aniCounter = 0;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<Player> ().HideModel ();
+					animating = true;
 				}
 			}
 		}

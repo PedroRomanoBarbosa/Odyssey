@@ -438,7 +438,6 @@ Transform:
   - {fileID: 1697576526}
   - {fileID: 1752594253}
   - {fileID: 719201908}
-  - {fileID: 923678628}
   - {fileID: 280755562}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -1822,7 +1821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c3b2be10858a8924aab5540799907876, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c3b2be10858a8924aab5540799907876, type: 3}
       propertyPath: m_LocalScale.x
@@ -6615,13 +6614,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 923678627}
-  m_LocalRotation: {x: 0.14862159, y: 0.28554645, z: -0.9466403, w: 0.01571365}
-  m_LocalPosition: {x: -10.8, y: -1.4, z: -46.9}
+  m_LocalRotation: {x: 0.14941859, y: 0.16447929, z: -0.974993, w: -0.003063545}
+  m_LocalPosition: {x: 23.39523, y: -25.256094, z: -57.26275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 68988634}
+  m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: -213.045, y: -198.964, z: -3.770996}
+  m_LocalEulerAnglesHint: {x: -198.65201, y: -197.974, z: -3.3349915}
 --- !u!1001 &932950974
 Prefab:
   m_ObjectHideFlags: 0
@@ -15350,8 +15349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a220e4d1c8e384b03b27b31dd3e8c4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aniDuration: 4
-  camera: {fileID: 0}
+  aniDuration: 10
+  mainCamera: {fileID: 0}
   action: {fileID: 2048141099}
   endAction: {fileID: 0}
   anchor: {fileID: 923678628}

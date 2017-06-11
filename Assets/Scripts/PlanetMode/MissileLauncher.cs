@@ -11,16 +11,18 @@ public class MissileLauncher : Tool {
 	public float missileSpeed;
 	public float missileLifeDuration;
 	public int damage;
+	public Transform missileAnchor;
+	public Player player;
 
 	public void Start () {
 		audioFire = GetComponent<AudioSource> ();
 	}
 
 	public override void Use() {
-		if (Input.GetAxisRaw ("Fire1") == 1) {
+		if (Input.GetButton ("Fire1")) {
 			if (missileCooldownCounter >= missileCooldown) {
 				missileCooldownCounter = 0f;
-				GameObject missile = Instantiate (missilePrefab, transform.Find ("MissileAnchor").position, Quaternion.identity);
+				GameObject missile = Instantiate (missilePrefab, missileAnchor.position, Quaternion.identity);
 				missile.transform.rotation = transform.rotation;
 				MissileMovement script = missile.GetComponent<MissileMovement> ();
 				script.planet = GameObject.Find ("Planet");
@@ -29,9 +31,12 @@ public class MissileLauncher : Tool {
 				script.duration = missileLifeDuration;
 				script.damage = damage;
 				audioFire.Play ();
+				player.SetShootAnimation ();
 			} else {
 				missileCooldownCounter += Time.deltaTime;
 			}
+		} else {
+			player.StopShootAnimation ();
 		}
 	}
 

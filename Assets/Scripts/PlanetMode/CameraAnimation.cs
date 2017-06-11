@@ -10,13 +10,14 @@ public class CameraAnimation : MonoBehaviour {
 	private bool stopAction;
 
 	public float aniDuration;
-	public Camera camera;
+	public Camera mainCamera;
 	public Action action;
 	public Action endAction;
 	public Transform anchor;
 
 	void Start () {
 		animate = false;
+		mainCamera = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 	}
 
 	void Update () {
@@ -24,24 +25,23 @@ public class CameraAnimation : MonoBehaviour {
 			aniCounter += Time.deltaTime;
 			float t = aniCounter / aniDuration;
 			if (t <= 0.5f) {
-				camera.transform.rotation = Quaternion.Slerp (startRotation, anchor.localRotation, t * 2f);
-				camera.transform.position = Vector3.Slerp (startPosition, anchor.localPosition, t * 2f);
+				mainCamera.transform.rotation = Quaternion.Slerp (startRotation, anchor.localRotation, t * 2f);
+				mainCamera.transform.position = Vector3.Slerp (startPosition, anchor.localPosition, t * 2f);
 			} else if (t <= 1f) {
 				if (!stopAction) {
 					action.OnAction ();
 					stopAction = true;
 				}
-				camera.transform.rotation = Quaternion.Slerp (anchor.localRotation, startRotation, t * 2f - 1f);
-				camera.transform.position = Vector3.Slerp (anchor.localPosition, startPosition, t * 2f - 1f);
+				mainCamera.transform.rotation = Quaternion.Slerp (anchor.localRotation, startRotation, t * 2f - 1f);
+				mainCamera.transform.position = Vector3.Slerp (anchor.localPosition, startPosition, t * 2f - 1f);
 			} else {
-				GameVariables.cinematicPaused = false;
-				animate = true;
-				camera.transform.rotation = startRotation;
-				camera.transform.position = startPosition;
+				mainCamera.transform.rotation = startRotation;
+				mainCamera.transform.position = startPosition;
 				animate = false;
 				if (endAction != null) {
 					endAction.OnAction ();
 				}
+				GameVariables.cinematicPaused = false;
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public class CameraAnimation : MonoBehaviour {
 		GameVariables.cinematicPaused = true;
 		animate = true;
 		aniCounter = 0;
-		startPosition = camera.transform.position;
-		startRotation = camera.transform.rotation;
+		startPosition = mainCamera.transform.position;
+		startRotation = mainCamera.transform.rotation;
 	}
 }
