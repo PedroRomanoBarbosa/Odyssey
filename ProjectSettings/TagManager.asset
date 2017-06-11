@@ -20,6 +20,7 @@ TagManager:
   - Boulder
   - Fire
   - SpeedBall
+  - LifeBall
   layers:
   - Default
   - TransparentFX
