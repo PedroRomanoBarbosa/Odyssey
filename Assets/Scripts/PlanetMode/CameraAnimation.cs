@@ -48,7 +48,6 @@ public class CameraAnimation : MonoBehaviour {
 
 	public void Animate () {
 		GameVariables.cinematicPaused = true;
-		Debug.Log(GameVariables.cinematicPaused);
 		animate = true;
 		aniCounter = 0;
 		startPosition = mainCamera.transform.position;
