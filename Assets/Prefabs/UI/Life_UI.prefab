@@ -54,10 +54,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4864027457348036}
-  - component: {fileID: 135959890928669356}
-  - component: {fileID: 114660112309283496}
+  - component: {fileID: 114814405975145486}
   m_Layer: 0
-  m_Name: Life
+  m_Name: Life_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +178,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114660112309283496
+--- !u!114 &114814405975145486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -187,10 +186,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984065343462038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1701a0e04bf44c0af9e4b67f6d186e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1
+  isAnimated: 1
+  isRotating: 1
+  isFloating: 0
+  isScaling: 1
+  rotationAngle: {x: 0, y: 10, z: 0}
+  rotationSpeed: 10
+  floatSpeed: 0.04
+  floatRate: 0.5
+  startScale: {x: 1, y: 1, z: 1}
+  endScale: {x: 0.5, y: 0.5, z: 0.5}
+  scaleSpeed: 1
+  scaleRate: 0.5
 --- !u!114 &114841426029103070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,15 +238,3 @@ MonoBehaviour:
   endScale: {x: 0, y: 0, z: 0}
   scaleSpeed: 0
   scaleRate: 0
---- !u!135 &135959890928669356
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1984065343462038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
