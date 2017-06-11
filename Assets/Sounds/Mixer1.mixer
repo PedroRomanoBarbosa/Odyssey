@@ -22,6 +22,7 @@ AudioMixerController:
     - d85b4a2d9bf4f412889a14f65495df97
     - 59f38f639091f4c3dbfbee7819a9a2a9
     - 67882347fa9324b14a1a593364770548
+    - 1ec9ec19661c249308555a41ed5d3463
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -38,6 +39,7 @@ AudioMixerGroupController:
   - {fileID: 243922714726349164}
   - {fileID: 243714625672802974}
   - {fileID: 243755447495415208}
+  - {fileID: 243217846834080500}
   m_Volume: 927425d400ddf44d398f27582c443c48
   m_Pitch: da85fa7eb32414b1b891180b8cee7ec0
   m_Effects:
@@ -70,10 +72,27 @@ AudioMixerSnapshotController:
   m_FloatValues:
     21da76803a8744d31af771d24df077ba: -10.345207
     927425d400ddf44d398f27582c443c48: 0.13552584
-    481a0e054fb6247858665702e7dcb4fc: 0.27000841
+    481a0e054fb6247858665702e7dcb4fc: -10.345207
     caa498166302f4b398babb8d9c6df29c: -9.833286
     a365ed77722b34c72b760c7e13c05f8f: 6.2251854
   m_TransitionOverrides: {}
+--- !u!243 &243217846834080500
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprinkler
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1ec9ec19661c249308555a41ed5d3463
+  m_Children: []
+  m_Volume: e2511682af4114f59bb729f679cda52b
+  m_Pitch: 9c5cd96c4f80f42f3acd32a0bf55b695
+  m_Effects:
+  - {fileID: 244165960024529638}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &243714625672802974
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -142,6 +161,19 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &244165960024529638
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9a38ea9382b104b549dd720cdef19490
+  m_EffectName: Attenuation
+  m_MixLevel: 81c0039b5c5334831885d324aa07e9f9
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244184901128811300
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
