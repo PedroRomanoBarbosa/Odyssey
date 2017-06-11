@@ -9,6 +9,7 @@ public class Flamethrower : Tool {
 	private float burningCounter;
 
 	public int damage;
+	public Player player;
 
 	void Start () {
 		fireCollider = GetComponent<BoxCollider> ();
@@ -21,6 +22,7 @@ public class Flamethrower : Tool {
 			if (!beginningFlag) {
 				beginningFlag = true;
 				audioSources [0].Play ();
+				player.SetShootAnimation ();
 			}
 			if (!burningFlag && burningCounter >= audioSources[0].clip.length) {
 				burningFlag = true;
@@ -35,6 +37,7 @@ public class Flamethrower : Tool {
 			burningFlag = false;
 			audioSources [0].Stop ();
 			audioSources [1].Stop ();
+			player.StopShootAnimation ();
 			burningCounter = 0f;
 		}
 	}

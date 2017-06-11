@@ -9,10 +9,11 @@ public class PlanetSettings : MonoBehaviour {
 	public GameObject player;
 	public FauxGravityAttractor attractor;
 
-	void Start() {
+	void Awake () {
 		GameVariables.planet = planet;
 		GameObject playerInstance = Instantiate (player);
-		playerInstance.GetComponent<Player> ().attractor = attractor;
+		Player playerScript = playerInstance.GetComponent<Player> ();
+		playerScript.attractor = attractor;
 		if (GameVariables.shipFirstPlanet) {
 			playerInstance.transform.position = playerStartPosition.position;
 			playerInstance.transform.rotation = playerStartPosition.rotation;

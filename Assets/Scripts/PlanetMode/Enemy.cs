@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour {
 				damaged = true;
 			}
 		} else if (collider.gameObject.CompareTag("Pick")) {
-			MiningPick pick = collider.transform.parent.GetComponent<MiningPick> ();
+			MiningPick pick = collider.GetComponent<MiningPick> ();
 			DecreaseLife (pick.damage);
 			damageCounter = 0;
 			damaged = true;

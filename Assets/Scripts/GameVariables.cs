@@ -19,7 +19,7 @@ public class GameVariables {
 	public enum Tools {
 		MiningPick,
 		MissileLauncher,
-		Flamethrowe,
+		Flamethrower,
 		WateringCan
 	}
 	public int diamonds;
@@ -27,4 +27,5 @@ public class GameVariables {
 	public static bool shipFirstPlanet = true;
 	public static Planet planet = Planet.Normal;
 	public static bool[] artifacts = { false, false, false, false };
+	public static bool[] tools = {true, true, true, true};
 }

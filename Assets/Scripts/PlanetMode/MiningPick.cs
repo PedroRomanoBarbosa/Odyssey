@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MiningPick : Tool {
-	private Animator animator;
-	private bool animating;
 	private Vector3 originalPosition;
 	private Quaternion originalRotation;
 	private Collider pickCollider;
 	private AudioSource audioSource;
 
+	public Player player;
 	public GameObject particles;
 	public int damage;
 	public AudioClip[] pickAudioClips;
 
 	void Start () {
-		animator = GetComponent<Animator> ();
 		pickCollider = GetComponent<Collider> ();
 		audioSource = GetComponent<AudioSource> ();
 		originalPosition = transform.localPosition;
@@ -24,11 +22,8 @@ public class MiningPick : Tool {
 
 	public override void Use () {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
-			if (animating == false) {
-				animating = true;
 				pickCollider.enabled = true;
-				animator.SetTrigger ("Swing");
-			}
+				player.TriggerPickAnimation ();
 		}
 	}
 
@@ -39,9 +34,6 @@ public class MiningPick : Tool {
 	// Used as an animation event
 	public void AnimationEnd () {
 		pickCollider.enabled = false;
-		animating = false;
-		transform.localPosition = originalPosition;
-		transform.localRotation = originalRotation;
 	}
 
 	// Used as an animation event
