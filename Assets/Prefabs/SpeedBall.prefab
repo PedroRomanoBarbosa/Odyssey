@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  cooldown: 3
+  cooldown: 10
   model: {fileID: 1119414768698722}
   particle: {fileID: 1108635802821304}
 --- !u!114 &114959604358219910
