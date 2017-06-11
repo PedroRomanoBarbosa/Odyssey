@@ -53,7 +53,6 @@ public class Player : FauxGravityBody {
 	private int toolIndex;
 
     //Planet Interface
-    public Text live;
     public int pts;
     public Text points; 
 
@@ -71,7 +70,7 @@ public class Player : FauxGravityBody {
 		equippedTools = new List<Tool> ();
 		for (int i = 0; i < GameVariables.tools.Length; i++) {
 			if (GameVariables.tools [i]) {
-				//equippedTools.Add (tools[i]);
+				equippedTools.Add (tools[i]);
 			}
 		}
 		toolIndex = 0;
@@ -87,15 +86,9 @@ public class Player : FauxGravityBody {
 			CheckGrounded ();
 			MovePlayer ();
 			ChangeWeapon ();
-            UpdateUIText();
 		}
 		DamageLoop ();
 	}
-
-    void UpdateUIText()
-    {
-        //live.text = "X " + lives;
-    }
 
 	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
