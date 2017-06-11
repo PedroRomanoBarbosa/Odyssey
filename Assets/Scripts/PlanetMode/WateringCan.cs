@@ -9,6 +9,7 @@ public class WateringCan : Tool {
 	private Quaternion originalRotation;
 
 	public GameObject particle;
+	public Player player;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -18,9 +19,11 @@ public class WateringCan : Tool {
 
 	public override void Use () {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
-			
+			particle.SetActive (true);
+			player.SetShootAnimation ();
 		} else {
-			
+			particle.SetActive (false);
+			player.StopShootAnimation ();
 		}
 	}
 
