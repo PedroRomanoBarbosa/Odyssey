@@ -18,6 +18,7 @@ TagManager:
   - Node
   - PlanetBarrier
   - Boulder
+  - Fire
   layers:
   - Default
   - TransparentFX
