@@ -23,6 +23,7 @@ AudioMixerController:
     - 59f38f639091f4c3dbfbee7819a9a2a9
     - 67882347fa9324b14a1a593364770548
     - 1ec9ec19661c249308555a41ed5d3463
+    - 4f24838c19b8c48a2aa6ddc169ffb9c6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -40,6 +41,7 @@ AudioMixerGroupController:
   - {fileID: 243714625672802974}
   - {fileID: 243755447495415208}
   - {fileID: 243217846834080500}
+  - {fileID: 243500453403640878}
   m_Volume: 927425d400ddf44d398f27582c443c48
   m_Pitch: da85fa7eb32414b1b891180b8cee7ec0
   m_Effects:
@@ -89,6 +91,23 @@ AudioMixerGroupController:
   m_Pitch: 9c5cd96c4f80f42f3acd32a0bf55b695
   m_Effects:
   - {fileID: 244165960024529638}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243500453403640878
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SpaceshipLanding
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 4f24838c19b8c48a2aa6ddc169ffb9c6
+  m_Children: []
+  m_Volume: 980713adf6fc6476dac62a15271eacbe
+  m_Pitch: b3b7e280ccb5848b0a5274fda9b09337
+  m_Effects:
+  - {fileID: 244864417031771516}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -209,6 +228,19 @@ AudioMixerEffectController:
   m_EffectID: 7686d88eb580c43368fe90111fa10af5
   m_EffectName: Attenuation
   m_MixLevel: c2cabdc255f1942079c3d488708543fd
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244864417031771516
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1f4820dba1c16454b8ed413335288fd5
+  m_EffectName: Attenuation
+  m_MixLevel: d543cf308a9cd4386b60ab96fd3e72a4
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0

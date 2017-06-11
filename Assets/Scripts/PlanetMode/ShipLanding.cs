@@ -10,6 +10,7 @@ public class ShipLanding : MonoBehaviour {
 	private bool playerInArea;
 	private bool reverse;
 	private bool animating;
+	private AudioSource[] audioSources;
 
 	public Camera camera;
 	public GameObject ship;
@@ -17,11 +18,13 @@ public class ShipLanding : MonoBehaviour {
 	public float duration;
 
 	void Start () {
+		audioSources = GetComponents<AudioSource> ();
 		if (GameVariables.shipFirstPlanet) {
 			startPosition = transform.position;
 			startRotation = transform.rotation;
 			camera.enabled = true;
 			GameVariables.cinematicPaused = true;
+			audioSources [0].Play ();
 		} else {
 			transform.position = end.position;
 			transform.rotation = end.rotation;
@@ -61,6 +64,7 @@ public class ShipLanding : MonoBehaviour {
 		if (playerInArea) {
 			if (Input.GetAxisRaw ("Use") == 1) {
 				reverse = true;
+				audioSources [1].Play ();
 				camera.enabled = true;
 				GameVariables.cinematicPaused = true;
 				aniCounter = 0;
