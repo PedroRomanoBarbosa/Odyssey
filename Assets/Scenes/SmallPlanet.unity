@@ -5602,6 +5602,11 @@ Prefab:
       propertyPath: attractor
       value: 
       objectReference: {fileID: 1203220629}
+    - target: {fileID: 82572199016952934, guid: e879aedeab54e41c6b5386011679e0c5,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d29a202d573cc40be90cd260ec1acd6b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
   m_IsPrefabParent: 0
