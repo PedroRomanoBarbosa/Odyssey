@@ -11,7 +11,7 @@ public class HelperEditor : Editor {
 		if (e.type == EventType.MouseDown) {
 			Ray ray = HandleUtility.GUIPointToWorldRay( Event.current.mousePosition );
 			RaycastHit hit;
-			int mask = 1 << 0;
+			int mask = 1 << 8;
 			if(Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) {
 				Helper helper = GameObject.Find ("Helper").GetComponent<Helper> ();
 				GameObject prefab = helper.prefab;
