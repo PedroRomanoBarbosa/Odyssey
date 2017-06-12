@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: eafe9f84271acef46b757f3b0deee5b4
   - enabled: 1
     path: Assets/Scenes/AITest.unity
-    guid: 00000000000000000000000000000000
+    guid: f53ee4114c1134b13b088e52df6425d1
   - enabled: 1
     path: Assets/Scenes/Menus/Main.unity
     guid: 262a0c01f5f1b7646b326155f8b4e4c1
@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VulcanicPlanet.unity
     guid: bb7c58c18671c49d7a21bbe0a8871b0c
+  - enabled: 1
+    path: Assets/Scenes/Space.unity
+    guid: 00000000000000000000000000000000

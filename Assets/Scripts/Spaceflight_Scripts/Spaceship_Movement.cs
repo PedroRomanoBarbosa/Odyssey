@@ -100,7 +100,7 @@ public class Spaceship_Movement : MonoBehaviour
             shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
-        if(fuel>0)
+        if(true)//(fuel>0)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -111,10 +111,10 @@ public class Spaceship_Movement : MonoBehaviour
                 shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
             }
         }
-        else
+        /*else
         {
             shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
-        }
+        }*/
        
 
         //THIS HURTS EVERY TIME I SEE IT
