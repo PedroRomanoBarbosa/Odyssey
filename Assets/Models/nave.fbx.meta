@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d33c86560a6fd4b36909f92320568bca
-timeCreated: 1494771068
+guid: 83ccd288adc463743b498d961edb604b
+timeCreated: 1497276284
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,9 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cone
-    7400000: Default Take
-    9500000: //RootNode
+    4300000: Cone.000
   materials:
     importMaterials: 1
     materialName: 0
@@ -22,6 +20,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -74,7 +74,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
