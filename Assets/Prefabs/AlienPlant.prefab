@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4755570357035126}
   - component: {fileID: 33257136542036032}
   - component: {fileID: 23037538670133964}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mesh1_Plant_3_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4857496567031928}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4238303978547568}
   - component: {fileID: 33921927903841634}
   - component: {fileID: 23055248741423510}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,8 @@ GameObject:
   - component: {fileID: 4405449881648570}
   - component: {fileID: 135963991048007864}
   - component: {fileID: 114919835327537922}
-  m_Layer: 0
+  - component: {fileID: 82738937542551230}
+  m_Layer: 2
   m_Name: AlienPlant
   m_TagString: AlienPlant
   m_Icon: {fileID: 0}
@@ -246,7 +247,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4388381258590690}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: naturePack_flat_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339605626525262}
   - component: {fileID: 135193077063179122}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,8 +923,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060677373728456}
-  m_LocalRotation: {x: -0.006593675, y: 0, z: 0.0648785, w: 0.9978714}
-  m_LocalPosition: {x: -4.43, y: 47.89, z: -12.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4339605626525262}
@@ -2339,6 +2340,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 12, z: 1.5}
   m_Center: {x: -1.54, y: -5.75, z: -1.68}
+--- !u!82 &82738937542551230
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1060677373728456}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243217846834080500, guid: 4e46b0d4dbf5048dba26c1aa7bfe3da4,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: d8eb565822fba4eb2921755f05a9e1e0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114919835327537922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2350,7 +2432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8a08902fc494a6ebf9075dc45ca93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endHeight: 4
+  endHeight: 2
   speed: 5
   growing: 0
   growingEnd: 3

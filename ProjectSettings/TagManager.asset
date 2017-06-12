@@ -19,6 +19,10 @@ TagManager:
   - PlanetBarrier
   - Boulder
   - Fire
+  - SpeedBall
+  - LifeBall
+  - Artifact
+  - VulcanoCrack
   layers:
   - Default
   - TransparentFX

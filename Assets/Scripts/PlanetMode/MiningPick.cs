@@ -22,7 +22,6 @@ public class MiningPick : Tool {
 
 	public override void Use () {
 		if (Input.GetAxisRaw ("Fire1") == 1) {
-				pickCollider.enabled = true;
 				player.TriggerPickAnimation ();
 		}
 	}
@@ -48,6 +47,14 @@ public class MiningPick : Tool {
 				audioSource.PlayOneShot (pickAudioClips[Random.Range(0, pickAudioClips.Length)], 1f);
 			}
 		}
+	}
+
+	public void StartPicking () {
+		pickCollider.enabled = true;
+	}
+
+	public void EndPicking () {
+		pickCollider.enabled = false;
 	}
 
 }

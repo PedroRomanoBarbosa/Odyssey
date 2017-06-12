@@ -8,12 +8,15 @@ public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
 	// Other
+	private Collider playerCollider;
+	private Collider planetCollider;
 	public Animator animator;
 	private float damageCounter;
 	private bool damaged;
 	public float damageDuration;
 	public Transform detectionAnchor;
 	private bool inputActive;
+	private bool vulcanicCrack;
 
 	// Status
 	public int lives;
@@ -21,11 +24,16 @@ public class Player : FauxGravityBody {
 	public int energy;
 
 	// Movement Variables
+	private float baseSpeed;
 	private Vector3 move;
 	private Vector3 velocity;
+	private float speedCounter;
+	private bool speeding;
 	public float speed;
+	public float speedingCooldown;
 	public float rotationSpeed;
 	public float maxClimbAngle;
+	public GameObject speedTrail;
 
 	// Children Variables
 	private Transform movementAxis;
@@ -37,6 +45,7 @@ public class Player : FauxGravityBody {
 	private Vector3 gravityVector;
 
 	// Jump Variables
+	private bool isGroundedLastFrame;
 	public bool isGrounded;
 	public bool jumping;
 	private Vector3 jumpingVelocity;
@@ -60,6 +69,9 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
+		playerCollider = GetComponent<Collider> ();
+		planetCollider = attractor.GetComponent<Collider> ();
+		baseSpeed = speed;
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
 		model = transform.GetChild (1);
@@ -84,8 +96,13 @@ public class Player : FauxGravityBody {
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
 			CheckGrounded ();
+			CheckVulcanicCrack ();
+			if (vulcanicCrack) {
+				Physics.IgnoreCollision (planetCollider, playerCollider, true);
+			}
 			MovePlayer ();
 			ChangeWeapon ();
+			SpeedingLoop ();
 		}
 		DamageLoop ();
 	}
@@ -113,15 +130,43 @@ public class Player : FauxGravityBody {
 		}
 	}
 
+	void SpeedingLoop() {
+		if (speeding) {
+			if (speedCounter >= speedingCooldown) {
+				speeding = false;
+				speedTrail.SetActive (false);
+				speed = baseSpeed;
+			} else {
+				speedCounter += Time.deltaTime;
+			}
+		}
+	}
+
 	void CheckGrounded () {
 		Debug.DrawRay (transform.position, -transform.up * 1.2f);
 		if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
 			isGrounded = true;
+			if (isGroundedLastFrame != isGrounded) {
+				audioSources [2].Play ();
+			}
+			isGroundedLastFrame = isGrounded;
 			jumpCounter = 0f;
 			jumping = false;
 			animator.SetBool ("Jump", false);
 		} else {
 			isGrounded = false;
+			isGroundedLastFrame = isGrounded;
+		}
+	}
+
+	void CheckVulcanicCrack () {
+		Debug.DrawRay (transform.position, -transform.up * 3f);
+		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 3f);
+		vulcanicCrack = false;
+		for (int i = 0; i < hits.Length; i++) {
+			if (hits [i].collider.CompareTag ("VulcanoCrack")) {
+				vulcanicCrack = true;
+			}
 		}
 	}
 
@@ -198,46 +243,62 @@ public class Player : FauxGravityBody {
 		return gravity * -attractor.gravity + -attractor.gravity;
 	}
 
-    void OnTriggerEnter(Collider collider){
-        GameObject colliderObject = collider.gameObject;
-        if (colliderObject.name == "MiningPickItem"){
-            equippedTools.Add(tools[(int)GameVariables.Tools.MiningPick]);
-            equippedTools[toolIndex].gameObject.SetActive(false);
-            toolIndex = equippedTools.Count - 1;
+	void OnTriggerEnter(Collider collider) {
+		GameObject colliderObject = collider.gameObject;
+		if (colliderObject.name == "MiningPickItem") {
+			equippedTools.Add (tools [(int)GameVariables.Tools.MiningPick]);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools[toolIndex].gameObject.SetActive(true);
-            Destroy(colliderObject);
-        }
-        else if (colliderObject.name == "MissileLauncherItem"){
-            equippedTools.Add(tools[(int)GameVariables.Tools.MissileLauncher]);
-            equippedTools[toolIndex].gameObject.SetActive(false);
-            toolIndex = equippedTools.Count - 1;
+            equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
+			audioSources [4].Play ();
+		} else if (colliderObject.name == "MissileLauncherItem") {
+			equippedTools.Add (tools [(int)GameVariables.Tools.MissileLauncher]);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools[toolIndex].gameObject.SetActive(true);
-            Destroy(colliderObject);
-        }
-        else if (colliderObject.name == "FlamethrowerItem") {
-            equippedTools.Add(tools[(int)GameVariables.Tools.Flamethrower]);
-            equippedTools[toolIndex].gameObject.SetActive(false);
-            toolIndex = equippedTools.Count - 1;
+            equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
+			audioSources [4].Play ();
+		} else if (colliderObject.name == "FlamethrowerItem") {
+			equippedTools.Add (tools [(int)GameVariables.Tools.Flamethrower]);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools[toolIndex].gameObject.SetActive(true);
-            Destroy(colliderObject);
-        }
-        else if (collider.gameObject.name == "WateringCanItem"){
-            equippedTools.Add(tools[(int)GameVariables.Tools.WateringCan]);
-            equippedTools[toolIndex].gameObject.SetActive(false);
-            toolIndex = equippedTools.Count - 1;
+            equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
+			audioSources [4].Play ();
+		} else if (collider.gameObject.name == "WateringCanItem") {
+			equippedTools.Add (tools [(int)GameVariables.Tools.WateringCan]);
+			equippedTools [toolIndex].gameObject.SetActive (false);
+			toolIndex = equippedTools.Count - 1;
             FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
-            equippedTools[toolIndex].gameObject.SetActive(true);
-            Destroy(colliderObject);
-        }
-        else if (colliderObject.name == "MineralCollider"){
-            audioSources[0].Play();
-            energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral>().value;
-            Destroy(colliderObject.transform.parent.gameObject);
-        }
-    }
+            equippedTools [toolIndex].gameObject.SetActive (true);
+			Destroy (colliderObject);
+			audioSources [4].Play ();
+		} else if (colliderObject.name == "MineralCollider") {
+			audioSources [0].Play ();
+			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
+			Destroy (colliderObject.transform.parent.gameObject);
+		} else if (colliderObject.CompareTag ("LifeBall")) {
+			audioSources [1].Play ();
+			lives++;
+			if (lives > maxLives) {
+				lives = maxLives;
+			}
+			Destroy (colliderObject);
+		} else if (collider.CompareTag ("SpeedBall")) {
+			speeding = true;
+			speedCounter = 0f;
+			speed = baseSpeed + collider.GetComponent<SpeedBall> ().speed;
+			collider.GetComponent<SpeedBall> ().Cath ();
+			speedTrail.SetActive (true);
+			audioSources [3].Play ();
+		} else if (collider.CompareTag ("Artifact")) {
+			audioSources [5].Play ();
+		}
+	}
 
     public void EnterGravityZone (Vector3 vector) {
 		planetGravity = false;
@@ -255,6 +316,7 @@ public class Player : FauxGravityBody {
 	public void IncreaseMaxLife (int num) {
 		maxLives += num;
 		lives = maxLives;
+		audioSources [4].Play ();
 	}
 
 	public void DecreaseLife (int num) {
@@ -306,6 +368,14 @@ public class Player : FauxGravityBody {
 		animator.SetBool("MiningPick", false);
 		inputActive = true;
 		((MiningPick)tools [0]).AnimationEnd ();
+	}
+
+	public void StartPicking () {
+		((MiningPick)tools [0]).StartPicking ();
+	}
+
+	public void EndPicking () {
+		((MiningPick)tools [0]).EndPicking ();
 	}
 
 }
