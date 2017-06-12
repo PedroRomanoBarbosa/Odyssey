@@ -7,6 +7,7 @@ public class AlienPlant : MonoBehaviour {
 	private float heightCounter;
 	private bool active;
 	private float growingCounter;
+	private AudioSource audioSource;
 
 	public float endHeight;
 	public float speed;
@@ -20,6 +21,7 @@ public class AlienPlant : MonoBehaviour {
 		heightCounter = 0;
 		active = false;
 		growing = false;
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
@@ -37,7 +39,12 @@ public class AlienPlant : MonoBehaviour {
 			counter += Time.deltaTime;
 			heightCounter += speed * Time.deltaTime;
 			if (heightCounter < endHeight) {
+				if (!audioSource.isPlaying) {
+					audioSource.Play ();
+				}
 				transform.Translate (0, speed * Time.deltaTime, 0);
+			} else {
+				audioSource.Stop ();
 			}
 		}
 		growing = false;

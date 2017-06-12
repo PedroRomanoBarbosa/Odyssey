@@ -21,6 +21,7 @@ TagManager:
   - Fire
   - SpeedBall
   - LifeBall
+  - Artifact
   layers:
   - Default
   - TransparentFX

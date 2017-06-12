@@ -16,6 +16,7 @@ public class Slime : Enemy {
 	private bool dying;
 	private int pointIterator;
 	private bool playerInAttackArea;
+	private AudioSource audioSource;
 
 	public GameObject modelObject;
 	public GameObject deathExplosion;
@@ -26,6 +27,7 @@ public class Slime : Enemy {
 	public Collider attackCollider;
 
 	void Start () {
+		audioSource = GetComponent<AudioSource> ();
 		rigidBody = GetComponent<Rigidbody> ();
 		bodyCollider = GetComponent<SphereCollider> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -161,6 +163,7 @@ public class Slime : Enemy {
 			player.DecreaseLife (damage);
 		}
 		attackCollider.enabled = false;
+		audioSource.Play ();
 	}
 
 }

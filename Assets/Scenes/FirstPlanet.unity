@@ -4772,6 +4772,11 @@ Prefab:
       propertyPath: playerStartPosition2
       value: 
       objectReference: {fileID: 125134515}
+    - target: {fileID: 82572199016952934, guid: e879aedeab54e41c6b5386011679e0c5,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e5600db0421145a2bf336f4bab4697d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
   m_IsPrefabParent: 0
@@ -9242,6 +9247,18 @@ Prefab:
     - target: {fileID: 4982850284074668, guid: 590b63eb85edb4680a48f184cac27a4e, type: 2}
       propertyPath: m_RootOrder
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600908407401196, guid: 590b63eb85edb4680a48f184cac27a4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600908407401196, guid: 590b63eb85edb4680a48f184cac27a4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600908407401196, guid: 590b63eb85edb4680a48f184cac27a4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 590b63eb85edb4680a48f184cac27a4e, type: 2}
