@@ -61,7 +61,16 @@ public class Spaceship_Camera : MonoBehaviour {
 		whiteFadeScreen.gameObject.SetActive(false);
 
         //Don´t destroy when loading another scene
-        DontDestroyOnLoad(pause);
+		if (GameObject.Find ("Pause") != null) {
+             pause = GameObject.Find ("Pause");
+			 Debug.Log("I didn't do the thing");
+         } else {
+             pause = Instantiate(pause);
+			 pause.transform.name = "Pause";
+			 Debug.Log("I did the thing");
+         }
+		DontDestroyOnLoad(pause);
+
     }
 	void LateUpdate () {
 		//If the player is getting closer to the space boundaries, the camera should have a warning effect
