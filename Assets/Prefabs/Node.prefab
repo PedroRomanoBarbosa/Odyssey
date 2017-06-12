@@ -607,6 +607,7 @@ MonoBehaviour:
     type: 2}
   explosionClip: {fileID: 8300000, guid: 757719d2279234238967a63085941293, type: 3}
   boulderRenderer: {fileID: 0}
+  cooldownDuration: 20
 --- !u!198 &198241593320352116
 ParticleSystem:
   m_ObjectHideFlags: 1

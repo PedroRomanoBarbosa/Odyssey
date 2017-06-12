@@ -9,4 +9,12 @@ public class AstronautModel : MonoBehaviour {
 		player.OnPickingAnimatioEnd ();
 	}
 
+	public void StartPicking () {
+		player.StartPicking ();
+	}
+
+	public void EndPicking () {
+		player.EndPicking ();
+	}
+
 }

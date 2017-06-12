@@ -6,11 +6,14 @@ public class NodeDestruction : MonoBehaviour {
 	private int state;
 	private GameObject sparkle, explosion;
 	private AudioSource audioSource;
+	private float cooldownCounter;
+	private bool destroyed;
 
 	public GameObject mineralPrefab;
 	public GameObject lifeBallPrefab;
 	public AudioClip explosionClip;
 	public Renderer boulderRenderer;
+	public float cooldownDuration;
 
 	void Start () {
 		audioSource = GetComponent<AudioSource> ();
@@ -23,6 +26,19 @@ public class NodeDestruction : MonoBehaviour {
 		sparkle.SetActive (false);
 	}
 
+	void Update () {
+		if (destroyed) {
+			if (cooldownCounter >= cooldownDuration) {
+				destroyed = false;
+				GetComponent<BoxCollider> ().enabled = true;
+				transform.GetChild (state).GetComponent<Renderer> ().enabled = true;
+				state = 2;
+			} else {
+				cooldownCounter += Time.deltaTime;
+			}
+		}
+	}
+
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.CompareTag ("Pick")) {
 			transform.GetChild (state).GetComponent<Renderer> ().enabled = false;
@@ -30,6 +46,8 @@ public class NodeDestruction : MonoBehaviour {
 			sparkle.SetActive (true);
 			sparkle.GetComponent<ParticleSystem> ().Play(true);
 			if (state == -1) {
+				cooldownCounter = 0f;
+				destroyed = true;
 				GetComponent<BoxCollider> ().enabled = false;
 				state = 2;
 				if (explosionClip != null) {
