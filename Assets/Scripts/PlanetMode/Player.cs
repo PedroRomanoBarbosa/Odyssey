@@ -234,24 +234,28 @@ public class Player : FauxGravityBody {
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+			audioSources [4].Play ();
 		} else if (colliderObject.name == "MissileLauncherItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.MissileLauncher]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+			audioSources [4].Play ();
 		} else if (colliderObject.name == "FlamethrowerItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.Flamethrower]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+			audioSources [4].Play ();
 		} else if (collider.gameObject.name == "WateringCanItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.WateringCan]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
 			equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
+			audioSources [4].Play ();
 		} else if (colliderObject.name == "MineralCollider") {
 			audioSources [0].Play ();
 			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
@@ -270,6 +274,8 @@ public class Player : FauxGravityBody {
 			collider.GetComponent<SpeedBall> ().Cath ();
 			speedTrail.SetActive (true);
 			audioSources [3].Play ();
+		} else if (collider.CompareTag ("Artifact")) {
+			audioSources [5].Play ();
 		}
 	}
 

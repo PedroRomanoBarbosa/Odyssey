@@ -1896,6 +1896,17 @@ Prefab:
       propertyPath: attractor
       value: 
       objectReference: {fileID: 1906232549}
+    - target: {fileID: 82572199016952934, guid: e879aedeab54e41c6b5386011679e0c5,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 82572199016952934, guid: e879aedeab54e41c6b5386011679e0c5,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243244958108685950, guid: 4e46b0d4dbf5048dba26c1aa7bfe3da4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e879aedeab54e41c6b5386011679e0c5, type: 2}
   m_IsPrefabParent: 0
