@@ -17,11 +17,16 @@ public class Player : FauxGravityBody {
 	public Transform detectionAnchor;
 	private bool inputActive;
 	private bool vulcanicCrack;
+	private float fallingCounter;
+	private bool falling;
+	public Camera mainCamera;
 
 	// Status
 	public int lives;
 	public int maxLives;
 	public int energy;
+	public float fallingDuration;
+	public float cameraFallingDuration;
 
 	// Movement Variables
 	private float baseSpeed;
@@ -34,6 +39,7 @@ public class Player : FauxGravityBody {
 	public float rotationSpeed;
 	public float maxClimbAngle;
 	public GameObject speedTrail;
+	public Transform crackRaycastAnchor;
 
 	// Children Variables
 	private Transform movementAxis;
@@ -107,6 +113,7 @@ public class Player : FauxGravityBody {
             UpdateUIText();
 			SpeedingLoop ();
 		}
+		FallingLoop ();
 		DamageLoop ();
 	}
 
@@ -150,6 +157,21 @@ public class Player : FauxGravityBody {
 		}
 	}
 
+	void FallingLoop () {
+		if (falling) {
+			if (fallingCounter >= cameraFallingDuration) {
+				falling = false;
+				GameVariables.cinematicPaused = false;
+				SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
+			} else if (fallingCounter >= fallingDuration && fallingCounter < cameraFallingDuration) {
+				GameVariables.cinematicPaused = true;
+				fallingCounter += Time.deltaTime;
+			} else {
+				fallingCounter += Time.deltaTime;
+			}
+		}
+	}
+
 	void CheckGrounded () {
 		Debug.DrawRay (transform.position, -transform.up * 1.5f);
 		int mask = 1 << 0;
@@ -169,8 +191,8 @@ public class Player : FauxGravityBody {
 	}
 
 	void CheckVulcanicCrack () {
-		Debug.DrawRay (transform.position, -transform.up * 10f);
-		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 10f);
+		Debug.DrawRay (transform.position, -transform.up * 30f);
+		RaycastHit[] hits = Physics.RaycastAll (crackRaycastAnchor.position, -transform.up, 30f);
 		vulcanicCrack = false;
 		bool cracks = false;
 		bool planet = false;
@@ -313,6 +335,7 @@ public class Player : FauxGravityBody {
 			audioSources [5].Play ();
 		} else if (collider.CompareTag ("VulcanoCrack")) {
 			FallingAnimation ();
+			DecreaseLife (lives);
 		}
 	}
 
@@ -330,7 +353,8 @@ public class Player : FauxGravityBody {
 	}
 
 	public void FallingAnimation () {
-		Debug.Log ("Falling");
+		mainCamera.transform.parent = null;
+		falling = true;
 	}
 
 	public void IncreaseMaxLife (int num) {
@@ -344,7 +368,7 @@ public class Player : FauxGravityBody {
 		damaged = true;
 		damageCounter = 0f;
 		ChangeColor (true);
-		if (lives <= 0) {
+		if (lives <= 0 && !falling) {
 			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
 		}
 	}

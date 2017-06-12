@@ -16,6 +16,8 @@ public class Satelite : MonoBehaviour {
 	}
 
 	void Update () {
-		transform.RotateAround (center.position, center.up, speed * Time.deltaTime);
+		if (!GameVariables.cinematicPaused) {
+			transform.RotateAround (center.position, center.up, speed * Time.deltaTime);
+		}
 	}
 }
