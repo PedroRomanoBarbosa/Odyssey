@@ -8,6 +8,8 @@ public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
 	// Other
+	private Collider playerCollider;
+	private Collider planetCollider;
 	public Animator animator;
 	private float damageCounter;
 	private bool damaged;
@@ -66,6 +68,8 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
+		playerCollider = GetComponent<Collider> ();
+		planetCollider = attractor.gameObject.GetComponent<Collider> ();
 		baseSpeed = speed;
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
@@ -91,6 +95,9 @@ public class Player : FauxGravityBody {
 		if (!GameVariables.cinematicPaused) {
 			CheckGrounded ();
 			CheckVulcanicCrack ();
+			if (vulcanicCrack) {
+				Physics.IgnoreCollision (planetCollider, planetCollider);
+			}
 			MovePlayer ();
 			ChangeWeapon ();
             UpdateUIText();
