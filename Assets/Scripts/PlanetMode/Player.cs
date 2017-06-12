@@ -295,6 +295,7 @@ public class Player : FauxGravityBody {
 	public void IncreaseMaxLife (int num) {
 		maxLives += num;
 		lives = maxLives;
+		audioSources [4].Play ();
 	}
 
 	public void DecreaseLife (int num) {
