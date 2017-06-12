@@ -18,7 +18,9 @@ public class AstronautModel : MonoBehaviour {
 	}
 
 	public void Shoot () {
-		((MissileLauncher)player.tools [1]).Shoot ();
+		if (player.tools[1].gameObject.activeSelf) {
+			((MissileLauncher)player.tools [1]).Shoot ();
+		}
 	}
 
 }
