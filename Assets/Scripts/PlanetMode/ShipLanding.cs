@@ -40,7 +40,7 @@ public class ShipLanding : MonoBehaviour {
 				if (reverse) {
 					transform.position = startPosition;
 					transform.rotation = startRotation;
-					SceneManager.LoadScene ("spaceship_control_test_ui");
+					SceneManager.LoadScene ("Space");
 				} else {
 					transform.position = end.position;
 					transform.rotation = end.rotation;
