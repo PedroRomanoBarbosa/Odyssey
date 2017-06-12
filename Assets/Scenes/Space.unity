@@ -2280,13 +2280,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1486011749}
-  m_LocalRotation: {x: 0.31170902, y: 0.6378708, z: -0.008566536, w: 0.7041911}
-  m_LocalPosition: {x: -300, y: 260, z: -90}
+  m_LocalRotation: {x: 0.21828581, y: 0.51899153, z: -0.13906339, w: 0.81465364}
+  m_LocalPosition: {x: -308.8, y: 129.1, z: -105.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 188900860}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 26.739, y: 90.519005, z: 25.580002}
+  m_LocalEulerAnglesHint: {x: 30, y: 65, z: 0}
 --- !u!1 &1499642535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,6 +2496,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnNormal
+      value: 
+      objectReference: {fileID: 1486011749}
     - target: {fileID: 114765407354468842, guid: eaa048329f1d9234b9fb58b050e3f419,
         type: 2}
       propertyPath: shipCamera
@@ -2511,6 +2516,11 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 526331228}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: shipCamera
+      value: 
+      objectReference: {fileID: 1406252607}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
   m_IsPrefabParent: 0
