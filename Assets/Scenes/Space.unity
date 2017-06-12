@@ -1924,30 +1924,6 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 526331228}
-    - target: {fileID: 4268956296770886, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268956296770886, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680626300684586, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.075
-      objectReference: {fileID: 0}
-    - target: {fileID: 4934353092262876, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.065
-      objectReference: {fileID: 0}
-    - target: {fileID: 4680626300684586, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4934353092262876, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
   m_IsPrefabParent: 0
