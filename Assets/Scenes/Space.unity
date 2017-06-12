@@ -389,7 +389,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 325011113}
---- !u!1001 &338100306
+--- !u!82 &338100307 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82945584243679978, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 388974042}
+--- !u!1 &338100309 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1838600176377362, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 388974042}
+--- !u!1001 &388974042
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -446,16 +456,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f751e2b1f806b549bfb6a56dc06e0ca, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &338100307 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82945584243679978, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
-    type: 2}
-  m_PrefabInternal: {fileID: 338100306}
---- !u!1 &338100309 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1838600176377362, guid: 2f751e2b1f806b549bfb6a56dc06e0ca,
-    type: 2}
-  m_PrefabInternal: {fileID: 338100306}
 --- !u!1 &426322415
 GameObject:
   m_ObjectHideFlags: 0
