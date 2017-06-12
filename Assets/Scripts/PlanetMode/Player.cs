@@ -8,12 +8,15 @@ public class Player : FauxGravityBody {
 	private Rigidbody rigidBody;
 
 	// Other
+	private Collider playerCollider;
+	private Collider planetCollider;
 	public Animator animator;
 	private float damageCounter;
 	private bool damaged;
 	public float damageDuration;
 	public Transform detectionAnchor;
 	private bool inputActive;
+	private bool vulcanicCrack;
 
 	// Status
 	public int lives;
@@ -65,6 +68,8 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
+		playerCollider = GetComponent<Collider> ();
+		planetCollider = attractor.GetComponent<Collider> ();
 		baseSpeed = speed;
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
@@ -89,6 +94,10 @@ public class Player : FauxGravityBody {
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
 			CheckGrounded ();
+			CheckVulcanicCrack ();
+			if (vulcanicCrack) {
+				Physics.IgnoreCollision (planetCollider, playerCollider, true);
+			}
 			MovePlayer ();
 			ChangeWeapon ();
             UpdateUIText();
@@ -151,6 +160,17 @@ public class Player : FauxGravityBody {
 		} else {
 			isGrounded = false;
 			isGroundedLastFrame = isGrounded;
+		}
+	}
+
+	void CheckVulcanicCrack () {
+		Debug.DrawRay (transform.position, -transform.up * 3f);
+		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 3f);
+		vulcanicCrack = false;
+		for (int i = 0; i < hits.Length; i++) {
+			if (hits [i].collider.CompareTag ("VulcanoCrack")) {
+				vulcanicCrack = true;
+			}
 		}
 	}
 
@@ -295,6 +315,7 @@ public class Player : FauxGravityBody {
 	public void IncreaseMaxLife (int num) {
 		maxLives += num;
 		lives = maxLives;
+		audioSources [4].Play ();
 	}
 
 	public void DecreaseLife (int num) {
