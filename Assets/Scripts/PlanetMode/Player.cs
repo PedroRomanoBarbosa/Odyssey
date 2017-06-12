@@ -14,6 +14,7 @@ public class Player : FauxGravityBody {
 	public float damageDuration;
 	public Transform detectionAnchor;
 	private bool inputActive;
+	private bool vulcanicCrack;
 
 	// Status
 	public int lives;
@@ -89,6 +90,7 @@ public class Player : FauxGravityBody {
 	void Update () {
 		if (!GameVariables.cinematicPaused) {
 			CheckGrounded ();
+			CheckVulcanicCrack ();
 			MovePlayer ();
 			ChangeWeapon ();
             UpdateUIText();
@@ -151,6 +153,18 @@ public class Player : FauxGravityBody {
 		} else {
 			isGrounded = false;
 			isGroundedLastFrame = isGrounded;
+		}
+	}
+
+	// TODO needs to be adjusted
+	void CheckVulcanicCrack () {
+		Debug.DrawRay (transform.position, -transform.up * 3f);
+		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 3f);
+		vulcanicCrack = false;
+		for (int i = 0; i < hits.Length; i++) {
+			if (hits [i].collider.CompareTag ("VulcanoCrack")) {
+				vulcanicCrack = true;
+			}
 		}
 	}
 

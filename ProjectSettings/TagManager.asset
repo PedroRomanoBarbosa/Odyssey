@@ -22,6 +22,7 @@ TagManager:
   - SpeedBall
   - LifeBall
   - Artifact
+  - VulcanoCrack
   layers:
   - Default
   - TransparentFX
