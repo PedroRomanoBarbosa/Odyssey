@@ -17,4 +17,8 @@ public class AstronautModel : MonoBehaviour {
 		player.EndPicking ();
 	}
 
+	public void Shoot () {
+		((MissileLauncher)player.tools [1]).Shoot ();
+	}
+
 }
