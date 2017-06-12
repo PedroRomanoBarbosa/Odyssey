@@ -16,7 +16,7 @@ public class Slime : Enemy {
 	private bool dying;
 	private int pointIterator;
 	private bool playerInAttackArea;
-	private AudioSource audioSource;
+	private AudioSource[] audioSources;
 
 	public GameObject modelObject;
 	public GameObject deathExplosion;
@@ -27,7 +27,7 @@ public class Slime : Enemy {
 	public Collider attackCollider;
 
 	void Start () {
-		audioSource = GetComponent<AudioSource> ();
+		audioSources = GetComponents<AudioSource> ();
 		rigidBody = GetComponent<Rigidbody> ();
 		bodyCollider = GetComponent<SphereCollider> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -93,22 +93,28 @@ public class Slime : Enemy {
 		if (Physics.Raycast (transform.position, direction, out raycasthit)) {
 			if (raycasthit.collider.gameObject.CompareTag ("Player")) {
 				float angle = Vector3.Angle (transform.forward, direction);
-				if (angle <= sensorMaxAngle) {
+				if (angle <= sensorMaxAngle || damaged) {
 					following = true;
 					stop = false;
 					animator.SetTrigger ("Move");
 				} else {
+					audioSources [1].Stop ();
 					following = false;
 				}
 			} else {
+				audioSources [1].Stop ();
 				following = false;
 			}
 		} else {
+			audioSources [1].Stop ();
 			following = false;
 		}
 	}
 
 	void Move () {
+		if (!audioSources[1].isPlaying) {
+			audioSources[1].Play ();
+		}
 		moveVector = Vector3.zero;
 		Vector3 feet = player.transform.Find ("Feet").position;
 		transform.rotation = Quaternion.LookRotation (feet - transform.position, transform.up);
@@ -142,6 +148,7 @@ public class Slime : Enemy {
 		following = false;
 		stop = true;
 		animator.SetTrigger ("Iddle");
+		audioSources [1].Stop ();
 	}
 
 	public override void Die () {
@@ -163,7 +170,7 @@ public class Slime : Enemy {
 			player.DecreaseLife (damage);
 		}
 		attackCollider.enabled = false;
-		audioSource.Play ();
+		audioSources[0].Play ();
 	}
 
 }

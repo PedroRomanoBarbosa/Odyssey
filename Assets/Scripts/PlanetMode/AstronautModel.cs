@@ -9,4 +9,18 @@ public class AstronautModel : MonoBehaviour {
 		player.OnPickingAnimatioEnd ();
 	}
 
+	public void StartPicking () {
+		player.StartPicking ();
+	}
+
+	public void EndPicking () {
+		player.EndPicking ();
+	}
+
+	public void Shoot () {
+		if (player.tools[1].gameObject.activeSelf) {
+			((MissileLauncher)player.tools [1]).Shoot ();
+		}
+	}
+
 }

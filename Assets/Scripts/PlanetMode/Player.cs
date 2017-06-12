@@ -368,4 +368,12 @@ public class Player : FauxGravityBody {
 		((MiningPick)tools [0]).AnimationEnd ();
 	}
 
+	public void StartPicking () {
+		((MiningPick)tools [0]).StartPicking ();
+	}
+
+	public void EndPicking () {
+		((MiningPick)tools [0]).EndPicking ();
+	}
+
 }
