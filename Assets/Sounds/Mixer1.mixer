@@ -26,6 +26,7 @@ AudioMixerController:
     - 4f24838c19b8c48a2aa6ddc169ffb9c6
     - 9e795f21ba2d84c818ef4f9158528b2f
     - 8a209bfd34c8147c4b53f040b3c9700b
+    - 628d13bf2e55f4ab4bc21ac0bc9adcd9
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -46,6 +47,7 @@ AudioMixerGroupController:
   - {fileID: 243500453403640878}
   - {fileID: 243244958108685950}
   - {fileID: 243904487765948256}
+  - {fileID: 243045103021433504}
   m_Volume: 927425d400ddf44d398f27582c443c48
   m_Pitch: da85fa7eb32414b1b891180b8cee7ec0
   m_Effects:
@@ -82,7 +84,25 @@ AudioMixerSnapshotController:
     481a0e054fb6247858665702e7dcb4fc: -10.345207
     caa498166302f4b398babb8d9c6df29c: -9.833286
     a365ed77722b34c72b760c7e13c05f8f: 6.2251854
+    43c79bd74b57f47d7bf8f0fd807c788d: -4.560346
   m_TransitionOverrides: {}
+--- !u!243 &243045103021433504
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Monsters
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 628d13bf2e55f4ab4bc21ac0bc9adcd9
+  m_Children: []
+  m_Volume: 43c79bd74b57f47d7bf8f0fd807c788d
+  m_Pitch: 3fa10e7dc29dc491aaee8f6ecf060aec
+  m_Effects:
+  - {fileID: 244430962590185300}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &243217846834080500
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -267,6 +287,19 @@ AudioMixerEffectController:
   m_EffectID: ab02207d17bf146d78613da1595e6f5b
   m_EffectName: Attenuation
   m_MixLevel: 6e4ff00bb0c2c4b78b1b508fa1d0c84a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244430962590185300
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: be5530fd63aea4d5bb3b4f0e9f5bb103
+  m_EffectName: Attenuation
+  m_MixLevel: 70a213ac8bc634abd8e39c02a89b22b4
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
