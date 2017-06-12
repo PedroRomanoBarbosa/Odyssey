@@ -311,6 +311,8 @@ public class Player : FauxGravityBody {
 			audioSources [3].Play ();
 		} else if (collider.CompareTag ("Artifact")) {
 			audioSources [5].Play ();
+		} else if (collider.CompareTag ("VulcanoCrack")) {
+			FallingAnimation ();
 		}
 	}
 
@@ -325,6 +327,10 @@ public class Player : FauxGravityBody {
 		if (gravityZoneCounter <= 0) {
 			planetGravity = true;
 		}
+	}
+
+	public void FallingAnimation () {
+		Debug.Log ("Falling");
 	}
 
 	public void IncreaseMaxLife (int num) {
