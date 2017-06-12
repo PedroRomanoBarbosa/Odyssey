@@ -23,6 +23,7 @@ TagManager:
   - LifeBall
   - Artifact
   - VulcanoCrack
+  - Planet
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Vulcanic
   - 
   - 
   - 
