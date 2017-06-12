@@ -2907,7 +2907,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1101210142179444, guid: 88179088585b9484da50b35019218c7d, type: 2}
       propertyPath: m_TagString
-      value: VulcanoCrack
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88179088585b9484da50b35019218c7d, type: 2}
