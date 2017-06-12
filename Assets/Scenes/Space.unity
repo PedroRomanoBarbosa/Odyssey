@@ -1973,7 +1973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1328108291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2304,7 +2304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1499642536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2752,6 +2752,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 4.59
       objectReference: {fileID: 0}
+    - target: {fileID: 114962556848884898, guid: fcfffb5727d64844fa5086e5e0020e97,
+        type: 2}
+      propertyPath: moonScene
+      value: 
+      objectReference: {fileID: 102900000, guid: 694154341c544b54a8cd276680b67268,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcfffb5727d64844fa5086e5e0020e97, type: 2}
   m_IsPrefabParent: 0

@@ -61,7 +61,10 @@ public class Spaceship_Camera : MonoBehaviour {
 		whiteFadeScreen.gameObject.SetActive(false);
 
         //Don´t destroy when loading another scene
-        DontDestroyOnLoad(pause);
+		//It's causing issues when reloading this own scene, due multiple Event Systems. 
+		//Its self-destruction logic when entering its creating scene must be failing.
+        //DontDestroyOnLoad(pause);
+
     }
 	void LateUpdate () {
 		//If the player is getting closer to the space boundaries, the camera should have a warning effect
