@@ -121,7 +121,7 @@ public class Player : FauxGravityBody {
 
     void UpdateUiText()
     {
-        points.text = pts + " Pts";
+        points.text = energy+"";
     }
 
 	public new void FixedUpdate () {
