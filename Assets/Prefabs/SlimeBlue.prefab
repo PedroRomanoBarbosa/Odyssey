@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153d710efd0a246a290c5a7c1d90bff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 3
+  life: 2
   damage: 2
   drop: {fileID: 0}
   thisRenderer: {fileID: 137622290661559686}

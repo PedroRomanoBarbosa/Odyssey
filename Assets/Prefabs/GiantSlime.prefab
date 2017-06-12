@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153d710efd0a246a290c5a7c1d90bff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 7
+  life: 5
   damage: 2
   drop: {fileID: 1589671749108032, guid: 203ac8c84f8c842f8bc23a5d4d90e1b2, type: 2}
   thisRenderer: {fileID: 137854165541215380}
