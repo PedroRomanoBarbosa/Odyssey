@@ -911,6 +911,7 @@ MonoBehaviour:
   spawnVulcanic: {fileID: 0}
   spawnForest: {fileID: 0}
   spawnMetal: {fileID: 0}
+  shipCamera: {fileID: 0}
 --- !u!114 &114449351205488938
 MonoBehaviour:
   m_ObjectHideFlags: 1
