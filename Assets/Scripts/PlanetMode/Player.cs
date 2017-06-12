@@ -69,7 +69,7 @@ public class Player : FauxGravityBody {
 
 	void Start () {
 		playerCollider = GetComponent<Collider> ();
-		planetCollider = attractor.gameObject.GetComponent<Collider> ();
+		planetCollider = attractor.GetComponent<Collider> ();
 		baseSpeed = speed;
 		audioSources = GetComponents<AudioSource> ();
 		movementAxis = transform.GetChild (0);
@@ -96,7 +96,7 @@ public class Player : FauxGravityBody {
 			CheckGrounded ();
 			CheckVulcanicCrack ();
 			if (vulcanicCrack) {
-				Physics.IgnoreCollision (planetCollider, planetCollider);
+				Physics.IgnoreCollision (planetCollider, playerCollider, true);
 			}
 			MovePlayer ();
 			ChangeWeapon ();
@@ -163,7 +163,6 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	// TODO needs to be adjusted
 	void CheckVulcanicCrack () {
 		Debug.DrawRay (transform.position, -transform.up * 3f);
 		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 3f);
