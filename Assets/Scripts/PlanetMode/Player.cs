@@ -99,6 +99,8 @@ public class Player : FauxGravityBody {
 			CheckVulcanicCrack ();
 			if (vulcanicCrack) {
 				Physics.IgnoreCollision (planetCollider, playerCollider, true);
+			} else {
+				Physics.IgnoreCollision (planetCollider, playerCollider, false);
 			}
 			MovePlayer ();
 			ChangeWeapon ();
