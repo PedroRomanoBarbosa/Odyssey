@@ -6,7 +6,6 @@ public class Spaceship_ColliderController : MonoBehaviour {
 	Spaceship_Movement playerScript;
 	public AudioClip boostSound;
 	public AudioClip engineStart;
-	public AudioClip engineLoop;
 
 	void Start()
 	{

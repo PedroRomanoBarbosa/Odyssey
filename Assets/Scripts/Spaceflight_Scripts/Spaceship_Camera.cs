@@ -107,10 +107,14 @@ public class Spaceship_Camera : MonoBehaviour {
 		if (Input.GetKey(KeyCode.E))
 		{
 			transform.Rotate(0,0,Time.smoothDeltaTime * -rotationFactor);
+			playerScript.maneuverSound.volume = playerScript.shipForwardSpeed;
 		}
 		else if (Input.GetKey(KeyCode.Q))
 		{
 			transform.Rotate(0,0,Time.smoothDeltaTime * rotationFactor);
+			playerScript.maneuverSound.volume = playerScript.shipForwardSpeed;
+		} else {
+			playerScript.maneuverSound.volume = 0;
 		}
 
 		//Find a point behind and above the player ship and go there smoothly
