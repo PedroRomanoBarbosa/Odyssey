@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: d9aba3f101e8c433bb408dbd3385a676
-timeCreated: 1496883744
+guid: ea7df0f74bbac4675867854509cca536
+timeCreated: 1497274501
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: planeta-selva
+    100000: buraco-selva
+    100002: //RootNode
+    100004: planeta-selva
+    400000: buraco-selva
+    400002: //RootNode
+    400004: planeta-selva
+    2300000: buraco-selva
+    2300002: planeta-selva
+    3300000: buraco-selva
+    3300002: planeta-selva
+    4300000: buraco-selva
+    4300002: planeta-selva
   materials:
     importMaterials: 1
     materialName: 0

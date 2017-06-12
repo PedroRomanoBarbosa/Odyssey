@@ -6,7 +6,8 @@ using UnityEngine;
 public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
-	public GameObject missilePrefab;
+    public AudioSource engineSound;
+    public AudioSource maneuverSound;
 
     //Space and Planet Bounds controller bools - changes behaviour.
     bool OutsideBounds = false;
@@ -77,6 +78,13 @@ public class Spaceship_Movement : MonoBehaviour
         //Update Speed Display
         if(speedImage != null)
             speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed*1.5f, minSpeed);
+
+        //Update Sound Intensity based on speed
+        float vol = shipForwardSpeed/maxSpeed;
+        if(vol > 1)
+            vol = 1;
+        engineSound.volume = vol;
+
     }
 
 
