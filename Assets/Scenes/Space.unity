@@ -640,6 +640,74 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030517578, y: 0.00017547607}
   m_SizeDelta: {x: 0, y: 5.0400085}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &314310734
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1046763801}
+    m_Modifications:
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 23752241071959758, guid: 0f946c4a6a37607448c0a1b9666bbb11,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c89c809778faf84fa8368be9dd7c761, type: 2}
+    - target: {fileID: 1533969309607158, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_Name
+      value: Barrier Powerful (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &314310735 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11,
+    type: 2}
+  m_PrefabInternal: {fileID: 314310734}
 --- !u!1 &316737523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +2038,7 @@ Transform:
   m_Children:
   - {fileID: 316737524}
   - {fileID: 1374206113}
+  - {fileID: 314310735}
   m_Father: {fileID: 494184901}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1985,7 +2054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: Metal
-  description: A
+  description: A looming location where only the bravest would dare
   planetScene: {fileID: 102900000, guid: 2a95c4d91208c40d0941414eaa47629b, type: 3}
   moonScene: {fileID: 0}
   orbitRadius: 125
