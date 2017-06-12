@@ -326,6 +326,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &188900859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 188900860}
+  m_Layer: 0
+  m_Name: SpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &188900860
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188900859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1486011750}
+  m_Father: {fileID: 652733223}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &228853474
 Prefab:
   m_ObjectHideFlags: 0
@@ -809,7 +838,7 @@ Transform:
   - {fileID: 779101815}
   - {fileID: 1558510812}
   m_Father: {fileID: 652733223}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526331225
 GameObject:
@@ -918,6 +947,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 188900860}
   - {fileID: 724385038}
   - {fileID: 838672297}
   - {fileID: 494184901}
@@ -959,7 +989,7 @@ Transform:
   - {fileID: 955953423}
   - {fileID: 923451336}
   m_Father: {fileID: 652733223}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &779101814
 Prefab:
@@ -1170,7 +1200,7 @@ Transform:
   m_LocalScale: {x: 750, y: 750, z: 750}
   m_Children: []
   m_Father: {fileID: 652733223}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &838672298
 MeshRenderer:
@@ -2286,6 +2316,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760,
     type: 2}
   m_PrefabInternal: {fileID: 228853474}
+--- !u!1 &1486011749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1486011750}
+  m_Layer: 0
+  m_Name: First Planet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1486011750
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1486011749}
+  m_LocalRotation: {x: 0.31170902, y: 0.6378708, z: -0.008566536, w: 0.7041911}
+  m_LocalPosition: {x: -300, y: 260, z: -90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 188900860}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 26.739, y: 90.519005, z: 25.580002}
 --- !u!1 &1499642535
 GameObject:
   m_ObjectHideFlags: 0
