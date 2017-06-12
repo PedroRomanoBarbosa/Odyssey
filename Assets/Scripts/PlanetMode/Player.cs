@@ -45,6 +45,7 @@ public class Player : FauxGravityBody {
 	private Vector3 gravityVector;
 
 	// Jump Variables
+	private bool jumpAllowed;
 	private bool isGroundedLastFrame;
 	public bool isGrounded;
 	public bool jumping;
@@ -68,6 +69,7 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
+		jumpAllowed = true;
 		playerCollider = GetComponent<Collider> ();
 		planetCollider = attractor.GetComponent<Collider> ();
 		baseSpeed = speed;
@@ -147,8 +149,9 @@ public class Player : FauxGravityBody {
 	}
 
 	void CheckGrounded () {
-		Debug.DrawRay (transform.position, -transform.up * 1.2f);
-		if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
+		Debug.DrawRay (transform.position, -transform.up * 1.5f);
+		int mask = 1 << 0;
+		if (Physics.Raycast (transform.position, -transform.up, 1.5f, mask)) {
 			isGrounded = true;
 			if (isGroundedLastFrame != isGrounded) {
 				audioSources [2].Play ();
@@ -164,13 +167,23 @@ public class Player : FauxGravityBody {
 	}
 
 	void CheckVulcanicCrack () {
-		Debug.DrawRay (transform.position, -transform.up * 3f);
-		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 3f);
+		Debug.DrawRay (transform.position, -transform.up * 10f);
+		RaycastHit[] hits = Physics.RaycastAll (transform.position, -transform.up, 10f);
 		vulcanicCrack = false;
+		bool cracks = false;
+		bool planet = false;
+		jumpAllowed = true;
 		for (int i = 0; i < hits.Length; i++) {
 			if (hits [i].collider.CompareTag ("VulcanoCrack")) {
-				vulcanicCrack = true;
+				cracks = true;
+			} else if (hits [i].collider.CompareTag ("Planet")) {
+				Debug.Log ("Planet");
+				planet = true;
 			}
+		}
+		if (cracks && !planet) {
+			vulcanicCrack = true;
+			jumpAllowed = false;
 		}
 	}
 
@@ -213,7 +226,7 @@ public class Player : FauxGravityBody {
 
 	void Jump() {
 		if (!jumping && isGrounded) {
-			if (Input.GetAxisRaw("Jump") == 1f && inputActive) {
+			if (Input.GetAxisRaw("Jump") == 1f && inputActive && jumpAllowed) {
 				animator.SetBool ("Jump", true);
 				jumping = true;
 				jumpingVelocity = Vector3.ClampMagnitude(move, 1f);
