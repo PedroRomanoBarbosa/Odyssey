@@ -63,11 +63,9 @@ public class Spaceship_Camera : MonoBehaviour {
         //Don´t destroy when loading another scene
 		if (GameObject.Find ("Pause") != null) {
              pause = GameObject.Find ("Pause");
-			 Debug.Log("I didn't do the thing");
          } else {
              pause = Instantiate(pause);
 			 pause.transform.name = "Pause";
-			 Debug.Log("I did the thing");
          }
 		DontDestroyOnLoad(pause);
 
