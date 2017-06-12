@@ -98,7 +98,7 @@ public class Player : FauxGravityBody {
             equippedTools[toolIndex].gameObject.SetActive(true);
         }
 		inputActive = true;
-
+        pts = 0;
 	}
 
 	void Update () {
@@ -113,10 +113,16 @@ public class Player : FauxGravityBody {
 			MovePlayer ();
 			ChangeWeapon ();
 			SpeedingLoop ();
+            UpdateUiText();
 		}
 		FallingLoop ();
 		DamageLoop ();
 	}
+
+    void UpdateUiText()
+    {
+        points.text = pts + " Pts";
+    }
 
 	public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
