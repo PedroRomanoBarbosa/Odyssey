@@ -515,8 +515,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256617634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0, y: 37.9, z: 74.3}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
   m_Father: {fileID: 361753640}
   m_RootOrder: 0
@@ -832,10 +832,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Origin
-  description: The wind blows and tells of impending adventure
-  planetScene: {fileID: 102900000, guid: fe86bafe3c0e24c5a9f332c0a8a869fa, type: 3}
-  moonScene: {fileID: 0}
+  planetName: Volcano
+  description: 'A Volcano so powerful, it spew out a moon '
+  planetScene: {fileID: 102900000, guid: bb7c58c18671c49d7a21bbe0a8871b0c, type: 3}
+  moonScene: {fileID: 102900000, guid: c2b09807e2997498b81d01a2cceff09a, type: 3}
   orbitRadius: 125
   planetSize: 100
   barrier: 0
@@ -866,6 +866,53 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 125
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &406448785
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2088504481}
+    m_Modifications:
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &406448786 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 406448785}
 --- !u!1 &426322415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1699,65 @@ Transform:
   m_PrefabParentObject: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760,
     type: 2}
   m_PrefabInternal: {fileID: 125898719}
+--- !u!1001 &945231573
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1046763801}
+    m_Modifications:
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 23752241071959758, guid: 0f946c4a6a37607448c0a1b9666bbb11,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5bc7aad66c7ca943a06eda8deb6b5b9, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &955953423 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760,
@@ -1768,65 +1874,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1011994564}
---- !u!1001 &1020236320
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2088504481}
-    m_Modifications:
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 180
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6a753c34d6d2a1b44ac1403cc19140a9, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1020236321 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4042910030285656, guid: 6a753c34d6d2a1b44ac1403cc19140a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1020236320}
 --- !u!1001 &1028129541
 Prefab:
   m_ObjectHideFlags: 0
@@ -1922,6 +1969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 316737524}
+  - {fileID: 1374206113}
   m_Father: {fileID: 494184901}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1936,13 +1984,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Origin
-  description: The wind blows and tells of impending adventure
-  planetScene: {fileID: 102900000, guid: fe86bafe3c0e24c5a9f332c0a8a869fa, type: 3}
+  planetName: Metal
+  description: A
+  planetScene: {fileID: 102900000, guid: 2a95c4d91208c40d0941414eaa47629b, type: 3}
   moonScene: {fileID: 0}
   orbitRadius: 125
   planetSize: 100
-  barrier: 0
+  barrier: 1
   planetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1046763803
 MonoBehaviour:
@@ -2417,6 +2465,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1374206113 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11,
+    type: 2}
+  m_PrefabInternal: {fileID: 945231573}
 --- !u!1 &1406252607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,7 +3321,7 @@ Transform:
   m_LocalPosition: {x: -296, y: -176, z: 269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1020236321}
+  - {fileID: 406448786}
   - {fileID: 163568408}
   m_Father: {fileID: 494184901}
   m_RootOrder: 1
@@ -3284,13 +3337,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Origin
-  description: The wind blows and tells of impending adventure
-  planetScene: {fileID: 102900000, guid: fe86bafe3c0e24c5a9f332c0a8a869fa, type: 3}
+  planetName: Jungle
+  description: A lush expanse sorrounding a dangerous high peak.
+  planetScene: {fileID: 102900000, guid: ec046ba2acfa6408db1579b224342633, type: 3}
   moonScene: {fileID: 0}
   orbitRadius: 125
   planetSize: 100
-  barrier: 0
+  barrier: 1
   planetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2088504483
 MonoBehaviour:
