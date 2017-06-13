@@ -33,8 +33,8 @@ public class MissileLauncher : Tool {
 	}
 
 	public void Shoot () {
-		if (player.energy >= energyPerShot) {
-			player.energy -= energyPerShot;
+		if (GameVariables.diamonds >= energyPerShot) {
+			GameVariables.diamonds -= energyPerShot;
 			GameObject missile = Instantiate (missilePrefab, missileAnchor.position, Quaternion.identity);
 			missile.transform.rotation = transform.rotation;
 			MissileMovement script = missile.GetComponent<MissileMovement> ();

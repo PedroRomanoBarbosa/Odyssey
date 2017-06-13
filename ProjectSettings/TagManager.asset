@@ -4,12 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Pick
-  - VulcanoCrack
-  - Planet
   - Obstacle
   - Missile
   - Wall
+  - Pick
   - GravityZone
   - Item
   - AlienPlant
@@ -24,6 +22,9 @@ TagManager:
   - SpeedBall
   - LifeBall
   - Artifact
+  - VulcanoCrack
+  - Planet
+  - HeartGUI
   layers:
   - Default
   - TransparentFX
@@ -33,9 +34,9 @@ TagManager:
   - UI
   - 
   - 
-  - Tool 3D
-  - Gem 3D
-  - Live 3D
+  - Vulcanic
+  - 
+  - 
   - 
   - 
   - 

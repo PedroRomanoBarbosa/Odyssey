@@ -22,9 +22,6 @@ public class Player : FauxGravityBody {
 	public Camera mainCamera;
 
 	// Status
-	public int lives;
-	public int maxLives;
-	public int energy;
 	public float fallingDuration;
 	public float cameraFallingDuration;
 
@@ -70,12 +67,14 @@ public class Player : FauxGravityBody {
 
     //Planet Interface
     public int pts;
-    public Text points; 
+    public Text points;
+    public Text diamondsText;
 
 	// Sound Variables
 	private AudioSource[] audioSources;
 
 	void Start () {
+		//diamondsText = GameObject.Find ("DiamondsText").GetComponent<Text> ();
 		jumpAllowed = true;
 		playerCollider = GetComponent<Collider> ();
 		planetCollider = attractor.GetComponent<Collider> ();
@@ -112,19 +111,19 @@ public class Player : FauxGravityBody {
 			}
 			MovePlayer ();
 			ChangeWeapon ();
-			SpeedingLoop ();
-            UpdateUiText();
+            UpdateUIText();
+            SpeedingLoop ();
 		}
 		FallingLoop ();
 		DamageLoop ();
 	}
 
-    void UpdateUiText()
+    void UpdateUIText()
     {
-        points.text = energy+"";
+        //diamondsText.text = "" + GameVariables.diamonds;
     }
 
-	public new void FixedUpdate () {
+    public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
 		if (!GameVariables.cinematicPaused) {
 			if (planetGravity) {
@@ -164,6 +163,7 @@ public class Player : FauxGravityBody {
 			if (fallingCounter >= cameraFallingDuration) {
 				falling = false;
 				GameVariables.cinematicPaused = false;
+				GameVariables.lives = 3;
 				SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
 			} else if (fallingCounter >= fallingDuration && fallingCounter < cameraFallingDuration) {
 				GameVariables.cinematicPaused = true;
@@ -322,13 +322,13 @@ public class Player : FauxGravityBody {
 			audioSources [4].Play ();
 		} else if (colliderObject.name == "MineralCollider") {
 			audioSources [0].Play ();
-			energy += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
+			GameVariables.diamonds += colliderObject.transform.parent.gameObject.GetComponent<Mineral> ().value;
 			Destroy (colliderObject.transform.parent.gameObject);
 		} else if (colliderObject.CompareTag ("LifeBall")) {
 			audioSources [1].Play ();
-			lives++;
-			if (lives > maxLives) {
-				lives = maxLives;
+			GameVariables.lives++;
+			if (GameVariables.lives > GameVariables.maxLives) {
+				GameVariables.lives = GameVariables.maxLives;
 			}
 			Destroy (colliderObject);
 		} else if (collider.CompareTag ("SpeedBall")) {
@@ -342,7 +342,7 @@ public class Player : FauxGravityBody {
 			audioSources [5].Play ();
 		} else if (collider.CompareTag ("VulcanoCrack")) {
 			FallingAnimation ();
-			DecreaseLife (lives);
+			DecreaseLife (GameVariables.lives);
 		}
 	}
 
@@ -365,27 +365,28 @@ public class Player : FauxGravityBody {
 	}
 
 	public void IncreaseMaxLife (int num) {
-		maxLives += num;
-		lives = maxLives;
+		GameVariables.maxLives += num;
+		GameVariables.lives = GameVariables.maxLives;
 		audioSources [4].Play ();
 	}
 
 	public void DecreaseLife (int num) {
-		lives -= num;
+		GameVariables.lives -= num;
 		damaged = true;
 		damageCounter = 0f;
 		ChangeColor (true);
-		if (lives <= 0 && !falling) {
+		if (GameVariables.lives <= 0 && !falling) {
+			GameVariables.lives = 3;
 			SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().name);
 		}
 	}
 
-	public void IncreaseLife (int num) {
-		lives += num;
-        pts += 100;
-	}
+    public void IncreaseLife(int num)
+    {
+        GameVariables.lives += num;
+    }
 
-	private void ChangeColor (bool active) {
+    private void ChangeColor (bool active) {
 		RawImage image = GameObject.Find ("Canvas").GetComponent<RawImage> ();
 		if (active) {
 			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.50f);

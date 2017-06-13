@@ -17,7 +17,8 @@ public class LivesDisplay : MonoBehaviour
 
 	void Update ()
     {
-        int lives = FindObjectOfType<Player>().lives;
+        //int lives = FindObjectOfType<Player>().lives;
+        int lives = GameVariables.lives;
 
         if (lives == 0)
         {

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33730682484571134}
   - component: {fileID: 136800331202356854}
   - component: {fileID: 23460299128604878}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23580542676807434}
   - component: {fileID: 114169106729304872}
   - component: {fileID: 114796666371401460}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 23936090084210770}
   - component: {fileID: 114439497165507790}
   - component: {fileID: 114835206546793118}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 4332062863153086}
   - component: {fileID: 33852511941302306}
   - component: {fileID: 23687080933359106}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 114242635219341660}
   m_Layer: 9
   m_Name: HardStar_UI
-  m_TagString: Untagged
+  m_TagString: GemsGUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4650702275730036}
   - component: {fileID: 108159444109091630}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4427643205823722}
   - component: {fileID: 114024419086097722}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Flamethrower_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655006285140754}
   - component: {fileID: 114263922003221220}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WateringCan_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4761768614778428}
   - component: {fileID: 114345009138025562}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: MiningPick_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805710177724286}
   - component: {fileID: 114207635325631646}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: MissileLauncher_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 33140470962804952}
   - component: {fileID: 136215552232404076}
   - component: {fileID: 23254800467471616}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 114665437183022392}
   m_Layer: 9
   m_Name: Cuboid_UI
-  m_TagString: Untagged
+  m_TagString: GemsGUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 4768382499377494}
   - component: {fileID: 33728324538831978}
   - component: {fileID: 23885202719465100}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4158599749539774}
   - component: {fileID: 33324315602683000}
   - component: {fileID: 23879624875374354}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 23069764940799278}
   - component: {fileID: 114417404757721000}
   - component: {fileID: 114469122311337584}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4546820087933454}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4430840412886984}
   - component: {fileID: 108338654808398152}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1315811203609748
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -362,7 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4499523630060384}
   - component: {fileID: 114914871999026394}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4517378436719112}
   - component: {fileID: 108461577317692326}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4807708053704140}
   - component: {fileID: 108051508490132680}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 23792992410369846}
   - component: {fileID: 114588201275313690}
   - component: {fileID: 114246265483588270}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 114697921125941782}
   m_Layer: 9
   m_Name: Spiral_UI
-  m_TagString: Untagged
+  m_TagString: GemsGUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4277628188250020}
   - component: {fileID: 114172203378353650}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4449359326368444}
   - component: {fileID: 114244753754137930}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 23792267179736208}
   - component: {fileID: 114757735371066240}
   - component: {fileID: 114130071814310510}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 4351815753255480}
   - component: {fileID: 33662894676210144}
   - component: {fileID: 23216751297097254}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 23765675208475814}
   - component: {fileID: 114606998412661654}
   - component: {fileID: 114169478406516766}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863977797902586}
   - component: {fileID: 114891100388951630}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696573343426886}
   - component: {fileID: 114318054637286156}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 33654949267334898}
   - component: {fileID: 65854930273106296}
   - component: {fileID: 23818442755173726}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 114833628169070824}
   m_Layer: 9
   m_Name: Penta_UI
-  m_TagString: Untagged
+  m_TagString: GemsGUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 23194956830611300}
   - component: {fileID: 114276093695816870}
   - component: {fileID: 114722673544271332}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4376442860479032}
   - component: {fileID: 114122448000465624}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4709229476004270}
   - component: {fileID: 114155276798690966}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891990077488614}
   - component: {fileID: 108246880749861428}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1831281603681648
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -719,7 +719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4242639945375254}
   - component: {fileID: 108810940838802932}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4461950981416840}
   - component: {fileID: 114808052378831380}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 4778962569731126}
   - component: {fileID: 33667430480177586}
   - component: {fileID: 23942344314552546}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,8 +768,23 @@ GameObject:
   m_Component:
   - component: {fileID: 4174862726832744}
   - component: {fileID: 108562070775286624}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1852259088663006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224144888065006572}
+  m_Layer: 5
+  m_Name: Pts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +802,7 @@ GameObject:
   - component: {fileID: 23083751221170440}
   - component: {fileID: 114584321409530568}
   - component: {fileID: 114937050282272694}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +821,7 @@ GameObject:
   - component: {fileID: 23310301639156334}
   - component: {fileID: 114807129829304340}
   - component: {fileID: 114942633256725112}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,7 +856,7 @@ GameObject:
   - component: {fileID: 23301162361423292}
   - component: {fileID: 114030464015082544}
   - component: {fileID: 114617897170472812}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4687282630200856}
   - component: {fileID: 114817032058086792}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288991429965478}
   - component: {fileID: 108752596365018788}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +922,7 @@ GameObject:
   - component: {fileID: 33133513032096998}
   - component: {fileID: 65481625066383270}
   - component: {fileID: 23404552923085212}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4945241425360310}
   - component: {fileID: 108953949917813094}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,7 +970,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4397811002746800}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: MissileAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4120215775996580}
   - component: {fileID: 114297411459037038}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,7 +1019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4731396096402778}
   - component: {fileID: 108557509817421964}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1037,7 @@ GameObject:
   - component: {fileID: 33883438611358014}
   - component: {fileID: 65932384963466664}
   - component: {fileID: 23701796597303148}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: UpperPart
   m_TagString: Pick
   m_Icon: {fileID: 0}
@@ -1177,7 +1192,7 @@ Transform:
   - {fileID: 4805710177724286}
   - {fileID: 4655006285140754}
   m_Father: {fileID: 224402405557482380}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4332062863153086
 Transform:
@@ -1464,7 +1479,7 @@ Transform:
   - {fileID: 4461950981416840}
   - {fileID: 4277628188250020}
   m_Father: {fileID: 224402405557482380}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4546820087933454
 Transform:
@@ -1509,7 +1524,7 @@ Transform:
   - {fileID: 4353115362206540}
   - {fileID: 4490529802375862}
   m_Father: {fileID: 224402405557482380}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4650702275730036
 Transform:
@@ -1884,7 +1899,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294963656
+    m_Bits: 4294964424
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1920,7 +1935,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294964424
+    m_Bits: 4294965448
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4404,16 +4419,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315811203609748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 224402405557482380}
+  m_Father: {fileID: 224144888065006572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.74875003, y: 1}
   m_AnchorMax: {x: 0.74875003, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
+  m_AnchoredPosition: {x: 194.12505, y: 154.99998}
   m_SizeDelta: {x: 50, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224080373170855650
@@ -4422,17 +4437,37 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831281603681648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 224402405557482380}
+  m_Father: {fileID: 224144888065006572}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 325, y: 204}
   m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224144888065006572
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1852259088663006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224014837098203000}
+  - {fileID: 224080373170855650}
+  m_Father: {fileID: 224402405557482380}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224402405557482380
 RectTransform:
@@ -4444,11 +4479,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 224014837098203000}
-  - {fileID: 224080373170855650}
   - {fileID: 4315930478979198}
   - {fileID: 4567251645639830}
   - {fileID: 4542621696528948}
+  - {fileID: 224144888065006572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

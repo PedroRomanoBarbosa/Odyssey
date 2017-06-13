@@ -40,6 +40,9 @@ public class ShipLanding : MonoBehaviour {
 				if (reverse) {
 					transform.position = startPosition;
 					transform.rotation = startRotation;
+					if (!GameVariables.shipFirstPlanet) {
+						GameVariables.shipFirstPlanet = true;
+					}
 					SceneManager.LoadScene ("Space");
 				} else {
 					transform.position = end.position;

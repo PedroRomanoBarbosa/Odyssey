@@ -31,4 +31,7 @@ EditorBuildSettings:
     guid: bb7c58c18671c49d7a21bbe0a8871b0c
   - enabled: 1
     path: Assets/Scenes/Space.unity
+    guid: 694154341c544b54a8cd276680b67268
+  - enabled: 1
+    path: Assets/Scenes/FinalPlanet.unity
     guid: 00000000000000000000000000000000
