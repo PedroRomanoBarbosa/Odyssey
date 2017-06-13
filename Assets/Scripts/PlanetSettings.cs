@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlanetSettings : MonoBehaviour {
 	public GameVariables.Planet planet;
@@ -18,6 +19,11 @@ public class PlanetSettings : MonoBehaviour {
 		GameObject playerInstance = Instantiate (player);
 		Player playerScript = playerInstance.GetComponent<Player> ();
 		playerScript.attractor = attractor;
+		if (SceneManager.GetActiveScene ().name == "FirstPlanet") {
+			GameObject.Find ("Line1").SetActive (false);
+			GameObject.Find ("Line2").SetActive (false);
+			GameObject.Find ("ShipCage").SetActive (false);
+		}
 		if (GameVariables.shipFirstPlanet) {
 			playerInstance.transform.position = playerStartPosition.position;
 			playerInstance.transform.rotation = playerStartPosition.rotation;
