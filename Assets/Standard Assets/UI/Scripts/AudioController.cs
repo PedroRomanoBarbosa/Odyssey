@@ -4,41 +4,35 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    private int musicVolume;
-    private int effectsVolume;
+    private static int musicVolume = 1;
+    private static int effectsVolume = 1;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
     }
-
-    void Start ()
-    {
-        musicVolume = 1;
-        effectsVolume = 1;
-	}
 	
     void Update()
     {
         //Debug.Log(musicVolume);
     }
 
-	public void SetMusicVolume(int v)
+	public static void SetMusicVolume(int v)
     {
         musicVolume = v;
     }
 
-    public void SetEffectsVolume(int v)
+    public static void SetEffectsVolume(int v)
     {
         effectsVolume = v;
     }
 
-    public int GetMusicVolume()
+    public static int GetMusicVolume()
     {
         return musicVolume;
     }
 
-    public int GetEffectsVolume()
+    public static int GetEffectsVolume()
     {
         return effectsVolume;
     }

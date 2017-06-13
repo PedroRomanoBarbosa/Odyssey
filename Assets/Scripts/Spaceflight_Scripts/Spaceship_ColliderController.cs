@@ -12,13 +12,13 @@ public class Spaceship_ColliderController : MonoBehaviour {
 		playerScript = GetComponent<Spaceship_Movement>();
         if (engineStart != null)
         {
-            if (FindObjectOfType<AudioController>().GetEffectsVolume() != 0)
+            if (AudioController.GetEffectsVolume() != 0)
             {
-                AudioSource.PlayClipAtPoint(engineStart, transform.position);
+				GameObject spawn = GetComponent<Spaceship_SpawnLocation>().returnSpawnPoint();
+				AudioSource.PlayClipAtPoint(engineStart, spawn.transform.position);
             }
         }
 	}
-	
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -28,7 +28,7 @@ public class Spaceship_ColliderController : MonoBehaviour {
 				Debug.Log("BOOSTIO!");
                 if (boostSound != null)
                 {
-                    if (FindObjectOfType<AudioController>().GetEffectsVolume() != 0)
+                    if (AudioController.GetEffectsVolume() != 0)
                         AudioSource.PlayClipAtPoint(boostSound, transform.position);
                 }
 				if(playerScript != null)

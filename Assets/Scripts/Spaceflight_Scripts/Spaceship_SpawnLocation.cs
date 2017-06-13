@@ -13,25 +13,29 @@ public class Spaceship_SpawnLocation : MonoBehaviour {
 
 	void Start () {
         //Change spawn point based on last planet
-		switch(GameVariables.planet){
-			case GameVariables.Planet.Ice:
-			case GameVariables.Planet.Vulcanic:
-				break;
-			case GameVariables.Planet.Forest:
-				break;
-			case GameVariables.Planet.Metal:
-				break;
-			
-			default:
-			case GameVariables.Planet.Normal:
-				transform.position = spawnNormal.transform.position;
-				transform.rotation = spawnNormal.transform.rotation;
-				break;
-		}
-	
+		GameObject spawnPoint = returnSpawnPoint();
+		transform.position = spawnPoint.transform.position;
+		transform.rotation = spawnPoint.transform.rotation;
+
 		//Send camera behind the player right away
 		shipCamera.transform.position = transform.position - transform.forward * 5 + transform.up * 1;
 		shipCamera.transform.rotation = transform.rotation;
 	}
-	
+
+
+	public GameObject returnSpawnPoint(){
+		switch(GameVariables.planet){
+			case GameVariables.Planet.Ice:
+			case GameVariables.Planet.Vulcanic:
+				return spawnVulcanic;
+			case GameVariables.Planet.Forest:
+				return spawnForest;
+			case GameVariables.Planet.Metal:
+				return spawnMetal;
+			default:
+			case GameVariables.Planet.Normal:
+				return spawnNormal;
+		}
+	}
+
 }
