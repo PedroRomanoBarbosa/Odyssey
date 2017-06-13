@@ -24,6 +24,7 @@ TagManager:
   - Artifact
   - VulcanoCrack
   - Planet
+  - HeartGUI
   layers:
   - Default
   - TransparentFX

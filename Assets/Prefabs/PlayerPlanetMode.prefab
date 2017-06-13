@@ -4890,9 +4890,6 @@ MonoBehaviour:
   damageDuration: 0.25
   detectionAnchor: {fileID: 4221635863418166}
   mainCamera: {fileID: 20053126031965920}
-  lives: 3
-  maxLives: 3
-  energy: 0
   fallingDuration: 0.3
   cameraFallingDuration: 2
   speed: 13
@@ -4915,7 +4912,7 @@ MonoBehaviour:
   - {fileID: 114163530399158834}
   - {fileID: 114674053861141428}
   equippedTools: []
-  live: {fileID: 0}
+  diamondsText: {fileID: 0}
 --- !u!114 &114384675694664636
 MonoBehaviour:
   m_ObjectHideFlags: 1

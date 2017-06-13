@@ -51,7 +51,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243244958108685950, guid: 4e46b0d4dbf5048dba26c1aa7bfe3da4,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0e5600db0421145a2bf336f4bab4697d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -133,8 +133,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332749395e8dc47708927c78519e1f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: 2
+  planet: 0
   playerStartPosition: {fileID: 0}
   playerStartPosition2: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 1918617923865772, guid: a23af220eb07d4f4ab3a1e19d0a17430, type: 2}
   attractor: {fileID: 0}
+  artifactsGUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  heartsGUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
