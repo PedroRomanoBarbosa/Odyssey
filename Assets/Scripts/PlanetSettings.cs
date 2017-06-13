@@ -19,12 +19,12 @@ public class PlanetSettings : MonoBehaviour {
 		GameObject playerInstance = Instantiate (player);
 		Player playerScript = playerInstance.GetComponent<Player> ();
 		playerScript.attractor = attractor;
-		if (SceneManager.GetActiveScene ().name == "FirstPlanet") {
-			GameObject.Find ("Line1").SetActive (false);
-			GameObject.Find ("Line2").SetActive (false);
-			GameObject.Find ("ShipCage").SetActive (false);
-		}
 		if (GameVariables.shipFirstPlanet) {
+			if (SceneManager.GetActiveScene ().name == "FirstPlanet") {
+				GameObject.Find ("Line1").SetActive (false);
+				GameObject.Find ("Line2").SetActive (false);
+				GameObject.Find ("ShipCage").SetActive (false);
+			}
 			playerInstance.transform.position = playerStartPosition.position;
 			playerInstance.transform.rotation = playerStartPosition.rotation;
 			playerInstance.GetComponent<Player> ().HideModel ();

@@ -26,6 +26,8 @@ public class ShipLanding : MonoBehaviour {
 			GameVariables.cinematicPaused = true;
 			audioSources [0].Play ();
 		} else {
+			startPosition = transform.position;
+			startRotation = transform.rotation;
 			transform.position = end.position;
 			transform.rotation = end.rotation;
 			camera.enabled = false;

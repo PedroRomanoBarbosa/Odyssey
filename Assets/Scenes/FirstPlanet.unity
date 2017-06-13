@@ -13917,7 +13917,7 @@ Prefab:
         type: 2}
       propertyPath: playerStartPosition2
       value: 
-      objectReference: {fileID: 125134515}
+      objectReference: {fileID: 841944975}
     - target: {fileID: 114084302842860916, guid: e879aedeab54e41c6b5386011679e0c5,
         type: 2}
       propertyPath: attractor
