@@ -74,7 +74,7 @@ public class Player : FauxGravityBody {
 	private AudioSource[] audioSources;
 
 	void Start () {
-		//diamondsText = GameObject.Find ("DiamondsText").GetComponent<Text> ();
+		diamondsText = GameObject.Find ("Points").GetComponent<Text> ();
 		jumpAllowed = true;
 		playerCollider = GetComponent<Collider> ();
 		planetCollider = attractor.GetComponent<Collider> ();
@@ -120,7 +120,7 @@ public class Player : FauxGravityBody {
 
     void UpdateUIText()
     {
-        //diamondsText.text = "" + GameVariables.diamonds;
+        diamondsText.text = "" + GameVariables.diamonds;
     }
 
     public new void FixedUpdate () {
