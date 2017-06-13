@@ -27,14 +27,14 @@ public class Flamethrower : Tool {
 				audioSources [0].Play ();
 				player.SetShootAnimation ();
 			}
-			if (!burningFlag && burningCounter >= audioSources [0].clip.length && player.energy >= energyPerBurningTime) {
+			if (!burningFlag && burningCounter >= audioSources [0].clip.length && GameVariables.diamonds >= energyPerBurningTime) {
 				burningFlag = true;
 				audioSources [1].Play ();
 			}
-			if (player.energy >= energyPerBurningTime) {
+			if (GameVariables.diamonds >= energyPerBurningTime) {
 				if (burningTimeCounter >= burningTime) {
 					burningTimeCounter = 0f;
-					player.energy -= energyPerBurningTime;
+					GameVariables.diamonds -= energyPerBurningTime;
 				} else {
 					burningTimeCounter += Time.deltaTime;
 				}

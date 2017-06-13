@@ -22,7 +22,9 @@ public class GameVariables {
 		Flamethrower,
 		WateringCan
 	}
-	public int diamonds;
+	public static int diamonds = 0;
+	public static int lives = 3;
+	public static int maxLives = 4;
 	public static bool cinematicPaused = false;
 	public static bool shipFirstPlanet = true;
 	public static Planet planet = Planet.Normal;
