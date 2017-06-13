@@ -108,6 +108,75 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &53959608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 53959609}
+  - component: {fileID: 53959611}
+  - component: {fileID: 53959610}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &53959609
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53959608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children: []
+  m_Father: {fileID: 1814595467}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &53959610
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53959608}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &53959611
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53959608}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &69921115
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +563,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1046763801}
+    m_TransformParent: {fileID: 1814595467}
     m_Modifications:
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalPosition.x
@@ -526,7 +595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.x
@@ -640,83 +709,6 @@ AudioSource:
   m_PrefabParentObject: {fileID: 82320710688572464, guid: eaa048329f1d9234b9fb58b050e3f419,
     type: 2}
   m_PrefabInternal: {fileID: 1582209484}
---- !u!1 &361753639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 361753640}
-  - component: {fileID: 361753643}
-  - component: {fileID: 361753642}
-  - component: {fileID: 361753641}
-  m_Layer: 0
-  m_Name: Ice Planet
-  m_TagString: PlanetSelection
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &361753640
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 361753639}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -207, y: 412, z: -288}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2050093297}
-  m_Father: {fileID: 494184901}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &361753641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 361753639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planetName: Ice Planet
-  description: A distant, frigid place that yet still beckons upon spacefarers
-  planetScene: {fileID: 102900000, guid: c2b09807e2997498b81d01a2cceff09a, type: 3}
-  moonScene: {fileID: 0}
-  orbitRadius: 125
-  planetSize: 100
-  barrier: 0
-  planetPosition: {x: 0, y: 0, z: 0}
---- !u!114 &361753642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 361753639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f478ae4459c6a4b758f2ad564a74ee64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xSpeed: 0
-  ySpeed: 10
-  zSpeed: 0
---- !u!135 &361753643
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 361753639}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 125
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &406448785
 Prefab:
   m_ObjectHideFlags: 0
@@ -1030,8 +1022,8 @@ Transform:
   m_Children:
   - {fileID: 434046647}
   - {fileID: 2088504481}
-  - {fileID: 361753640}
   - {fileID: 1046763801}
+  - {fileID: 1814595467}
   m_Father: {fileID: 652733223}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1614,7 +1606,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1046763801}
+    m_TransformParent: {fileID: 1814595467}
     m_Modifications:
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1630,15 +1622,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalRotation.w
@@ -1646,19 +1638,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.x
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.y
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.z
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 23752241071959758, guid: 0f946c4a6a37607448c0a1b9666bbb11,
         type: 2}
@@ -1883,10 +1875,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1243431504}
-  - {fileID: 1374206113}
-  - {fileID: 314310735}
   m_Father: {fileID: 494184901}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1046763802
 MonoBehaviour:
@@ -1899,10 +1889,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Volcano
-  description: A looming location where only the bravest would dare
+  planetName: Vicious Volcano
+  description: A land of extreme heat, with a moon of unbearable cold
   planetScene: {fileID: 102900000, guid: bb7c58c18671c49d7a21bbe0a8871b0c, type: 3}
-  moonScene: {fileID: 0}
+  moonScene: {fileID: 102900000, guid: c2b09807e2997498b81d01a2cceff09a, type: 3}
   orbitRadius: 125
   planetSize: 100
   barrier: 1
@@ -2888,7 +2878,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4499601222329740, guid: 90f33eb6c5133df469e15654b43c2126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4499601222329740, guid: 90f33eb6c5133df469e15654b43c2126, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3050,6 +3040,85 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1814595466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1814595467}
+  - component: {fileID: 1814595470}
+  - component: {fileID: 1814595469}
+  - component: {fileID: 1814595468}
+  m_Layer: 0
+  m_Name: Final Planet
+  m_TagString: PlanetSelection
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814595467
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814595466}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -207, y: 412, z: -288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1374206113}
+  - {fileID: 314310735}
+  - {fileID: 53959609}
+  m_Father: {fileID: 494184901}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814595468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814595466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: Metal Madness
+  description: A looming presence where only the bravest would dare step foot
+  planetScene: {fileID: 102900000, guid: 2a95c4d91208c40d0941414eaa47629b, type: 3}
+  moonScene: {fileID: 0}
+  orbitRadius: 125
+  planetSize: 100
+  barrier: 0
+  planetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1814595469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814595466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f478ae4459c6a4b758f2ad564a74ee64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 0
+  ySpeed: 10
+  zSpeed: 0
+--- !u!135 &1814595470
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814595466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 125
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1909505367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,75 +3267,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760,
     type: 2}
   m_PrefabInternal: {fileID: 837709704}
---- !u!1 &2050093296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2050093297}
-  - component: {fileID: 2050093300}
-  - component: {fileID: 2050093298}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2050093297
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2050093296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
-  m_Father: {fileID: 361753640}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &2050093298
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2050093296}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &2050093300
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2050093296}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2088504480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2088504480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -296, y: -176, z: 269}
+  m_LocalPosition: {x: -296, y: -176, z: 191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406448786}
@@ -3311,7 +3311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b63e14377ef5a2489fb0f3f08fbec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Jungle
+  planetName: Jungle Jubilee
   description: A lush expanse sorrounding a dangerous high peak.
   planetScene: {fileID: 102900000, guid: ec046ba2acfa6408db1579b224342633, type: 3}
   moonScene: {fileID: 0}
