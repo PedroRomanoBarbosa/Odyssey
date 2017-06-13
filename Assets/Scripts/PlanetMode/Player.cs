@@ -429,5 +429,4 @@ public class Player : FauxGravityBody {
 	public void EndPicking () {
 		((MiningPick)tools [0]).EndPicking ();
 	}
-
 }
