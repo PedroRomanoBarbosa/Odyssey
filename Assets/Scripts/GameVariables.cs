@@ -26,7 +26,7 @@ public class GameVariables {
 	public static int lives = 3;
 	public static int maxLives = 3;
 	public static bool cinematicPaused = false;
-	public static bool shipFirstPlanet = true;
+	public static bool shipFirstPlanet = false;
 	public static Planet planet = Planet.Normal;
 	public static bool[] artifacts = { false, false, false, false };
 	public static bool[] tools = {true, true, true, true};
