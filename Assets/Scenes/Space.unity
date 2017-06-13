@@ -678,15 +678,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.x
-      value: 170
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.y
-      value: 170
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.z
-      value: 170
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 23752241071959758, guid: 0f946c4a6a37607448c0a1b9666bbb11,
         type: 2}
@@ -940,7 +940,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434046646}
   m_LocalRotation: {x: 0, y: 0.99797714, z: 0, w: 0.06357433}
-  m_LocalPosition: {x: 145, y: -102, z: 473}
+  m_LocalPosition: {x: 179.8, y: -102, z: 484.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1673281771}
@@ -1722,15 +1722,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.x
-      value: 120
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.y
-      value: 120
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 4093913923237764, guid: 0f946c4a6a37607448c0a1b9666bbb11, type: 2}
       propertyPath: m_LocalScale.z
-      value: 120
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 23752241071959758, guid: 0f946c4a6a37607448c0a1b9666bbb11,
         type: 2}
@@ -1869,7 +1869,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -303
+      value: -301
       objectReference: {fileID: 0}
     - target: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1877,7 +1877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -167
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 4838711778332302, guid: b88853815d2acfe4eae2d54b4f53e760, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4008,7 +4008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1441878755 stripped
 Transform:
@@ -4037,7 +4037,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1486011749}
   m_LocalRotation: {x: 0.024738075, y: 0.87573266, z: 0.045128934, w: -0.4800455}
-  m_LocalPosition: {x: 8.3, y: -28.11, z: 436.4}
+  m_LocalPosition: {x: 43.1, y: -28.11, z: 447.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 188900860}
@@ -4203,8 +4203,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4484096683562312, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnNormal
+      value: 
+      objectReference: {fileID: 1486011749}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: shipCamera
+      value: 
+      objectReference: {fileID: 1406252607}
     - target: {fileID: 114765407354468842, guid: eaa048329f1d9234b9fb58b050e3f419,
         type: 2}
       propertyPath: shipCamera
@@ -4220,16 +4230,6 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 526331228}
-    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
-        type: 2}
-      propertyPath: spawnNormal
-      value: 
-      objectReference: {fileID: 1486011749}
-    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
-        type: 2}
-      propertyPath: shipCamera
-      value: 
-      objectReference: {fileID: 1406252607}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
   m_IsPrefabParent: 0
@@ -4522,7 +4522,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1814595466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -271, y: 0, z: -495}
+  m_LocalPosition: {x: -271, y: 0, z: -441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1374206113}
@@ -4546,8 +4546,8 @@ MonoBehaviour:
   description: A looming presence where only the bravest would dare step foot
   planetScene: {fileID: 102900000, guid: 2a95c4d91208c40d0941414eaa47629b, type: 3}
   moonScene: {fileID: 0}
-  orbitRadius: 125
-  planetSize: 100
+  orbitRadius: 100
+  planetSize: 80
   barrier: 1
   planetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1814595469
