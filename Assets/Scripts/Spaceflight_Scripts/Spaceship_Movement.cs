@@ -6,7 +6,8 @@ using UnityEngine;
 public class Spaceship_Movement : MonoBehaviour
 {
     public GameObject shipCamera;
-	public GameObject missilePrefab;
+    public AudioSource engineSound;
+    public AudioSource maneuverSound;
 
     //Space and Planet Bounds controller bools - changes behaviour.
     bool OutsideBounds = false;
@@ -77,6 +78,13 @@ public class Spaceship_Movement : MonoBehaviour
         //Update Speed Display
         if(speedImage != null)
             speedImage.GetComponent<Needle>().MoveNeedle(shipForwardSpeed, maxSpeed*1.5f, minSpeed);
+
+        //Update Sound Intensity based on speed
+        float vol = shipForwardSpeed/maxSpeed;
+        if(vol > 1)
+            vol = 1;
+        engineSound.volume = vol;
+
     }
 
 
@@ -92,7 +100,7 @@ public class Spaceship_Movement : MonoBehaviour
             shipForwardSpeed += acceleration * Time.smoothDeltaTime;
 
         //Forward Movement
-        if(fuel>0)
+        if(true)//(fuel>0)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -103,10 +111,10 @@ public class Spaceship_Movement : MonoBehaviour
                 shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
             }
         }
-        else
+        /*else
         {
             shipForwardSpeed -= deceleration * Time.smoothDeltaTime;
-        }
+        }*/
        
 
         //THIS HURTS EVERY TIME I SEE IT

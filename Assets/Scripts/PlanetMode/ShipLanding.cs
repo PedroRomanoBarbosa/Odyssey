@@ -43,7 +43,7 @@ public class ShipLanding : MonoBehaviour {
 					if (!GameVariables.shipFirstPlanet) {
 						GameVariables.shipFirstPlanet = true;
 					}
-					SceneManager.LoadScene ("spaceship_control_test_ui");
+					SceneManager.LoadScene ("Space");
 				} else {
 					transform.position = end.position;
 					transform.rotation = end.rotation;

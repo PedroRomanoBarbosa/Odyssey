@@ -61,7 +61,14 @@ public class Spaceship_Camera : MonoBehaviour {
 		whiteFadeScreen.gameObject.SetActive(false);
 
         //Don´t destroy when loading another scene
-        DontDestroyOnLoad(pause);
+		if (GameObject.Find ("Pause") != null) {
+             pause = GameObject.Find ("Pause");
+         } else {
+             pause = Instantiate(pause);
+			 pause.transform.name = "Pause";
+         }
+		DontDestroyOnLoad(pause);
+
     }
 	void LateUpdate () {
 		//If the player is getting closer to the space boundaries, the camera should have a warning effect
@@ -107,10 +114,14 @@ public class Spaceship_Camera : MonoBehaviour {
 		if (Input.GetKey(KeyCode.E))
 		{
 			transform.Rotate(0,0,Time.smoothDeltaTime * -rotationFactor);
+			playerScript.maneuverSound.volume = playerScript.shipForwardSpeed;
 		}
 		else if (Input.GetKey(KeyCode.Q))
 		{
 			transform.Rotate(0,0,Time.smoothDeltaTime * rotationFactor);
+			playerScript.maneuverSound.volume = playerScript.shipForwardSpeed;
+		} else {
+			playerScript.maneuverSound.volume = 0;
 		}
 
 		//Find a point behind and above the player ship and go there smoothly
