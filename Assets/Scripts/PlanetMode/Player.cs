@@ -66,13 +66,15 @@ public class Player : FauxGravityBody {
 	private int toolIndex;
 
     //Planet Interface
+    public int pts;
+    public Text points;
     public Text diamondsText;
 
 	// Sound Variables
 	private AudioSource[] audioSources;
 
 	void Start () {
-		diamondsText = GameObject.Find ("DiamondsText").GetComponent<Text> ();
+		diamondsText = GameObject.Find ("Points").GetComponent<Text> ();
 		jumpAllowed = true;
 		playerCollider = GetComponent<Collider> ();
 		planetCollider = attractor.GetComponent<Collider> ();
@@ -91,10 +93,11 @@ public class Player : FauxGravityBody {
 			}
 		}
 		toolIndex = 0;
-		if (equippedTools.Count > 0) {
-			equippedTools [toolIndex].gameObject.SetActive (true);
-		}
+        if (equippedTools.Count > 0){
+            equippedTools[toolIndex].gameObject.SetActive(true);
+        }
 		inputActive = true;
+        pts = 0;
 	}
 
 	void Update () {
@@ -109,17 +112,18 @@ public class Player : FauxGravityBody {
 			MovePlayer ();
 			ChangeWeapon ();
             UpdateUIText();
-			SpeedingLoop ();
+            SpeedingLoop ();
 		}
 		FallingLoop ();
 		DamageLoop ();
 	}
 
-    void UpdateUIText() {
-		diamondsText.text = "" + GameVariables.diamonds;
+    void UpdateUIText()
+    {
+        diamondsText.text = "" + GameVariables.diamonds;
     }
 
-	public new void FixedUpdate () {
+    public new void FixedUpdate () {
 		rigidBody.velocity = Vector3.zero;
 		if (!GameVariables.cinematicPaused) {
 			if (planetGravity) {
@@ -219,8 +223,9 @@ public class Player : FauxGravityBody {
 				if (toolIndex >= equippedTools.Count) {
 					toolIndex = 0;
 				}
-				equippedTools [toolIndex].gameObject.SetActive (true);
-			}
+                FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+                equippedTools [toolIndex].gameObject.SetActive (true);
+            }
 		}
 	}
 
@@ -287,28 +292,32 @@ public class Player : FauxGravityBody {
 			equippedTools.Add (tools [(int)GameVariables.Tools.MiningPick]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 			audioSources [4].Play ();
 		} else if (colliderObject.name == "MissileLauncherItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.MissileLauncher]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 			audioSources [4].Play ();
 		} else if (colliderObject.name == "FlamethrowerItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.Flamethrower]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 			audioSources [4].Play ();
 		} else if (collider.gameObject.name == "WateringCanItem") {
 			equippedTools.Add (tools [(int)GameVariables.Tools.WateringCan]);
 			equippedTools [toolIndex].gameObject.SetActive (false);
 			toolIndex = equippedTools.Count - 1;
-			equippedTools [toolIndex].gameObject.SetActive (true);
+            FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+            equippedTools [toolIndex].gameObject.SetActive (true);
 			Destroy (colliderObject);
 			audioSources [4].Play ();
 		} else if (colliderObject.name == "MineralCollider") {
@@ -337,7 +346,7 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	public void EnterGravityZone (Vector3 vector) {
+    public void EnterGravityZone (Vector3 vector) {
 		planetGravity = false;
 		gravityZoneCounter++;
 		gravityVector = vector;
@@ -372,11 +381,12 @@ public class Player : FauxGravityBody {
 		}
 	}
 
-	public void IncreaseLife (int num) {
-		GameVariables.lives += num;
-	}
+    public void IncreaseLife(int num)
+    {
+        GameVariables.lives += num;
+    }
 
-	private void ChangeColor (bool active) {
+    private void ChangeColor (bool active) {
 		RawImage image = GameObject.Find ("Canvas").GetComponent<RawImage> ();
 		if (active) {
 			image.color = new Color (image.color.r, image.color.g, image.color.b, 0.50f);
@@ -419,5 +429,4 @@ public class Player : FauxGravityBody {
 	public void EndPicking () {
 		((MiningPick)tools [0]).EndPicking ();
 	}
-
 }

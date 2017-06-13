@@ -17,7 +17,7 @@ public class SoundInput : MonoBehaviour
 
     void SubmitSliderValue()
     {
-        Debug.Log("Sound: " + soundSlider.value);
-        Debug.Log("Effects: " + effectsSlider.value);
+        FindObjectOfType<AudioController>().SetEffectsVolume((int)effectsSlider.value);
+        FindObjectOfType<AudioController>().SetMusicVolume((int)soundSlider.value);
     }
 }

@@ -22,14 +22,32 @@ public class Space_MissileLogic : MonoBehaviour {
 	{
 		if(other.gameObject.CompareTag("PlanetBarrier")){
 			Debug.Log("Shot a barrier!");
-			//Destroy the barrier and the missile
-			PlanetSelectionVars vars = other.transform.parent.transform.GetComponent<PlanetSelectionVars>();
-			AudioSource.PlayClipAtPoint(barrierSound, other.transform.position);
-			vars.barrier = false;
-			Destroy(this.gameObject);
 
-			//Very shitty way to do this...
-			other.gameObject.SetActive(false);
+			//If it's a regular barrier, open the planet
+			if(other.gameObject.name == "Barrier"){
+				//Destroy the barrier and the missile
+				Destroy(this.gameObject);
+				PlanetSelectionVars vars = other.transform.parent.transform.GetComponent<PlanetSelectionVars>();
+				AudioSource.PlayClipAtPoint(barrierSound, other.transform.position);
+				vars.barrier = false;
+				//Very shitty way to do this...
+				other.gameObject.SetActive(false);
+			}
+
+			//If it's a stronger barrier, check for crystals before opening, but don't unlock planet yet...
+			if(other.gameObject.name == "Barrier Powerful"){
+
+				Destroy(this.gameObject);
+				AudioSource.PlayClipAtPoint(barrierSound, other.transform.position);
+
+				if(GameVariables.artifacts[0] && GameVariables.artifacts[1] 
+						&& GameVariables.artifacts[2] && GameVariables.artifacts[3])
+				{
+					other.gameObject.SetActive(false);
+				}
+			}
+
+			
 		}
 	}
 }
