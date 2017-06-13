@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+#if UNITY_EDITOR
 [CustomEditor( typeof( Helper ) )]
 public class HelperEditor : Editor {
 	
 	public void OnSceneGUI() {
+		#if UNITY_EDITOR
 		Event e = Event.current;
 		if (e.type == EventType.MouseDown) {
 			Ray ray = HandleUtility.GUIPointToWorldRay( Event.current.mousePosition );
@@ -23,5 +28,7 @@ public class HelperEditor : Editor {
 			e.Use ();
 		}
 		HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
+		#endif
 	}
 }
+#endif
