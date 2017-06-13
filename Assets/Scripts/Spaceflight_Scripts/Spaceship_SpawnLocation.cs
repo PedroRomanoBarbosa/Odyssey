@@ -15,7 +15,6 @@ public class Spaceship_SpawnLocation : MonoBehaviour {
         //Change spawn point based on last planet
 		switch(GameVariables.planet){
 			case GameVariables.Planet.Ice:
-				break;
 			case GameVariables.Planet.Vulcanic:
 				break;
 			case GameVariables.Planet.Forest:
@@ -32,6 +31,7 @@ public class Spaceship_SpawnLocation : MonoBehaviour {
 	
 		//Send camera behind the player right away
 		shipCamera.transform.position = transform.position - transform.forward * 5 + transform.up * 1;
+		shipCamera.transform.rotation = transform.rotation;
 	}
 	
 }
