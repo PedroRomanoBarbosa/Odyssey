@@ -4161,6 +4161,26 @@ Prefab:
       propertyPath: speedImage
       value: 
       objectReference: {fileID: 526331228}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnIce
+      value: 
+      objectReference: {fileID: 1486011749}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnVulcanic
+      value: 
+      objectReference: {fileID: 1486011749}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnForest
+      value: 
+      objectReference: {fileID: 1486011749}
+    - target: {fileID: 114238223649047402, guid: eaa048329f1d9234b9fb58b050e3f419,
+        type: 2}
+      propertyPath: spawnMetal
+      value: 
+      objectReference: {fileID: 1486011749}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa048329f1d9234b9fb58b050e3f419, type: 2}
   m_IsPrefabParent: 0

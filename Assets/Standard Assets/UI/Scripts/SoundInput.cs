@@ -17,7 +17,7 @@ public class SoundInput : MonoBehaviour
 
     void SubmitSliderValue()
     {
-        FindObjectOfType<AudioController>().SetEffectsVolume((int)effectsSlider.value);
-        FindObjectOfType<AudioController>().SetMusicVolume((int)soundSlider.value);
+        AudioController.SetEffectsVolume((int)effectsSlider.value);
+        AudioController.SetMusicVolume((int)soundSlider.value);
     }
 }
