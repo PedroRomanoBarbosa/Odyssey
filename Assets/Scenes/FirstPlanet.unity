@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.66285396, g: 0.5488284, b: 0.50839794, a: 0.5}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -10761,10 +10761,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1938219415083796, guid: ee9eea87691dc47e3bfbd23a63ca4f94, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee9eea87691dc47e3bfbd23a63ca4f94, type: 2}
   m_IsPrefabParent: 0
@@ -13937,12 +13933,12 @@ Prefab:
         type: 2}
       propertyPath: artifactsGUI.Array.data[2]
       value: 
-      objectReference: {fileID: 41889863}
+      objectReference: {fileID: 83977432}
     - target: {fileID: 114084302842860916, guid: e879aedeab54e41c6b5386011679e0c5,
         type: 2}
       propertyPath: artifactsGUI.Array.data[3]
       value: 
-      objectReference: {fileID: 83977432}
+      objectReference: {fileID: 41889863}
     - target: {fileID: 114084302842860916, guid: e879aedeab54e41c6b5386011679e0c5,
         type: 2}
       propertyPath: heartsGUI.Array.data[0]
@@ -28124,7 +28120,7 @@ GameObject:
   - component: {fileID: 1061660810}
   - component: {fileID: 1061660809}
   m_Layer: 0
-  m_Name: Line
+  m_Name: Line2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45724,6 +45720,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1073935347607486, guid: 09a9cc9a7823300428adbdd31acb0043, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09a9cc9a7823300428adbdd31acb0043, type: 2}
   m_IsPrefabParent: 0
@@ -53605,7 +53605,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970224542}
-  m_LocalRotation: {x: 0.15927751, y: -0.017695675, z: 0.68703514, w: 0.7087314}
+  m_LocalRotation: {x: 0.15927753, y: -0.017695677, z: 0.6870352, w: 0.7087315}
   m_LocalPosition: {x: -48.458984, y: -66.049644, z: 9.96678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -53719,7 +53719,7 @@ GameObject:
   - component: {fileID: 1981197834}
   - component: {fileID: 1981197835}
   m_Layer: 0
-  m_Name: Line
+  m_Name: Line1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

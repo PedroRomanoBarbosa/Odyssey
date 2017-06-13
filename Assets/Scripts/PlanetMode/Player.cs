@@ -223,7 +223,7 @@ public class Player : FauxGravityBody {
 				if (toolIndex >= equippedTools.Count) {
 					toolIndex = 0;
 				}
-                FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
+                //FindObjectOfType<ToolSwitch>().SetTool(equippedTools[toolIndex]);
                 equippedTools [toolIndex].gameObject.SetActive (true);
             }
 		}

@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 222342910596636886}
   - component: {fileID: 114008043269891028}
   m_Layer: 5
-  m_Name: DiamondsText
+  m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
