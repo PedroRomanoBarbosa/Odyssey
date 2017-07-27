@@ -263,7 +263,7 @@ public class Spaceship_Camera : MonoBehaviour {
 			if(!isSceneLoading){
 				isSceneLoading = true;
 				Debug.Log(sceneToLoad.name);				
-				SceneManager.LoadSceneAsync (sceneToLoad.name);
+				SceneManager.LoadScene (sceneToLoad.name);
 			}
 		}
 
